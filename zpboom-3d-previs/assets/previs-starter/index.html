@@ -193,7 +193,7 @@
           <div id="pose-joints" class="weather-rows"></div>
           <p class="hint" id="pose-clip" hidden></p>
           <button id="pose-reset" class="wide subtle" type="button">清除这一帧的微调</button>
-          <button id="mocap-open" class="wide" type="button" title="用手机拍的视频识别出人的动作（本机处理，不上传），生成动作片段加到这个角色">视频动捕：用手机视频生成动作…</button>
+          <button id="mocap-open" class="wide" type="button" title="用手机拍的视频识别出人的动作（本机处理，不上传），生成动作片段加到这个角色">视频动捕：用手机视频生成动作…</button><button id="mocap-live" class="wide subtle" type="button" title="用电脑摄像头实时识别你的动作，人偶跟着动；可以跟着时间线录一段加到角色（本机处理，不上传）">实时动捕：用摄像头跟着时间线表演…</button>
           <div class="field-label">手部接触</div>
           <div class="reach-row"><span>左手</span><select id="reach-L"></select><input id="reach-L-w" type="range" min="0" max="1" step="0.05" title="接触力度"><button id="reach-L-drag" type="button" title="拖小球放手">拖</button></div>
           <div class="reach-row"><span>右手</span><select id="reach-R"></select><input id="reach-R-w" type="range" min="0" max="1" step="0.05" title="接触力度"><button id="reach-R-drag" type="button" title="拖小球放手">拖</button></div>
@@ -248,8 +248,8 @@
 
   <dialog id="mocap-dialog" class="export-dialog mocap-dialog">
     <div class="ex-body">
-      <h3>视频动捕 <small class="muted">本机识别，视频不上传</small></h3>
-      <div class="mc-top"><button type="button" id="mc-pick">选择视频…</button><input id="mc-file" type="file" accept="video/*" hidden><span id="mc-file-name" class="muted">未选择</span></div>
+      <h3>视频动捕 <small class="muted">本机识别，视频和摄像头画面都不上传</small></h3>
+      <div class="mc-top"><button type="button" id="mc-pick">选择视频…</button><button type="button" id="mc-cam" title="用电脑摄像头实时识别动作（本机处理，不上传、不保存视频）">📷 摄像头实时</button><input id="mc-file" type="file" accept="video/*" hidden><span id="mc-file-name" class="muted">未选择</span><span class="mc-live" id="mc-live" hidden><select id="mc-view" title="左边大画面显示什么"><option value="shot">左：镜头画面</option><option value="dummy">左：摄像头 + 骨架</option></select><button type="button" id="mc-rec" class="rec" title="3 秒倒计时后，工程从「起点」开始播放，你跟着画面表演；再点一次停止">● 录制</button><span id="mc-fps" class="mono muted"></span></span></div>
       <div class="mc-stage"><canvas id="mc-canvas" width="720" height="405"></canvas><canvas id="mc-preview" width="405" height="405" title="识别结果临时套到所选角色上的样子，还没放进工程"></canvas></div><video id="mc-video" muted playsinline hidden></video>
       <div class="mc-play-row"><button type="button" id="mc-play" disabled title="原视频和白膜预览同步播放（空格也可以）">▶ 对比播放</button><input id="mc-scrub" type="range" min="0" max="0" step="1" value="0" disabled aria-label="逐帧检查识别结果"><span id="mc-frame" class="muted"></span></div>
       <div class="mc-grid">

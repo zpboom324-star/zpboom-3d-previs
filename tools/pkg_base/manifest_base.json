@@ -1,0 +1,8 @@
+{
+  "name": "ZPboom.AI · 3D预演导演",
+  "skill_id": "zpboom-3d-previs",
+  "author": "ZPboom.AI",
+  "license": "MIT（保留原版 Azhen.AI 1.0.0 的版权声明；第三方 Three.js（含 FBX 读取器、GLTF 导出器、TransformControls）、fflate、mp4-muxer 均为 MIT；MediaPipe Tasks Vision 及姿态模型为 Apache-2.0）",
+  "edition": "统一模板 · 网页当场编辑 · 镜头与自由观察 · 天气 · 姿态编辑 · 动作方式二选一 · 动作捕捉 · 视频动捕（对比预览 · 覆盖 · 精细识别） · 人物白膜二选一（精细 / 简化胶囊） · 开工确认 · 导出 Blender（通用 Agent Skills 格式）",
+  "install": "把 安装包/ 里的 zip 解压到 ~/.claude/skills/（得到 ~/.claude/skills/zpboom-3d-previs/SKILL.md）"
+}

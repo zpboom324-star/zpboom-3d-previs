@@ -1362,6 +1362,7 @@ $('config-file').addEventListener('change', async () => {
   catch (error) { status(`导入失败：${error.message}`); } finally { $('config-file').value = ''; }
 });
 $('mocap-open').addEventListener('click', async () => { try { (await import('./videomocap.js?v=2.7.3')).openVideoMocap(mocapCtx); } catch (error) { status(`视频动捕打不开：${error.message}`); } });
+$('mocap-live')?.addEventListener('click', async () => { try { (await import('./videomocap.js?v=2.7.3')).openVideoMocap(mocapCtx, {live: true}); } catch (error) { status(`实时动捕打不开：${error.message}`); } });
 $('reset').addEventListener('click', async () => { if (initialConfig && !recording && !exporting) { const before = editor?.beginEdit(); await restoreConfig(clone(initialConfig)); editor?.endEdit('恢复项目配置', before); status('已恢复成打开页面时的 scene.json · Ctrl+Z 可撤销'); } });
 
 // 自由观察 / 俯视的鼠标键盘操作在 viewtools.js
@@ -1767,8 +1768,20 @@ function renderMocapPreview(target, actorId, data, u, opts = {}) {
   const low = Math.min(v.points.foot_L.getWorldPosition(new THREE.Vector3()).y, v.points.foot_R.getWorldPosition(new THREE.Vector3()).y);
   return {foot: low - ground.y};
 }
+/* 实时动捕录制时：把正在识别的动作套到角色上，用分镜相机渲染第 t 秒的画面（其他角色、机位、灯光照常），画进 target，方便看着镜头表演 */
+function renderMocapShot(target, actorId, data, t, opts = {}) {
+  const v = actors.get(actorId); if (!v || !data) return null;
+  if (mocapPreview?.data !== data || mocapPreview.actorId !== actorId || !motions.has(PV_ID)) { mocapPreview = {actorId, data}; motions.set(PV_ID, buildPoseMotion(data, 'preview')); editor?.suspend(); }
+  mocapPreview.u = 0; mocapPreview.override = opts.override || null; mocapPreview.at = opts.at ?? t;
+  const keepTime = currentTime; currentTime = clamp(t, 0, config.duration); try { updateScene(); } finally { currentTime = keepTime; }
+  renderer.setScissorTest(false); renderer.render(scene, shotCam);
+  const g = target.getContext('2d'), ta = target.width / target.height, ca = canvas.width / canvas.height;
+  const sw = ca > ta ? canvas.height * ta : canvas.width, sh = ca > ta ? canvas.height : canvas.width / ta;
+  g.drawImage(canvas, (canvas.width - sw) / 2, (canvas.height - sh) / 2, sw, sh, 0, 0, target.width, target.height);
+  return {shot: shotAt(clamp(t, 0, config.duration)).id};
+}
 function endMocapPreview() { if (!mocapPreview) return; mocapPreview = null; motions.delete(PV_ID); if (!document.body.classList.contains('clean')) editor?.resume(); draw(); }
-const mocapCtx = {THREE, $, renderPreview: renderMocapPreview, endPreview: endMocapPreview, clipWindow, get config() { return config; }, get editor() { return editor; }, time: () => currentTime, busy: () => Boolean(exporting || recording), status, POSE_PTS,
+const mocapCtx = {THREE, $, renderPreview: renderMocapPreview, renderShot: renderMocapShot, endPreview: endMocapPreview, clipWindow, get config() { return config; }, get editor() { return editor; }, time: () => currentTime, busy: () => Boolean(exporting || recording), status, POSE_PTS,
   reloadMotions: async () => { await loadMotions(config.motions); for (const a of config.actors) refreshActor(a.id); buildKeyMarks(); draw(); updateUI(true); }};
 const weatherApi = {WEATHER_FIELDS, WEATHER_PRESETS, get weather() { return weather; }};
 const editorCtx = {

@@ -27,12 +27,12 @@ async function primeVideo(v) { // Safari 的视频没播放过时画面是黑的
 function isBlank(g, cv) { const d = g.getImageData(0, 0, cv.width, cv.height).data; let m = 0; for (let i = 0; i < d.length; i += 4 * 997) m = Math.max(m, d[i], d[i + 1], d[i + 2]); return m < 8; }
 const seek = (v, t) => new Promise((resolve) => { if (Math.abs(v.currentTime - t) < 1e-4 && v.readyState >= 2) { resolve(); return; } v.addEventListener('seeked', () => resolve(), {once: true}); v.currentTime = t; });
 
-function drawFrame(frame) {
-  const cv = $('mc-canvas'), g = cv.getContext('2d'), v = $('mc-video');
+function drawFrame(frame, cv = $('mc-canvas')) {
+  const g = cv.getContext('2d'), v = $('mc-video'), noVideo = state?.source === 'camera' && (!live.running || live.hold);   // 摄像头片段录完后没有画面，只画骨架
   g.fillStyle = '#000'; g.fillRect(0, 0, cv.width, cv.height);
-  if (!v.videoWidth) return;
-  const s = Math.min(cv.width / v.videoWidth, cv.height / v.videoHeight), w = v.videoWidth * s, h = v.videoHeight * s, x0 = (cv.width - w) / 2, y0 = (cv.height - h) / 2;
-  g.drawImage(v, x0, y0, w, h);
+  const vw = noVideo ? state.vw : v.videoWidth, vh = noVideo ? state.vh : v.videoHeight; if (!vw) return;
+  const s = Math.min(cv.width / vw, cv.height / vh), w = vw * s, h = vh * s, x0 = (cv.width - w) / 2, y0 = (cv.height - h) / 2;
+  if (noVideo) { g.fillStyle = '#15181b'; g.fillRect(x0, y0, w, h); } else g.drawImage(v, x0, y0, w, h);
   const img = frame?.img; if (!img) return;
   const P = (n) => [x0 + img[MP[n]].x * w, y0 + img[MP[n]].y * h];
   g.lineWidth = 3; g.lineCap = 'round';
@@ -150,7 +150,7 @@ function buildData() {
   }
   const lift = computeLift(F, state.fps, state.vw, state.vh); state.jumps = lift ? lift.filter((v, i) => v > .05 && !(lift[i - 1] > .05)).length : 0; state.feetUnclear = !lift;
   return {format: 'zpboom-pose', version: 2, fps: state.fps, points: names, frames: out.map((f) => names.flatMap((k) => f[k].map((v) => Number(v.toFixed(4))))), ...(lift ? {lift} : {}),
-    source: {video: state.name, flipsFixed: state.flips || 0, start: Number(state.range[0].toFixed(3)), end: Number(state.range[1].toFixed(3)), detected: `${F.filter((f) => f.world).length}/${n}`, model: `MediaPipe pose_landmarker_${loadedModel || modelName}`, smooth, jumps: state.jumps}};
+    source: {video: state.name, ...(state.source === 'camera' ? {camera: true} : {}), flipsFixed: state.flips || 0, start: Number(state.range[0].toFixed(3)), end: Number(state.range[1].toFixed(3)), detected: `${F.filter((f) => f.world).length}/${n}`, model: `MediaPipe pose_landmarker_${loadedModel || modelName}`, smooth, jumps: state.jumps}};
 }
 /* 起点：动作从工程的第几秒开始。打开对话框时填当前播放头，之后保持不变（连续给几个人加时都从同一秒开始），可改、可一键设 0 秒 / 播放头。
    动作超出工程结尾的部分播不到，提前提示，避免「只播了 1.4 秒」这种情况。 */
@@ -220,10 +220,15 @@ function renderIndex(i) {
   if (res) label(pv.getContext('2d'), `白膜预览 · 脚底离地 ${Math.max(0, Math.round(res.foot * 100))} cm`, 12, pv.height - 14); // 放底部，不挡角色名牌
   $('mc-frame').textContent = `${f.t.toFixed(2)}s · ${i + 1}/${F.length}`;
 }
-async function showIndex(i, doSeek) { if (!state?.frames) return; const f = state.frames[i]; if (doSeek) await seek($('mc-video'), f.t); renderIndex(i); }
+async function showIndex(i, doSeek) { if (!state?.frames) return; const f = state.frames[i]; if (doSeek && state.source !== 'camera') await seek($('mc-video'), f.t); renderIndex(i); }
 function currentIndex() { return Number($('mc-scrub').value) || 0; }
 function play() {
   if (!state?.frames || state.playing) return;
+  if (state.source === 'camera') { // 摄像头片段：没有视频可放，按工程帧率逐帧走
+    const n = state.frames.length; state.playing = true; $('mc-play').textContent = '❚❚ 暂停'; let i = currentIndex() >= n - 1 ? 0 : currentIndex();
+    const tick = () => { if (!state.playing) return; $('mc-scrub').value = String(i); renderIndex(i); i = (i + 1) % n; state.raf = setTimeout(tick, 1000 / state.fps); };
+    tick(); return;
+  }
   const v = $('mc-video'), [t0, t1] = state.range, n = state.frames.length; state.playing = true; $('mc-play').textContent = '❚❚ 暂停';
   v.currentTime = state.frames[currentIndex() >= n - 1 ? 0 : currentIndex()].t; v.play().catch(() => {});
   const step = () => {
@@ -234,15 +239,130 @@ function play() {
   };
   state.raf = setTimeout(step, 0);
 }
-function stopPlay() { if (!state?.playing) return; state.playing = false; clearTimeout(state.raf); $('mc-video').pause(); $('mc-play').textContent = '▶ 对比播放'; }
+function stopPlay() { if (!state?.playing) return; state.playing = false; clearTimeout(state.raf); if (state.source !== 'camera') $('mc-video').pause(); $('mc-play').textContent = '▶ 对比播放'; }
 function togglePlay() { if (state?.playing) stopPlay(); else play(); }
 function refreshPreview() { if (!state?.frames || state.playing) return; renderIndex(currentIndex()); }
+
+
+/* ───────── 实时动捕（摄像头）─────────
+   打开摄像头 → 每一帧识别 → 实时去抖动 → 套到所选角色上：左边可以看镜头画面（其他角色、机位照常），右边看摄像头 + 骨架。
+   「录制」：3 秒倒计时后从「起点」开始按真实时间走时间线，你跟着画面表演；停止后把录到的帧按工程帧率重新取样，
+   交给和视频动捕完全相同的流程（前后翻转修正、平滑、朝向、自动踩地、跳起检测、对比回放、起点 / 覆盖方式、加到角色）。画面只在本页处理，不上传、不保存。 */
+const live = {stream: null, running: false, hold: false, rec: null, countdown: 0, fps: 0, last: 0, filt: null, prevYaw: null, yaw0: null, scratch: null, takes: 0};
+const LR_PAIRS = [['earL', 'earR'], ['shL', 'shR'], ['elL', 'elR'], ['wrL', 'wrR'], ['hipL', 'hipR'], ['knL', 'knR'], ['anL', 'anR']];
+const yawOfPts = (p) => Math.atan2(p.hipL[2] - p.hipR[2] + p.shL[2] - p.shR[2], p.hipL[0] - p.hipR[0] + p.shL[0] - p.shR[0]);
+const wrapAng = (x) => Math.atan2(Math.sin(x), Math.cos(x));
+function flipPts(p) { const q = {}; for (const k of Object.keys(p)) q[k] = [p[k][0], p[k][1], -p[k][2]]; for (const [a, b] of LR_PAIRS) [q[a], q[b]] = [q[b], q[a]]; return q; }
+function euro(minCutoff, beta = .4, dCutoff = 1) { // 一欧元滤波（逐帧版）：慢动作多平滑，快动作少延迟
+  let x0 = null, d0 = 0; const a = (cut, dt) => 1 / (1 + 1 / (2 * Math.PI * cut) / dt);
+  return (x, dt) => { if (x0 === null) { x0 = x; return x; } const d = (x - x0) / dt, dh = d0 + a(dCutoff, dt) * (d - d0), xh = x0 + a(minCutoff + beta * Math.abs(dh), dt) * (x - x0); x0 = xh; d0 = dh; return xh; };
+}
+function setLiveUI(on) {
+  $('mc-live').hidden = !on; $('mc-run').hidden = on; $('mc-cam').textContent = on ? '📷 摄像头已开' : '📷 摄像头实时'; $('mc-cam').disabled = on;
+  for (const id of ['mc-start', 'mc-end']) $(id).disabled = on;
+  if (on) $('mc-file-name').textContent = '摄像头（实时，不保存画面）';
+}
+function cameraError(e) {
+  const msg = String(e?.name || e?.message || e); stopCamera(); setLiveUI(false);
+  say(/NotAllowed|Permission/i.test(msg) ? '浏览器没有拿到摄像头权限：点地址栏左边的摄像头图标，改成「允许」，再点「📷 摄像头实时」。'
+    : /NotFound|Overconstrained/i.test(msg) ? '没有找到摄像头：确认电脑有摄像头（或外接摄像头已插好），并且没有被别的软件占用。'
+    : /Aborted|kGpuService/.test(msg) ? `识别模型在这个浏览器里崩溃了${IS_SAFARI ? '（Safari 已知问题）' : ''}：请用 Chrome 或 Edge 打开。` : `摄像头打不开：${e?.message || msg}`);
+  console.error(e);
+}
+async function startCamera() {
+  if (live.running) return;
+  if (IS_SAFARI) { say('Safari 里识别模型会崩溃，实时动捕请用 Chrome 或 Edge 打开。'); return; }
+  if (!navigator.mediaDevices?.getUserMedia) throw new Error('这个浏览器不支持摄像头（需要用 http://127.0.0.1 或 localhost 打开）');
+  stopPlay(); ctx.endPreview?.();
+  say('正在打开摄像头（浏览器会问是否允许，请点「允许」）…');
+  const stream = await navigator.mediaDevices.getUserMedia({video: {width: {ideal: 1280}, height: {ideal: 720}, frameRate: {ideal: 30}}, audio: false});
+  const v = $('mc-video'); if (v.src) { URL.revokeObjectURL(v.src); v.removeAttribute('src'); }
+  v.srcObject = stream; live.stream = stream; await v.play();
+  await ensureModel(say);
+  state = {name: 'camera', frames: null, source: 'camera'}; $('mc-add').disabled = $('mc-play').disabled = $('mc-scrub').disabled = true; $('mc-frame').textContent = ''; $('mc-fit').textContent = '';
+  Object.assign(live, {running: true, hold: false, rec: null, countdown: 0, fps: 0, last: 0, filt: null, prevYaw: null, yaw0: null});
+  setLiveUI(true); $('mc-rec').textContent = '● 录制'; $('mc-rec').classList.remove('on');
+  say(`摄像头已打开（${v.videoWidth}×${v.videoHeight}，识别用${delegate === 'GPU' ? '显卡' : 'CPU'}）。站到全身都能入画的位置（笔记本摄像头一般要 2.5–3 米），人偶会跟着你动。准备好了点「● 录制」：3 秒倒计时后工程从「起点」开始播放，你跟着画面表演。`);
+  liveLoop();
+}
+function stopCamera() {
+  if (live.stream) for (const t of live.stream.getTracks()) t.stop();
+  live.stream = null; live.running = false; live.rec = null; live.countdown = 0;
+  const v = $('mc-video'); if (v.srcObject) { v.pause(); v.srcObject = null; }
+}
+function liveFrame(v) {
+  const sc = Math.min(1, 640 / Math.max(v.videoWidth, v.videoHeight));   // 实时只取 640 宽来识别，速度更稳
+  live.scratch ||= document.createElement('canvas'); const cv = live.scratch, g = cv.getContext('2d', {willReadFrequently: true});
+  if (cv.width !== Math.round(v.videoWidth * sc)) { cv.width = Math.round(v.videoWidth * sc); cv.height = Math.round(v.videoHeight * sc); }
+  g.drawImage(v, 0, 0, cv.width, cv.height);
+  const now = performance.now(); tsBase = Math.max(tsBase + 1, now);
+  const res = landmarker.detectForVideo(cv, Math.round(tsBase)), world = res.worldLandmarks?.[0], img = res.landmarks?.[0];
+  const ok = Boolean(world && img) && [MP.shL, MP.shR, MP.hipL, MP.hipR].every((k) => (img[k].visibility ?? 1) > .3);
+  return {now, img: img || null, world: ok ? Object.fromEntries(Object.entries(MP).map(([k, j]) => [k, [world[j].x, -world[j].y, -world[j].z]])) : null};
+}
+function livePose(world, dt) { // 实时去抖动 + 前后翻转修正 + 朝向对准正面，得到这一帧套到人偶上的点
+  let p = world; const y = yawOfPts(p);
+  if (live.prevYaw !== null) { const alt = flipPts(p); if (Math.abs(wrapAng(yawOfPts(alt) - live.prevYaw)) + .5 < Math.abs(wrapAng(y - live.prevYaw))) p = alt; }
+  live.prevYaw = yawOfPts(p);
+  const smooth = Number($('mc-smooth').value) * .7, minCutoff = 6 * Math.pow(1 - smooth, 2) + .4;   // 实时比录完后少平滑一点，跟手
+  if (!live.filt || live.filt.cut !== minCutoff) live.filt = {cut: minCutoff, f: {}};
+  const out = {};
+  for (const k of ctx.POSE_PTS) out[k] = p[k].map((v, c) => (live.filt.f[k + c] ||= euro(minCutoff))(v, dt));
+  if ($('mc-face').checked) {
+    if (live.yaw0 === null) { const left = [out.hipL[0] - out.hipR[0], out.hipL[2] - out.hipR[2]]; live.yaw0 = Math.atan2(-left[1], left[0]); }
+    const c = Math.cos(-live.yaw0), s2 = Math.sin(-live.yaw0); for (const k of ctx.POSE_PTS) { const [x, yy, z] = out[k]; out[k] = [x * c + z * s2, yy, -x * s2 + z * c]; }
+  }
+  return {format: 'zpboom-pose', version: 2, fps: ctx.config.fps, points: ctx.POSE_PTS, frames: [ctx.POSE_PTS.flatMap((k) => out[k])]};
+}
+function overlay(cv, lines) { const g = cv.getContext('2d'); lines.forEach(([text, color], i) => label(g, text, 14, 28 + i * 30, color)); }
+function liveLoop() {
+  if (!live.running) return;
+  const v = $('mc-video'), next = () => { if (!live.running) return; if (v.requestVideoFrameCallback && !document.hidden) v.requestVideoFrameCallback(() => liveLoop()); else setTimeout(liveLoop, 16); };
+  if (live.hold || v.readyState < 2) { next(); return; }
+  let f; try { f = liveFrame(v); } catch (e) { cameraError(e); return; }
+  const dt = live.last ? Math.min(.25, (f.now - live.last) / 1000) : 1 / 30; live.last = f.now;
+  live.fps = live.fps ? live.fps * .9 + (1 / dt) * .1 : 1 / dt; $('mc-fps').textContent = `${live.fps.toFixed(0)} 帧/秒`;
+  const at = Math.max(0, Number($('mc-at').value) || 0), end = ctx.config.duration, actorId = $('mc-actor').value;
+  let t = ctx.time(), recLine = null;
+  if (live.countdown) { const left = Math.ceil((live.countdown - f.now) / 1000); if (left <= 0) { live.countdown = 0; live.rec = {at, start: f.now, raw: []}; $('mc-rec').textContent = '■ 停止'; } else { recLine = [`${left}`, '#ffd166']; t = at; } }
+  if (live.rec) { const el = (f.now - live.rec.start) / 1000; t = at + el; live.rec.raw.push({t: el, img: f.img, world: f.world}); recLine = [`● 录制中 ${el.toFixed(1)} 秒 · 工程 ${t.toFixed(2)} / ${end} 秒`, '#ff6b6b']; if (t >= end) { stopRecording(); return; } }
+  const data = f.world ? livePose(f.world, dt) : null, override = $('mc-mode').value || null, view = $('mc-view').value;
+  const big = $('mc-canvas'), small = $('mc-preview');
+  if (view === 'shot' && data) { ctx.renderShot(big, actorId, data, t, {override, at: live.rec ? live.rec.at : at}); drawFrame({img: f.img}, small); }
+  else { drawFrame({img: f.img}, big); if (data) ctx.renderPreview(small, actorId, data, 0, {override, at: t}); else { const g = small.getContext('2d'); g.fillStyle = '#1b1e22'; g.fillRect(0, 0, small.width, small.height); } }
+  overlay(view === 'shot' && data ? big : big, [f.world ? ['认出人了', '#7ee787'] : ['没认出人：请让全身完整入画', '#ff8a8a'], ...(recLine ? [recLine] : [])]);
+  next();
+}
+function startRecording() {
+  if (!live.running) return;
+  stopPlay(); live.hold = false; state = {name: 'camera', frames: null, source: 'camera'}; $('mc-add').disabled = $('mc-play').disabled = $('mc-scrub').disabled = true; $('mc-fit').textContent = '';
+  live.countdown = performance.now() + 3000; live.rec = null; $('mc-rec').textContent = '■ 取消'; $('mc-rec').classList.add('on');
+  say(`3 秒后开始录：工程从 ${fmt(Math.max(0, Number($('mc-at').value) || 0))} 秒开始播放，跟着画面表演；再点「■ 停止」结束（播到工程结尾会自动停）。`);
+}
+function stopRecording() {
+  $('mc-rec').classList.remove('on'); $('mc-rec').textContent = '● 重新录制';
+  if (live.countdown && !live.rec) { live.countdown = 0; say('已取消录制。'); return; }
+  const rec = live.rec; live.rec = null; live.countdown = 0; if (!rec || rec.raw.length < 3) { say('录得太短了，再录一次。'); return; }
+  // 摄像头的帧率不固定：按工程帧率重新取样（取时间最近的一帧，隔得太远就当没认出人，后面会用前后帧补）
+  const fps = ctx.config.fps, raw = rec.raw, dur = raw.at(-1).t, n = Math.max(2, Math.floor(dur * fps) + 1), frames = []; let j = 0;
+  for (let i = 0; i < n; i++) { const t = i / fps; while (j < raw.length - 1 && Math.abs(raw[j + 1].t - t) <= Math.abs(raw[j].t - t)) j++; const r = raw[j]; frames.push(Math.abs(r.t - t) <= .12 ? {t, img: r.img, world: r.world} : {t, img: null, world: null}); }
+  const v = $('mc-video'), good = frames.filter((f) => f.world).length; live.takes++;
+  const stamp = new Date().toTimeString().slice(0, 8).replace(/:/g, '');
+  state = {name: `camera_${stamp}`, frames, fps, range: [0, dur], vw: v.videoWidth, vh: v.videoHeight, source: 'camera'};
+  live.hold = true;    // 停下实时画面，换成回放这一条
+  $('mc-at').value = fmt(rec.at); $('mc-name').value = state.name;
+  $('mc-scrub').max = String(frames.length - 1); $('mc-scrub').value = '0'; $('mc-scrub').disabled = false;
+  if (good < Math.max(2, frames.length * .5)) { say(`只有 ${good} / ${frames.length} 帧认出了人，太少了：退远一点让全身入画、把灯打亮，再「● 重新录制」。`); return; }
+  $('mc-add').disabled = false; $('mc-play').disabled = false; renderIndex(0); updateFit();
+  say(`录好了：${dur.toFixed(1)} 秒，${good} / ${frames.length} 帧认出了人（摄像头平均 ${live.fps.toFixed(0)} 帧/秒）。右边是套到角色上的样子（还没放进工程）：点「对比播放」检查，满意了「加到角色」，不满意「● 重新录制」。${state.feetUnclear ? '脚没拍全，跳起高度没开启（只贴地）。' : ''}`);
+}
 
 function wire() {
   if (wired) return; wired = true;
   $('mc-pick').addEventListener('click', () => $('mc-file').click());
   $('mc-file').addEventListener('change', () => {
     const f = $('mc-file').files[0]; if (!f) return;
+    stopCamera(); setLiveUI(false);
     const v = $('mc-video'); if (v.src) URL.revokeObjectURL(v.src);
     stopPlay(); ctx.endPreview?.(); $('mc-preview').getContext('2d').clearRect(0, 0, 405, 405); $('mc-frame').textContent = ''; $('mc-fit').textContent = '';
     state = {name: f.name, frames: null}; delete v.dataset.primed; v.src = URL.createObjectURL(f); $('mc-file-name').textContent = f.name; $('mc-add').disabled = true; $('mc-scrub').disabled = true; $('mc-play').disabled = true;
@@ -256,11 +376,13 @@ function wire() {
   $('mc-at-zero').addEventListener('click', () => { $('mc-at').value = 0; updateFit(); refreshPreview(); });
   $('mc-at-head').addEventListener('click', () => { $('mc-at').value = fmt(ctx.time()); updateFit(); refreshPreview(); });
   for (const id of ['mc-smooth', 'mc-face', 'mc-actor', 'mc-mode', 'mc-at']) $(id).addEventListener('input', () => { updateFit(); refreshPreview(); });
-  $('mocap-dialog').addEventListener('keydown', (e) => { if (e.code !== 'Space' || /^(INPUT|SELECT|TEXTAREA)$/.test(e.target.tagName) && e.target.type !== 'range' && e.target.type !== 'checkbox' || $('mc-play').disabled) return; e.preventDefault(); e.stopPropagation(); togglePlay(); });
-  $('mocap-dialog').addEventListener('close', () => { stopPlay(); ctx.endPreview?.(); });
+  $('mocap-dialog').addEventListener('keydown', (e) => { if (live.running && !live.hold) return; if (e.code !== 'Space' || /^(INPUT|SELECT|TEXTAREA)$/.test(e.target.tagName) && e.target.type !== 'range' && e.target.type !== 'checkbox' || $('mc-play').disabled) return; e.preventDefault(); e.stopPropagation(); togglePlay(); });
+  $('mocap-dialog').addEventListener('close', () => { stopPlay(); stopCamera(); ctx.endPreview?.(); });
+  $('mc-cam').addEventListener('click', () => startCamera().catch(cameraError));
+  $('mc-rec').addEventListener('click', () => (live.rec || live.countdown ? stopRecording() : startRecording()));
   $('mc-close').addEventListener('click', () => { if (state) state.cancel = true; $('mocap-dialog').close(); }); // close 事件里停止预览
 }
-export function openVideoMocap(c) {
+export function openVideoMocap(c, opts = {}) {
   ctx = c; wire(); state ||= {frames: null};
   $('mc-at').value = fmt(c.time()); 
   const sel = $('mc-actor'), cur = c.editor?.state().selection;
@@ -268,7 +390,8 @@ export function openVideoMocap(c) {
   if (cur?.type === 'actor') sel.value = cur.id;
   updateFit();
   if (IS_SAFARI) say(`提示：Safari 里识别模型会崩溃（实测 Safari 18），视频动捕请用 Chrome 或 Edge 打开 ${location.href.split('#')[0]}。其他功能 Safari 都能正常用。`);
-  else if (!$('mc-video').src) say('选一段手机拍的视频：手机固定不动、全身完整入画、光线充足、尽量只有一个人。正面或斜 45° 拍最准。');
+  else if (!$('mc-video').src && !opts.live) say('选一段手机拍的视频：手机固定不动、全身完整入画、光线充足、尽量只有一个人。正面或斜 45° 拍最准。也可以点「📷 摄像头实时」直接用电脑摄像头。');
   $('mocap-dialog').showModal();
+  if (opts.live && !IS_SAFARI) startCamera().catch(cameraError);
 }
-export const _test = {delegate: () => delegate, model: () => loadedModel, analyze, buildData, computeLift, showIndex, play, stopPlay, addToActor, ensureModel, state: () => state, setVideoUrl: (url, name) => new Promise((resolve) => { wire(); const v = $('mc-video'); state = {name, frames: null}; delete v.dataset.primed; v.src = url; v.addEventListener('loadeddata', async () => { $('mc-start').value = 0; $('mc-end').value = Number(v.duration.toFixed(2)); $('mc-name').value = name; await seek(v, 0); resolve(v.duration); }, {once: true}); })};
+export const _test = {live: () => live, startCamera, stopCamera, startRecording, stopRecording, delegate: () => delegate, model: () => loadedModel, analyze, buildData, computeLift, showIndex, play, stopPlay, addToActor, ensureModel, state: () => state, setVideoUrl: (url, name) => new Promise((resolve) => { wire(); const v = $('mc-video'); state = {name, frames: null}; delete v.dataset.primed; v.src = url; v.addEventListener('loadeddata', async () => { $('mc-start').value = 0; $('mc-end').value = Number(v.duration.toFixed(2)); $('mc-name').value = name; await seek(v, 0); resolve(v.duration); }, {once: true}); })};
