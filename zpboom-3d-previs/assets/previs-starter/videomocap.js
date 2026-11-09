@@ -257,19 +257,38 @@ function euro(minCutoff, beta = .4, dCutoff = 1) { // 一欧元滤波（逐帧�
   let x0 = null, d0 = 0; const a = (cut, dt) => 1 / (1 + 1 / (2 * Math.PI * cut) / dt);
   return (x, dt) => { if (x0 === null) { x0 = x; return x; } const d = (x - x0) / dt, dh = d0 + a(dCutoff, dt) * (d - d0), xh = x0 + a(minCutoff + beta * Math.abs(dh), dt) * (x - x0); x0 = xh; d0 = dh; return xh; };
 }
+// 选摄像头：手机当摄像头（Windows「移动设备」、Camo / DroidCam / Iriun 等）、外接摄像头都会出现在列表里；记住上次用的那个（只存在本机浏览器）
+const CAM_KEY = 'zpboom.mocap.camera';
+const savedCam = () => { try { return localStorage.getItem(CAM_KEY) || ''; } catch { return ''; } };
+const saveCam = (id) => { try { if (id) localStorage.setItem(CAM_KEY, id); } catch {} };
+async function refreshCamList(current) {
+  const sel = $('mc-camdev'); let cams = [];
+  try { cams = (await navigator.mediaDevices.enumerateDevices()).filter((d) => d.kind === 'videoinput' && d.deviceId); } catch {}
+  sel.replaceChildren(...cams.map((d, i) => Object.assign(document.createElement('option'), {value: d.deviceId, textContent: d.label || `摄像头 ${i + 1}`})));
+  if (current && cams.some((d) => d.deviceId === current)) sel.value = current;
+  sel.hidden = cams.length < 2;   // 只有一个摄像头时不占位置
+  return cams;
+}
+function camLabel(stream) { const t = stream?.getVideoTracks()[0]; return t?.label || ''; }
+async function switchCamera(id) {
+  if (!id || live.rec || live.countdown || live.opening) return;
+  stopCamera(); saveCam(id);
+  await startCamera({deviceId: id});
+}
 function setLiveUI(on) {
-  $('mc-live').hidden = !on; $('mc-run').hidden = on; $('mc-cam').textContent = on ? '📷 摄像头已开' : '📷 摄像头实时'; $('mc-cam').disabled = on;
+  $('mc-live').hidden = !on; $('mc-camdev').disabled = false; $('mc-run').hidden = on; $('mc-cam').textContent = on ? '📷 摄像头已开' : '📷 摄像头实时'; $('mc-cam').disabled = on;
   for (const id of ['mc-start', 'mc-end']) $(id).disabled = on;
   if (on) $('mc-file-name').textContent = '摄像头（实时，不保存画面）';
 }
 function cameraError(e) {
   const msg = String(e?.name || e?.message || e); stopCamera(); setLiveUI(false);
   say(/NotAllowed|Permission/i.test(msg) ? '浏览器没有拿到摄像头权限：点地址栏左边的摄像头图标，改成「允许」，再点「📷 摄像头实时」。'
-    : /NotFound|Overconstrained/i.test(msg) ? '没有找到摄像头：确认电脑有摄像头（或外接摄像头已插好），并且没有被别的软件占用。'
+    : /NotFound|Overconstrained/i.test(msg) ? '没有找到摄像头：确认电脑有摄像头（或外接摄像头、当摄像头用的手机已连好），并且没有被别的软件占用。'
+    : /NotReadable|TrackStart/i.test(msg) ? '摄像头被别的软件占用了：关掉会议软件、手机摄像头软件里的预览等，再点「📷 摄像头实时」。'
     : /Aborted|kGpuService/.test(msg) ? `识别模型在这个浏览器里崩溃了${IS_SAFARI ? '（Safari 已知问题）' : ''}：请用 Chrome 或 Edge 打开。` : `摄像头打不开：${e?.message || msg}`);
   console.error(e);
 }
-async function startCamera() {
+async function startCamera({deviceId} = {}) {   // deviceId：从列表里点选的摄像头（必须用它）；不传就优先用上次选的那个，找不到用默认摄像头
   if (live.running || live.opening) return;   // 正在打开时再点一次不重复申请（否则前一路摄像头没人关）
   if (IS_SAFARI) { say('Safari 里识别模型会崩溃，实时动捕请用 Chrome 或 Edge 打开。'); return; }
   if (!navigator.mediaDevices?.getUserMedia) throw new Error('这个浏览器不支持摄像头（需要用 http://127.0.0.1 或 localhost 打开）');
@@ -279,10 +298,19 @@ async function startCamera() {
   const token = ++live.token, stale = () => token !== live.token || !$('mocap-dialog').open;
   live.opening = true;
   try {
-    const stream = await navigator.mediaDevices.getUserMedia({video: {width: {ideal: 1280}, height: {ideal: 720}, frameRate: {ideal: 30}}, audio: false});
+    // 上次选的摄像头用 exact 申请（ideal 在 Chrome 里只是参考，会被分辨率 / 帧率的匹配度压过去）；它不在了（手机没连）就退回默认摄像头
+    const base = {width: {ideal: 1280}, height: {ideal: 720}, frameRate: {ideal: 30}}, pick = deviceId || savedCam();
+    const gum = (extra) => navigator.mediaDevices.getUserMedia({video: {...base, ...extra}, audio: false});
+    let stream;
+    try { stream = await gum(pick ? {deviceId: {exact: pick}} : {}); }
+    catch (e) { if (deviceId || !pick || !/NotFound|Overconstrained/i.test(e?.name || '')) throw e; stream = await gum({}); }
     if (stale()) { for (const t of stream.getTracks()) t.stop(); return; }
+    const usedId = stream.getVideoTracks()[0]?.getSettings?.().deviceId || deviceId || '';
+    if (deviceId) saveCam(usedId);
+    await refreshCamList(usedId);   // 拿到权限后才有摄像头名称
     const v = $('mc-video'); if (v.src) { URL.revokeObjectURL(v.src); v.removeAttribute('src'); }
     v.srcObject = stream; live.stream = stream; await v.play();
+    stream.getVideoTracks()[0]?.addEventListener('ended', () => { if (live.stream !== stream) return; const recording = live.rec; if (recording) stopRecording(); stopCamera(); setLiveUI(false); say(`摄像头断开了（手机断开连接或被拔掉）${recording ? '，已经录到的部分保留在下面' : ''}：连好后再点「📷 摄像头实时」。`); });
     await ensureModel(say);
     if (stale()) { stopCamera(); return; }
   } finally { live.opening = false; }
@@ -290,7 +318,7 @@ async function startCamera() {
   state = {name: 'camera', frames: null, source: 'camera'}; $('mc-add').disabled = $('mc-play').disabled = $('mc-scrub').disabled = true; $('mc-frame').textContent = ''; $('mc-fit').textContent = '';
   Object.assign(live, {running: true, hold: false, rec: null, countdown: 0, fps: 0, last: 0, filt: null, prevYaw: null, yaw0: null});
   setLiveUI(true); $('mc-rec').textContent = '● 录制'; $('mc-rec').classList.remove('on');
-  say(`摄像头已打开（${v.videoWidth}×${v.videoHeight}，识别用${delegate === 'GPU' ? '显卡' : 'CPU'}）。站到全身都能入画的位置（笔记本摄像头一般要 2.5–3 米），人偶会跟着你动。准备好了点「● 录制」：3 秒倒计时后工程从「起点」开始播放，你跟着画面表演。`);
+  say(`摄像头已打开（${camLabel(live.stream) ? `${camLabel(live.stream)}，` : ''}${v.videoWidth}×${v.videoHeight}，识别用${delegate === 'GPU' ? '显卡' : 'CPU'}）。站到全身都能入画的位置（笔记本摄像头一般要 2.5–3 米），人偶会跟着你动。准备好了点「● 录制」：3 秒倒计时后工程从「起点」开始播放，你跟着画面表演。`);
   liveLoop();
 }
 function stopCamera() {
@@ -351,11 +379,11 @@ function liveLoop() {
 function startRecording() {
   if (!live.running) return;
   stopPlay(); live.hold = false; state = {name: 'camera', frames: null, source: 'camera'}; $('mc-add').disabled = $('mc-play').disabled = $('mc-scrub').disabled = true; $('mc-fit').textContent = '';
-  live.countdown = performance.now() + 3000; live.rec = null; $('mc-rec').textContent = '■ 取消'; $('mc-rec').classList.add('on');
+  live.countdown = performance.now() + 3000; live.rec = null; $('mc-rec').textContent = '■ 取消'; $('mc-rec').classList.add('on'); $('mc-camdev').disabled = true;
   say(`3 秒后开始录：工程从 ${fmt(Math.max(0, Number($('mc-at').value) || 0))} 秒开始播放，跟着画面表演；再点「■ 停止」结束（播到工程结尾会自动停）。`);
 }
 function stopRecording() {
-  $('mc-rec').classList.remove('on'); $('mc-rec').textContent = '● 重新录制';
+  $('mc-rec').classList.remove('on'); $('mc-rec').textContent = '● 重新录制'; $('mc-camdev').disabled = false;
   if (live.countdown && !live.rec) { live.countdown = 0; say('已取消录制。'); return; }
   const rec = live.rec; live.rec = null; live.countdown = 0; if (!rec || rec.raw.length < 3) { say('录得太短了，再录一次。'); return; }
   // 摄像头的帧率不固定：按工程帧率重新取样（取时间最近的一帧，隔得太远就当没认出人，后面会用前后帧补）
@@ -394,6 +422,9 @@ function wire() {
   $('mocap-dialog').addEventListener('keydown', (e) => { if (live.running && !live.hold) return; if (e.code !== 'Space' || /^(INPUT|SELECT|TEXTAREA)$/.test(e.target.tagName) && e.target.type !== 'range' && e.target.type !== 'checkbox' || $('mc-play').disabled) return; e.preventDefault(); e.stopPropagation(); togglePlay(); });
   $('mocap-dialog').addEventListener('close', () => { stopPlay(); stopCamera(); ctx.endPreview?.(); });
   $('mc-cam').addEventListener('click', () => startCamera().catch(cameraError));
+  $('mc-camdev').addEventListener('change', () => switchCamera($('mc-camdev').value).catch(cameraError));
+  // 摄像头插拔（手机连上 / 断开）时刷新列表；正在用的摄像头被拔掉时轨道会结束，给出提示
+  navigator.mediaDevices?.addEventListener?.('devicechange', () => { if (live.running) refreshCamList(live.stream?.getVideoTracks()[0]?.getSettings?.().deviceId); });
   $('mc-rec').addEventListener('click', () => (live.rec || live.countdown ? stopRecording() : startRecording()));
   // 关闭按钮和 Esc 当场关摄像头，不只靠 close 事件（close 事件是异步派发的，页面在后台时可能迟迟不来）
   $('mocap-dialog').addEventListener('cancel', () => { stopPlay(); stopCamera(); });

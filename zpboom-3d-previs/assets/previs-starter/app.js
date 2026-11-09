@@ -1,8 +1,8 @@
 import * as THREE from './vendor/three.module.js';
 import {Muxer, ArrayBufferTarget} from './vendor/mp4-muxer.mjs';
-import {initEditor} from './editor.js?v=2.7.4';
-import {initViewTools} from './viewtools.js?v=2.7.4';
-import {initWeather, cleanWeather, WEATHER_FIELDS, WEATHER_PRESETS} from './weather.js?v=2.7.4';
+import {initEditor} from './editor.js?v=2.7.5';
+import {initViewTools} from './viewtools.js?v=2.7.5';
+import {initWeather, cleanWeather, WEATHER_FIELDS, WEATHER_PRESETS} from './weather.js?v=2.7.5';
 
 /* ZPboom.AI 3D 预演 · 统一引擎（scene.json schemaVersion 2）
    场景几何、灯光、人物体型、姿态、道具、结构动画、特效、声音提示全部写在 scene.json。
@@ -1361,8 +1361,8 @@ $('config-file').addEventListener('change', async () => {
   try { if (recording || exporting) throw new Error('请先结束导出再导入'); if (file.size > 8 * 1024 * 1024) throw new Error('配置文件超过 8MB'); await applyConfig(JSON.parse(await file.text())); status('配置已导入'); }
   catch (error) { status(`导入失败：${error.message}`); } finally { $('config-file').value = ''; }
 });
-$('mocap-open').addEventListener('click', async () => { try { (await import('./videomocap.js?v=2.7.4')).openVideoMocap(mocapCtx); } catch (error) { status(`视频动捕打不开：${error.message}`); } });
-$('mocap-live')?.addEventListener('click', async () => { try { (await import('./videomocap.js?v=2.7.4')).openVideoMocap(mocapCtx, {live: true}); } catch (error) { status(`实时动捕打不开：${error.message}`); } });
+$('mocap-open').addEventListener('click', async () => { try { (await import('./videomocap.js?v=2.7.5')).openVideoMocap(mocapCtx); } catch (error) { status(`视频动捕打不开：${error.message}`); } });
+$('mocap-live')?.addEventListener('click', async () => { try { (await import('./videomocap.js?v=2.7.5')).openVideoMocap(mocapCtx, {live: true}); } catch (error) { status(`实时动捕打不开：${error.message}`); } });
 $('reset').addEventListener('click', async () => { if (initialConfig && !recording && !exporting) { const before = editor?.beginEdit(); await restoreConfig(clone(initialConfig)); editor?.endEdit('恢复项目配置', before); status('已恢复成打开页面时的 scene.json · Ctrl+Z 可撤销'); } });
 
 // 自由观察 / 俯视的鼠标键盘操作在 viewtools.js
@@ -1825,7 +1825,7 @@ async function init() {
         props: [...props.values()].map(({prop, group, holder}) => ({id: prop.id, owner: prop.owner, holder, visible: group.visible, world: group.getWorldPosition(new THREE.Vector3()).toArray().map((n) => Number(n.toFixed(3)))})),
         rigs: config.rigs.map((rig) => ({id: rig.id, value: sampleValue(rig.keyframes, currentTime, 'value')})),
         fx: fxItems.map((item) => ({type: item.cfg.type, active: Boolean(item.state?.())}))}),
-      exportMp4, exportBlender, openExportDialog, measureShots, autoLift, setClean, mocapModule: () => import('./videomocap.js?v=2.7.4'), get mocapCtx() { return mocapCtx; },
+      exportMp4, exportBlender, openExportDialog, measureShots, autoLift, setClean, mocapModule: () => import('./videomocap.js?v=2.7.5'), get mocapCtx() { return mocapCtx; },
       frameInMode: (mode, t) => { const was = $('helpers').checked; $('helpers').checked = false; setHelperVisibility(); editor?.suspend(); enterMode(mode); currentTime = t; draw(); const url = canvas.toDataURL('image/jpeg', .8); exitMode(); $('helpers').checked = was; setHelperVisibility(); editor?.resume(); draw(); return url; }, get editor() { return editor; }, weatherAt: (t) => weather?.sample(t ?? currentTime) || null, get view() { return view; },
       screenOf: (p) => { const v = new THREE.Vector3(...p).project(viewCam()), r = canvas.getBoundingClientRect(); return [r.left + (v.x + 1) / 2 * r.width, r.top + (1 - v.y) / 2 * r.height]; }, setHelpers: (visible) => { $('helpers').checked = Boolean(visible); setHelperVisibility(); draw(); }
     };

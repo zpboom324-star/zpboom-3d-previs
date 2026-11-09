@@ -4,7 +4,7 @@ description: 根据分镜脚本、人物和场景参考制作可编辑的 HTML/T
 license: MIT
 metadata:
   author: ZPboom.AI
-  version: "2.7.4"
+  version: "2.7.5"
   language: zh-CN
 ---
 

@@ -373,6 +373,7 @@ input[type=range]:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 3px va
 .mc-grid select#mc-mode { max-width: 190px; }
 @media (max-width: 640px) { .mc-grid { grid-template-columns: 1fr; } }
 .mc-live { display: inline-flex; align-items: center; gap: 8px; margin-left: auto; }
+#mc-camdev { max-width: 180px; text-overflow: ellipsis; }
 .mc-live select { height: 28px; border: 1px solid var(--line); border-radius: 6px; background: var(--sunken); color: var(--text); font-size: 12px; padding: 0 6px; }
 .mc-live button.rec { color: #ff6b6b; font-weight: 600; }
 .mc-live button.rec.on { background: #c9302c; color: #fff; border-color: #c9302c; }
