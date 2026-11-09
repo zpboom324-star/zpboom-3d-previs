@@ -248,7 +248,7 @@ function refreshPreview() { if (!state?.frames || state.playing) return; renderI
    打开摄像头 → 每一帧识别 → 实时去抖动 → 套到所选角色上：左边可以看镜头画面（其他角色、机位照常），右边看摄像头 + 骨架。
    「录制」：3 秒倒计时后从「起点」开始按真实时间走时间线，你跟着画面表演；停止后把录到的帧按工程帧率重新取样，
    交给和视频动捕完全相同的流程（前后翻转修正、平滑、朝向、自动踩地、跳起检测、对比回放、起点 / 覆盖方式、加到角色）。画面只在本页处理，不上传、不保存。 */
-const live = {stream: null, running: false, hold: false, rec: null, countdown: 0, fps: 0, last: 0, filt: null, prevYaw: null, yaw0: null, scratch: null, takes: 0};
+const live = {stream: null, running: false, hold: false, rec: null, countdown: 0, fps: 0, last: 0, filt: null, prevYaw: null, yaw0: null, scratch: null, takes: 0, token: 0, opening: false};
 const LR_PAIRS = [['earL', 'earR'], ['shL', 'shR'], ['elL', 'elR'], ['wrL', 'wrR'], ['hipL', 'hipR'], ['knL', 'knR'], ['anL', 'anR']];
 const yawOfPts = (p) => Math.atan2(p.hipL[2] - p.hipR[2] + p.shL[2] - p.shR[2], p.hipL[0] - p.hipR[0] + p.shL[0] - p.shR[0]);
 const wrapAng = (x) => Math.atan2(Math.sin(x), Math.cos(x));
@@ -270,15 +270,23 @@ function cameraError(e) {
   console.error(e);
 }
 async function startCamera() {
-  if (live.running) return;
+  if (live.running || live.opening) return;   // 正在打开时再点一次不重复申请（否则前一路摄像头没人关）
   if (IS_SAFARI) { say('Safari 里识别模型会崩溃，实时动捕请用 Chrome 或 Edge 打开。'); return; }
   if (!navigator.mediaDevices?.getUserMedia) throw new Error('这个浏览器不支持摄像头（需要用 http://127.0.0.1 或 localhost 打开）');
   stopPlay(); ctx.endPreview?.();
   say('正在打开摄像头（浏览器会问是否允许，请点「允许」）…');
-  const stream = await navigator.mediaDevices.getUserMedia({video: {width: {ideal: 1280}, height: {ideal: 720}, frameRate: {ideal: 30}}, audio: false});
-  const v = $('mc-video'); if (v.src) { URL.revokeObjectURL(v.src); v.removeAttribute('src'); }
-  v.srcObject = stream; live.stream = stream; await v.play();
-  await ensureModel(say);
+  // 等权限 / 载入模型期间对话框可能被关掉：stopCamera 会让 token 变化，拿到的摄像头立即关掉，不在后台偷偷开着
+  const token = ++live.token, stale = () => token !== live.token || !$('mocap-dialog').open;
+  live.opening = true;
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({video: {width: {ideal: 1280}, height: {ideal: 720}, frameRate: {ideal: 30}}, audio: false});
+    if (stale()) { for (const t of stream.getTracks()) t.stop(); return; }
+    const v = $('mc-video'); if (v.src) { URL.revokeObjectURL(v.src); v.removeAttribute('src'); }
+    v.srcObject = stream; live.stream = stream; await v.play();
+    await ensureModel(say);
+    if (stale()) { stopCamera(); return; }
+  } finally { live.opening = false; }
+  const v = $('mc-video');
   state = {name: 'camera', frames: null, source: 'camera'}; $('mc-add').disabled = $('mc-play').disabled = $('mc-scrub').disabled = true; $('mc-frame').textContent = ''; $('mc-fit').textContent = '';
   Object.assign(live, {running: true, hold: false, rec: null, countdown: 0, fps: 0, last: 0, filt: null, prevYaw: null, yaw0: null});
   setLiveUI(true); $('mc-rec').textContent = '● 录制'; $('mc-rec').classList.remove('on');
@@ -286,6 +294,7 @@ async function startCamera() {
   liveLoop();
 }
 function stopCamera() {
+  live.token++;
   if (live.stream) for (const t of live.stream.getTracks()) t.stop();
   live.stream = null; live.running = false; live.rec = null; live.countdown = 0;
   const v = $('mc-video'); if (v.srcObject) { v.pause(); v.srcObject = null; }
@@ -317,7 +326,13 @@ function livePose(world, dt) { // 实时去抖动 + 前后翻转修正 + 朝向�
 function overlay(cv, lines) { const g = cv.getContext('2d'); lines.forEach(([text, color], i) => label(g, text, 14, 28 + i * 30, color)); }
 function liveLoop() {
   if (!live.running) return;
-  const v = $('mc-video'), next = () => { if (!live.running) return; if (v.requestVideoFrameCallback && !document.hidden) v.requestVideoFrameCallback(() => liveLoop()); else setTimeout(liveLoop, 16); };
+  // 优先等摄像头的下一帧；但浏览器不刷新画面时（窗口被挡住、面板在后台）这个回调可能 1 秒才来一次，所以 150 ms 没来就用定时器接着跑，录制不会只剩几帧
+  const v = $('mc-video'), next = () => {
+    if (!live.running) return;
+    if (!v.requestVideoFrameCallback || document.hidden) { setTimeout(liveLoop, 16); return; }
+    let done = false, timer = 0; const id = v.requestVideoFrameCallback(() => { if (done) return; done = true; clearTimeout(timer); liveLoop(); });
+    timer = setTimeout(() => { if (done) return; done = true; v.cancelVideoFrameCallback?.(id); liveLoop(); }, 150);
+  };
   if (live.hold || v.readyState < 2) { next(); return; }
   let f; try { f = liveFrame(v); } catch (e) { cameraError(e); return; }
   const dt = live.last ? Math.min(.25, (f.now - live.last) / 1000) : 1 / 30; live.last = f.now;
@@ -380,7 +395,9 @@ function wire() {
   $('mocap-dialog').addEventListener('close', () => { stopPlay(); stopCamera(); ctx.endPreview?.(); });
   $('mc-cam').addEventListener('click', () => startCamera().catch(cameraError));
   $('mc-rec').addEventListener('click', () => (live.rec || live.countdown ? stopRecording() : startRecording()));
-  $('mc-close').addEventListener('click', () => { if (state) state.cancel = true; $('mocap-dialog').close(); }); // close 事件里停止预览
+  // 关闭按钮和 Esc 当场关摄像头，不只靠 close 事件（close 事件是异步派发的，页面在后台时可能迟迟不来）
+  $('mocap-dialog').addEventListener('cancel', () => { stopPlay(); stopCamera(); });
+  $('mc-close').addEventListener('click', () => { if (state) state.cancel = true; stopPlay(); stopCamera(); $('mocap-dialog').close(); }); // close 事件里停止预览
 }
 export function openVideoMocap(c, opts = {}) {
   ctx = c; wire(); state ||= {frames: null};
