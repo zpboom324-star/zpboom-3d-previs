@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ZPboom.AI · 3D 预演</title>
+  <link rel="stylesheet" href="./styles.css?v=2.7.3">
+  <script type="importmap">{"imports": {"three": "./vendor/three.module.js"}}</script>
+</head>
+<body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.4-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5Z"/></symbol>
+    <symbol id="i-pause" viewBox="0 0 24 24"><rect x="6.5" y="5" width="4" height="14" rx="1.2"/><rect x="13.5" y="5" width="4" height="14" rx="1.2"/></symbol>
+    <symbol id="i-frame-prev" viewBox="0 0 24 24"><path d="M15.5 6.5 9 12l6.5 5.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-frame-next" viewBox="0 0 24 24"><path d="M8.5 6.5 15 12l-6.5 5.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-shot-prev" viewBox="0 0 24 24"><path d="M6 5v14M18 6.5 10.5 12 18 17.5Z" fill="currentColor" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+    <symbol id="i-shot-next" viewBox="0 0 24 24"><path d="M18 5v14M6 6.5 13.5 12 6 17.5Z" fill="currentColor" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+    <symbol id="i-restart" viewBox="0 0 24 24"><path d="M5 12a7 7 0 1 0 2.05-4.95M5 4.5V8h3.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-orbit" viewBox="0 0 24 24"><ellipse cx="12" cy="12" rx="9" ry="4.2" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="2.4"/></symbol>
+    <symbol id="i-grid" viewBox="0 0 24 24"><path d="M4 9h16M4 15h16M9 4v16M15 4v16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+    <symbol id="i-film" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M10 9.2v5.6l4.6-2.8Z"/></symbol>
+    <symbol id="i-clean" viewBox="0 0 24 24"><path d="M4 9V5h4M20 9V5h-4M4 15v4h4M20 15v4h-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 15V4m0 0L8 8m4-4 4 4M5 15v3.5A1.5 1.5 0 0 0 6.5 20h11a1.5 1.5 0 0 0 1.5-1.5V15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-cube" viewBox="0 0 24 24"><path d="M12 3.2 19.6 7.5v9L12 20.8 4.4 16.5v-9ZM4.6 7.6 12 11.8l7.4-4.2M12 11.8v8.8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/></symbol>
+    <symbol id="i-undo" viewBox="0 0 24 24"><path d="M9 7 4.5 11.5 9 16M5 11.5h9a5 5 0 0 1 0 10h-2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-redo" viewBox="0 0 24 24"><path d="M15 7l4.5 4.5L15 16M19 11.5h-9a5 5 0 0 0 0 10h2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-save" viewBox="0 0 24 24"><path d="M5 4h11l3 3v12a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4Zm3 0v5h7V4M8 20v-6h8v6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+    <symbol id="i-move" viewBox="0 0 24 24"><path d="M12 3v18M3 12h18M12 3l-3 3m3-3 3 3M12 21l-3-3m3 3 3-3M3 12l3-3m-3 3 3 3M21 12l-3-3m3 3-3 3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-rotate" viewBox="0 0 24 24"><path d="M19 12a7 7 0 1 1-2.05-4.95M19 4v4h-4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-scale" viewBox="0 0 24 24"><path d="M4 20V10h10v10H4Zm6-10V4h10v10h-6M14 10l6-6m0 0h-4m4 0v4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/></symbol>
+    <symbol id="i-key" viewBox="0 0 24 24"><path d="M12 3.5 20.5 12 12 20.5 3.5 12Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-top" viewBox="0 0 24 24"><path d="M4 7.5 12 4l8 3.5-8 3.5-8-3.5Zm0 4.5 8 3.5 8-3.5M4 16.5 12 20l8-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+    <symbol id="i-pip" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="12" y="11.5" width="6.5" height="5" rx="1"/></symbol>
+    <symbol id="i-path" viewBox="0 0 24 24"><path d="M4 18c3-8 6 2 9-6s5-5 7-6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><circle cx="4" cy="18" r="1.8"/><circle cx="20" cy="6" r="1.8"/></symbol>
+    <symbol id="i-cam" viewBox="0 0 24 24"><path d="M3.5 8h11v8h-11zM14.5 10.5 20.5 7v10l-6-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 15v3.5A1.5 1.5 0 0 0 6.5 20h11a1.5 1.5 0 0 0 1.5-1.5V15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  </svg>
+
+  <header class="topbar">
+    <div class="brand"><span class="logo">ZP</span><span class="wordmark">ZPboom.AI<small>3D 预演</small></span></div>
+    <div class="project"><h1 id="project-title">正在载入…</h1><select id="aspect-select" class="aspect-select" title="工程画幅（切换后按 Ctrl+Z 可撤销；导出时还可以另选画幅）"><option value="16:9">16:9</option><option value="21:9">21:9 宽银幕</option><option value="9:16">9:16 竖屏</option><option value="1:1">1:1</option><option value="4:3">4:3</option><option value="3:4">3:4</option></select><select id="figure-select" class="aspect-select" title="人物白膜造型：只换外形，不改动作（切换后按 Ctrl+Z 可撤销）"><option value="jointed">精细白膜</option><option value="pill">简化胶囊</option></select><span class="chip" id="scene-chip">本地运行</span></div>
+    <div class="actions">
+      <button id="undo" class="icon" title="撤销（Ctrl+Z）"><svg><use href="#i-undo"/></svg></button>
+      <button id="redo" class="icon" title="重做（Ctrl+Shift+Z）"><svg><use href="#i-redo"/></svg></button>
+      <button id="save" class="ghost" title="保存到工程的 scene.json（Ctrl+S）"><svg><use href="#i-save"/></svg><span>保存</span></button>
+      <button id="import" class="ghost" title="导入 scene.json"><svg><use href="#i-upload"/></svg><span>导入</span></button><input id="config-file" type="file" accept=".json,application/json" hidden>
+      <button id="export" class="ghost" title="导出当前配置为 scene.json"><svg><use href="#i-download"/></svg><span>导出配置</span></button>
+      <button id="clean" class="ghost" title="干净画面（Esc 返回）"><svg><use href="#i-clean"/></svg><span>干净画面</span></button>
+      <button id="blender" class="ghost" disabled title="导出带完整动画的 GLB（人物关节、道具、镜头相机、灯光逐帧烘焙），再用工程里的 blender_setup.py 生成 .blend"><svg><use href="#i-cube"/></svg><span>导出 Blender</span></button>
+      <button id="record" class="primary" disabled title="逐帧渲染 H.264（按画幅：16:9 为 1920×1080，21:9 为 2520×1080，9:16 为 1080×1920），不掉帧"><svg><use href="#i-film"/></svg><span id="record-label">导出 MP4</span></button>
+    </div>
+  </header>
+
+  <main class="app">
+    <section class="workspace">
+      <div class="viewer">
+        <div id="stage">
+          <canvas id="viewport" aria-label="三维预演画面"></canvas>
+          <div class="overlay top-left"><span id="shot-hud" class="pill"></span></div>
+          <div class="overlay top-right"><span id="frame-hud" class="pill mono"></span></div>
+          <div id="cue-hud" hidden></div>
+          <div id="error" role="alert" hidden></div>
+          <div id="clean-hint">按 Esc 返回编辑器</div>
+          <div id="frame-guide" hidden><span id="frame-guide-label"></span></div>
+          <div id="pip-frame" hidden><span>镜头画面</span></div>
+          <div class="edit-tools" role="toolbar" aria-label="编辑工具">
+            <button class="icon active" data-mode="translate" title="移动（W）"><svg><use href="#i-move"/></svg></button>
+            <button class="icon" data-mode="rotate" title="旋转（E）"><svg><use href="#i-rotate"/></svg></button>
+            <button class="icon" data-mode="scale" title="缩放（R，只对场景物件）"><svg><use href="#i-scale"/></svg></button>
+            <button class="icon" id="deselect" title="取消选择（Esc）"><svg><use href="#i-x"/></svg></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="transport">
+        <div class="tgroup">
+          <button id="prev-shot" class="icon" title="上一镜（[）"><svg><use href="#i-shot-prev"/></svg></button>
+          <button id="prev-frame" class="icon" title="上一帧（←）"><svg><use href="#i-frame-prev"/></svg></button>
+          <button id="play" class="play" disabled title="播放 / 暂停（空格）"><svg><use href="#i-play"/></svg></button>
+          <button id="next-frame" class="icon" title="下一帧（→）"><svg><use href="#i-frame-next"/></svg></button>
+          <button id="next-shot" class="icon" title="下一镜（]）"><svg><use href="#i-shot-next"/></svg></button>
+          <button id="restart" class="icon" disabled title="回到开头（Home）"><svg><use href="#i-restart"/></svg></button>
+        </div>
+        <div class="timecode"><output id="timecode" class="mono">00.000</output><span id="timecode-sub" class="mono">/ 0.000s</span></div>
+        <div class="tside">
+          <div class="tgroup edit">
+          <label class="toggle rec" title="开：拖动后自动在播放头处记关键帧；关：拖动后按 K 才记（N 切换）"><input id="autokey" type="checkbox"><i class="rec-dot"></i><span>自动关键帧</span></label>
+          <button id="insert-key" class="keybtn" title="在播放头处记关键帧（K）；没选中对象时记相机关键帧"><svg><use href="#i-key"/></svg><span>记关键帧</span></button>
+          </div>
+          <div class="seg" role="group" aria-label="视图">
+          <label class="toggle" title="左键环绕 · 右键 / Shift+左键平移 · 滚轮推拉 · 按住右键 + WASD/QE 飞行 · F 聚焦"><input id="free-camera" type="checkbox"><svg><use href="#i-orbit"/></svg><span>自由观察</span></label>
+          <label class="toggle" title="俯视平面图（T）：拖空白处平移、滚轮缩放"><input id="top-view" type="checkbox"><svg><use href="#i-top"/></svg><span>俯视</span></label>
+          <label class="toggle mini" title="自由观察 / 俯视时右下角显示镜头画面"><input id="pip" type="checkbox" checked><svg><use href="#i-pip"/></svg><span>小窗</span></label>
+          <label class="toggle mini" title="自由观察 / 俯视时显示当前镜头的相机路径和取景框，路径上的点可拖动"><input id="show-path" type="checkbox" checked><svg><use href="#i-path"/></svg><span>路径</span></label>
+          <label class="toggle" title="网格、角色标签和编辑用工作光"><input id="helpers" type="checkbox" checked><svg><use href="#i-grid"/></svg><span>辅助显示</span></label>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline" id="timeline">
+        <div class="tl-labels"><span></span><span>镜头</span><span>声音</span><div class="lane-labels" id="lane-labels"></div></div>
+        <div class="tl-area" id="timeline-area">
+          <div class="tl-ruler" id="tl-ruler"></div>
+          <div class="tl-track" id="shots"></div>
+          <div class="tl-track thin" id="tl-cues"></div>
+          <div class="tl-track thin" id="tl-keys"></div>
+          <div class="tl-playhead" id="tl-playhead"><span></span></div>
+        </div>
+      </div>
+    </section>
+
+    <aside class="inspector" id="inspector" data-active="object">
+      <div class="insp-head">
+        <span class="eyebrow">当前镜头</span>
+        <input id="shot-name" class="shot-name" value="—" maxlength="80" title="点击改镜头名称，回车确认" aria-label="镜头名称">
+        <span id="keyframe-time" class="mono muted">0.000s / 镜头内</span>
+        <div class="shot-tools"><button id="shot-split" type="button" title="在播放头处把当前镜头切成两个，运动保持不变">在播放头切分</button><button id="shot-delete" type="button" class="subtle" title="删除当前镜头，时间并入相邻镜头">删除此镜</button></div>
+      </div>
+
+      <div id="draft-bar" class="draft-bar" hidden>发现未保存的草稿（<span id="draft-time"></span>）<span class="draft-actions"><button id="draft-restore" class="primary">恢复</button><button id="draft-discard">丢弃</button></span></div>
+
+      <details class="card selection-card empty" id="selection-card" open>
+        <summary><span>选中</span><small id="sel-title">未选中</small></summary>
+        <p class="hint sel-empty">在画面里点人物、道具或场景物件；拖手柄移动 / 旋转。时间线上点关键帧可拖动、删除、复制。</p>
+        <div id="sel-transform">
+          <div class="field-label">位置</div>
+          <div class="xyz"><label><b class="ax x">X</b><input id="sel-px" type="number" step="0.01"></label><label><b class="ax y">Y</b><input id="sel-py" type="number" step="0.01"></label><label><b class="ax z">Z</b><input id="sel-pz" type="number" step="0.01"></label></div>
+          <div id="sel-rot-row"><div class="field-label">角度（度）</div>
+          <div class="xyz"><label><b class="ax x">X</b><input id="sel-rx" type="number" step="1"></label><label><b class="ax y">Y</b><input id="sel-ry" type="number" step="1"></label><label><b class="ax z">Z</b><input id="sel-rz" type="number" step="1"></label></div></div>
+          <div id="sel-scale-row"><div class="field-label">缩放</div>
+          <div class="xyz"><label><b class="ax x">X</b><input id="sel-sx" type="number" step="0.05"></label><label><b class="ax y">Y</b><input id="sel-sy" type="number" step="0.05"></label><label><b class="ax z">Z</b><input id="sel-sz" type="number" step="0.05"></label></div></div>
+          <p class="hint" id="sel-note"></p>
+          <button id="sel-apply" class="wide" type="button">应用数值</button>
+        </div>
+        <div id="sel-key" hidden>
+          <div class="field-label">选中的关键帧 · <span id="sel-key-time" class="mono"></span></div>
+          <label class="row">缓动<select id="sel-key-ease"><option value="smooth">平滑 smooth</option><option value="linear">匀速 linear</option><option value="hold">停住 hold</option></select></label>
+          <button id="sel-key-delete" class="wide subtle" type="button">删除这个关键帧（Delete）</button>
+        </div>
+      </details>
+
+      <nav class="insp-tabs" role="tablist" aria-label="检查器分页">
+        <button type="button" role="tab" data-tab-btn="object">角色 · 姿态</button><button type="button" role="tab" data-tab-btn="camera">镜头</button><button type="button" role="tab" data-tab-btn="weather">天气</button><button type="button" role="tab" data-tab-btn="help">说明</button>
+      </nav>
+
+      <details class="card" data-tab="camera" open>
+        <summary><span>相机</span><small>镜头内时间</small></summary>
+        <form id="camera-form">
+          <div class="field-label">位置</div>
+          <div class="xyz"><label><b class="ax x">X</b><input id="cam-x" type="number" step="0.01" required></label><label><b class="ax y">Y</b><input id="cam-y" type="number" step="0.01" required></label><label><b class="ax z">Z</b><input id="cam-z" type="number" step="0.01" required></label></div>
+          <div class="field-label">看向</div>
+          <div class="xyz"><label><b class="ax x">X</b><input id="target-x" type="number" step="0.01" required></label><label><b class="ax y">Y</b><input id="target-y" type="number" step="0.01" required></label><label><b class="ax z">Z</b><input id="target-z" type="number" step="0.01" required></label></div>
+          <label class="row">视角 FOV<span class="row-input"><input id="fov" type="number" min="10" max="100" step="1" required><em>°</em><em id="fov-mm" class="mm">≈ 50mm</em></span></label>
+          <input id="fov-range" class="range" type="range" min="10" max="100" step="0.5" aria-label="视角滑杆（拖动立即生效，可撤销）">
+          <label class="row">此镜画幅<select id="shot-aspect" title="这一镜单独的画幅：比工程宽就上下加黑边，比工程窄就左右加黑边；导出也会带上"><option value="">跟随工程</option><option value="16:9">16:9</option><option value="21:9">21:9 宽银幕</option><option value="9:16">9:16 竖屏</option><option value="1:1">1:1</option><option value="4:3">4:3</option><option value="3:4">3:4</option></select></label>
+          <label class="row">取景参考线<select id="guide-aspect" title="在画面上叠一个其他画幅的取景框（只是参考，不改工程），方便「做 16:9、导出 21:9」"><option value="">不显示</option><option value="16:9">16:9</option><option value="21:9">21:9 宽银幕</option><option value="9:16">9:16 竖屏</option><option value="1:1">1:1</option><option value="4:3">4:3</option><option value="3:4">3:4</option></select></label>
+          <div class="lift-row" title="给视频模型看的参考画面提亮：提高曝光、给暗部补中性光，灯光方向和冷暖不变；故事里的光照（夜晚等）照样保存，导出 Blender 不受影响"><span>参考提亮</span><input id="lift-range" type="range" min="0" max="1" step="0.05" aria-label="参考提亮"><em id="lift-v">0%</em><button id="lift-auto" type="button" title="自动找到让每个镜头都看得清的最小提亮值">自动</button></div>
+          <p class="hint" id="lift-note"></p>
+          <button class="wide" type="submit">写入相机关键帧</button>
+        </form>
+        <div class="nudge">
+          <div class="field-label nudge-head">运镜微调<select id="nudge-step" aria-label="步长"><option value="s">细 5cm / 0.5°</option><option value="m" selected>中 20cm / 2°</option><option value="l">粗 60cm / 6°</option></select></div>
+          <div class="nudge-grid">
+            <button type="button" data-nudge="in" title="推（向前）">推</button><button type="button" data-nudge="out" title="拉（向后）">拉</button><button type="button" data-nudge="up" title="升">升</button><button type="button" data-nudge="down" title="降">降</button>
+            <button type="button" data-nudge="left" title="左移">左移</button><button type="button" data-nudge="right" title="右移">右移</button><button type="button" data-nudge="pan-l" title="向左摇">左摇</button><button type="button" data-nudge="pan-r" title="向右摇">右摇</button>
+            <button type="button" data-nudge="tilt-u" title="上仰">上仰</button><button type="button" data-nudge="tilt-d" title="下俯">下俯</button>
+          </div>
+          <button id="set-shot-cam" class="wide" type="button" title="把当前画面（自由观察里找好的角度）记成当前镜头在播放头处的相机关键帧（K）"><svg><use href="#i-cam"/></svg>设为镜头机位</button>
+          <p class="hint">开着自动关键帧时，在分镜相机下微调直接写入；否则先在自由观察里预览，满意后点「设为镜头机位」。</p>
+        </div>
+      </details>
+
+      <div id="actor-chips" class="chips chips-row" data-tab="object"></div>
+      <details class="card" data-tab="object">
+        <summary><span>角色关键帧（数值）</span><small>全片时间</small></summary>
+        <select id="actor-select" hidden></select>
+        <form id="actor-form">
+          <div class="field-label">位置</div>
+          <div class="xyz"><label><b class="ax x">X</b><input id="actor-x" type="number" step="0.01" required></label><label><b class="ax y">Y</b><input id="actor-y" type="number" step="0.01" required></label><label><b class="ax z">Z</b><input id="actor-z" type="number" step="0.01" required></label></div>
+          <label class="row">朝向 yaw<span class="row-input"><input id="actor-yaw" type="number" step="0.01" required><em>rad</em></span></label>
+          <div id="actor-extra"></div>
+          <button class="wide" type="submit">写入角色关键帧</button>
+        </form>
+      </details>
+
+      <details class="card pose-card empty" id="pose-card" data-tab="object" open>
+        <summary><span>姿态</span><small id="pose-title">先选中一个角色</small></summary>
+        <p class="hint pose-empty">在画面或时间线上选中一个角色，就能在播放头处换姿态、微调关节、设置手部接触。</p>
+        <div class="pose-body">
+          <label class="row">姿态库<select id="pose-lib"></select></label>
+          <div class="field-label">关节微调（叠加在姿态之上）</div>
+          <div id="pose-joints" class="weather-rows"></div>
+          <p class="hint" id="pose-clip" hidden></p>
+          <button id="pose-reset" class="wide subtle" type="button">清除这一帧的微调</button>
+          <button id="mocap-open" class="wide" type="button" title="用手机拍的视频识别出人的动作（本机处理，不上传），生成动作片段加到这个角色">视频动捕：用手机视频生成动作…</button>
+          <div class="field-label">手部接触</div>
+          <div class="reach-row"><span>左手</span><select id="reach-L"></select><input id="reach-L-w" type="range" min="0" max="1" step="0.05" title="接触力度"><button id="reach-L-drag" type="button" title="拖小球放手">拖</button></div>
+          <div class="reach-row"><span>右手</span><select id="reach-R"></select><input id="reach-R-w" type="range" min="0" max="1" step="0.05" title="接触力度"><button id="reach-R-drag" type="button" title="拖小球放手">拖</button></div>
+          <p class="hint">姿态、微调和接触都记在播放头处的角色关键帧，前后关键帧之间平滑过渡；接触目标可以是别人的身体部位、道具挂点或场景物件，力度 0 = 放开。</p>
+        </div>
+      </details>
+
+      <details class="card weather-card" data-tab="weather" open>
+        <summary><span>天气</span><small id="weather-state">未设置</small></summary>
+        <div class="weather-presets">
+          <button type="button" data-weather="clear">晴</button><button type="button" data-weather="cloudy">阴</button><button type="button" data-weather="drizzle">小雨</button><button type="button" data-weather="storm">大雨</button>
+          <button type="button" data-weather="thunder">雷雨</button><button type="button" data-weather="snow">雪</button><button type="button" data-weather="mist">大雾</button>
+        </div>
+        <div class="weather-rows">
+          <label class="wrow"><span>雨</span><input id="w-rain" type="range" min="0" max="1" step="0.01"><em id="w-rain-v"></em></label>
+          <label class="wrow"><span>雪</span><input id="w-snow" type="range" min="0" max="1" step="0.01"><em id="w-snow-v"></em></label>
+          <label class="wrow"><span>雾</span><input id="w-fog" type="range" min="0" max="1" step="0.01"><em id="w-fog-v"></em></label>
+          <label class="wrow"><span>风力</span><input id="w-wind" type="range" min="0" max="1" step="0.01"><em id="w-wind-v"></em></label>
+          <label class="wrow"><span>风向</span><input id="w-windDir" type="range" min="0" max="360" step="1"><em id="w-windDir-v"></em></label>
+          <label class="wrow"><span>阴天</span><input id="w-overcast" type="range" min="0" max="1" step="0.01"><em id="w-overcast-v"></em></label>
+          <label class="wrow"><span>地面湿</span><input id="w-wet" type="range" min="0" max="1" step="0.01"><em id="w-wet-v"></em></label>
+          <label class="wrow"><span>时间段</span><select id="w-tod"><option value="">关闭（原始光线）</option><option value="6">黎明 6 点</option><option value="9">上午 9 点</option><option value="12">正午 12 点</option><option value="15">下午 15 点</option><option value="18">黄昏 18 点</option><option value="20">傍晚 20 点</option><option value="23">夜晚 23 点</option></select></label>
+        </div>
+        <div class="weather-bolts"><button id="w-bolt" type="button" title="在播放头处加一道闪电（画面闪白 + 闪光灯，可对准雷声提示）">⚡ 在播放头加闪电</button><div id="w-bolts" class="bolt-list"></div></div>
+        <p class="hint">预设和滑杆都记在播放头处的天气关键帧，前后关键帧之间平滑过渡（例如 0 秒晴、5 秒大雨 = 逐渐下大）。闪电、雨雪会出现在导出的 MP4 里。</p>
+        <button id="w-clear" class="wide subtle" type="button">清除全部天气</button>
+      </details>
+
+      <details class="card" data-tab="help" open>
+        <summary><span>关键帧与说明</span><small>只读</small></summary>
+        <div class="keyframe-summary" id="keyframe-summary"></div>
+        <p class="hint">道具换手、结构动画和特效暂时在 scene.json 里改（或者告诉 AI 助手）；手部接触在「角色 · 姿态」页设置。改动按 Ctrl+S 保存到 scene.json；浏览器还会自动存草稿，刷新后可以恢复。</p>
+        <button id="reset" class="wide subtle">恢复项目配置</button>
+      </details>
+
+      <div class="shortcuts" data-tab="help"><kbd>空格</kbd>播放 <kbd>←</kbd><kbd>→</kbd>逐帧 <kbd>⇧</kbd>+<kbd>←</kbd><kbd>→</kbd>±1 秒 <kbd>[</kbd><kbd>]</kbd>切镜 <kbd>W</kbd><kbd>E</kbd><kbd>R</kbd>移动 / 旋转 / 缩放 <kbd>K</kbd>记关键帧 <kbd>N</kbd>自动关键帧 <kbd>Del</kbd>删关键帧 <kbd>Ctrl</kbd>+<kbd>C</kbd><kbd>V</kbd>复制粘贴关键帧 <kbd>Ctrl</kbd>+<kbd>Z</kbd>撤销 <kbd>Ctrl</kbd>+<kbd>S</kbd>保存 <kbd>Esc</kbd>取消选择 <kbd>F</kbd>聚焦 <kbd>T</kbd>俯视 右键+<kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd>飞行</div>
+    </aside>
+  </main>
+
+  <dialog id="export-dialog" class="export-dialog">
+    <form method="dialog" class="ex-body">
+      <h3 id="ex-title">导出</h3>
+      <label class="row">画幅<select id="ex-aspect"></select></label>
+      <label class="row" id="ex-fit-row">画幅不同时<select id="ex-fit"><option value="crop">裁切（和参考线一致）</option><option value="extend">扩展（多看到场景）</option></select></label>
+      <label class="row" id="ex-mode-row">画面<select id="ex-mode"><option value="lit">原样光照</option><option value="lift">提亮参考（推荐给视频模型）</option><option value="flat">白膜平光（只看形体动作）</option><option value="depth">深度图（近白远黑）</option></select></label>
+      <div id="ex-dark" class="ex-dark" hidden><span id="ex-dark-text"></span><button type="button" id="ex-dark-fix">一键提亮</button></div>
+      <label class="row">清晰度<select id="ex-short"><option value="720">720p</option><option value="1080" selected>1080p</option><option value="2160">4K（2160p）</option></select></label>
+      <p class="hint" id="ex-note"></p>
+      <div class="ex-actions"><button type="button" id="ex-cancel">取消</button><button type="button" id="ex-go" class="primary">开始导出</button></div>
+    </form>
+  </dialog>
+
+  <dialog id="mocap-dialog" class="export-dialog mocap-dialog">
+    <div class="ex-body">
+      <h3>视频动捕 <small class="muted">本机识别，视频不上传</small></h3>
+      <div class="mc-top"><button type="button" id="mc-pick">选择视频…</button><input id="mc-file" type="file" accept="video/*" hidden><span id="mc-file-name" class="muted">未选择</span></div>
+      <div class="mc-stage"><canvas id="mc-canvas" width="720" height="405"></canvas><canvas id="mc-preview" width="405" height="405" title="识别结果临时套到所选角色上的样子，还没放进工程"></canvas></div><video id="mc-video" muted playsinline hidden></video>
+      <div class="mc-play-row"><button type="button" id="mc-play" disabled title="原视频和白膜预览同步播放（空格也可以）">▶ 对比播放</button><input id="mc-scrub" type="range" min="0" max="0" step="1" value="0" disabled aria-label="逐帧检查识别结果"><span id="mc-frame" class="muted"></span></div>
+      <div class="mc-grid">
+        <label class="row">截取<span class="row-input"><input id="mc-start" type="number" step="0.1" min="0"><em>到</em><input id="mc-end" type="number" step="0.1" min="0"><em>秒</em></span></label>
+        <label class="row">平滑<input id="mc-smooth" type="range" min="0" max="1" step="0.05" value="0.5" title="越大越稳、越小越跟手"></label>
+        <label class="row">朝向对准正面<input id="mc-face" type="checkbox" checked title="第一帧的身体朝向转成正对前方，之后的转身保留"></label>
+        <label class="row">精细识别<input id="mc-heavy" type="checkbox" title="复杂动作（摔倒、打斗、地板动作、四肢遮挡）用：最难的几帧少认错，识别慢 2–4 倍。普通动作不用开。改了要重新点「识别动作」"></label>
+        <label class="row">动作名称<input id="mc-name" type="text" maxlength="32" placeholder="英文或数字"></label>
+        <label class="row">加到角色<select id="mc-actor"></select></label>
+        <label class="row">起点<span class="row-input"><input id="mc-at" type="number" step="0.1" min="0" title="动作从工程的第几秒开始播放"><em>秒</em><button type="button" id="mc-at-zero" class="mini">0 秒</button><button type="button" id="mc-at-head" class="mini">播放头</button></span></label>
+        <label class="row">原有动作<select id="mc-mode" title="这段时间里角色原来的动作怎么处理"><option value="">叠加（保留原动作）</option><option value="pose">覆盖姿态（站位朝向照旧）</option><option value="all">完全覆盖（原地做动作）</option></select></label>
+        <p class="hint mc-fit" id="mc-fit"></p>
+      </div>
+      <p class="hint" id="mc-status"></p>
+      <div class="ex-actions"><button type="button" id="mc-close">关闭</button><button type="button" id="mc-run">识别动作</button><button type="button" id="mc-add" class="primary" disabled>加到角色</button></div>
+    </div>
+  </dialog>
+
+  <footer class="statusbar"><span class="status-left"><i class="dot"></i><span id="status" role="status">正在初始化…</span></span><span class="status-right">Y 向上 · 米 · 人物角度弧度 / 场景角度度 · Three.js r160</span></footer>
+  <script type="module" src="./app.js?v=2.7.3"></script>
+</body>
+</html>

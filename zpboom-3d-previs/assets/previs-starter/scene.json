@@ -1,0 +1,6984 @@
+{
+ "schemaVersion": 2,
+ "title": "影棚开拍前的忙碌日常 · 通用示例",
+ "fps": 30,
+ "duration": 30,
+ "aspectRatio": "16:9",
+ "world": {
+  "up": "Y",
+  "unit": "meter",
+  "background": "#16181b",
+  "exposure": 1.15,
+  "fog": [
+   30,
+   70
+  ],
+  "whitebox": true,
+  "handheld": 0.18,
+  "figure": "jointed",
+  "floor": {
+   "size": [
+    40,
+    16
+   ],
+   "color": "#6c7074",
+   "roughness": 0.7
+  }
+ },
+ "lights": [
+  {
+   "type": "hemisphere",
+   "color": "#d5e0ec",
+   "ground": "#2b2e32",
+   "intensity": 1.3
+  },
+  {
+   "type": "directional",
+   "color": "#e9f1fa",
+   "intensity": 2.2,
+   "position": [
+    -4,
+    14,
+    4
+   ],
+   "target": [
+    0,
+    0,
+    0
+   ],
+   "shadow": true,
+   "shadowBox": 22
+  },
+  {
+   "type": "point",
+   "color": "#e6eef8",
+   "intensity": 26,
+   "position": [
+    -14,
+    10.5,
+    0.3
+   ],
+   "distance": 16,
+   "decay": 1.2
+  },
+  {
+   "type": "point",
+   "color": "#e6eef8",
+   "intensity": 26,
+   "position": [
+    -8,
+    10.5,
+    0.3
+   ],
+   "distance": 16,
+   "decay": 1.2
+  },
+  {
+   "type": "point",
+   "color": "#e6eef8",
+   "intensity": 26,
+   "position": [
+    -2,
+    10.5,
+    0.3
+   ],
+   "distance": 16,
+   "decay": 1.2
+  },
+  {
+   "type": "point",
+   "color": "#e6eef8",
+   "intensity": 26,
+   "position": [
+    4,
+    10.5,
+    0.3
+   ],
+   "distance": 16,
+   "decay": 1.2
+  },
+  {
+   "type": "point",
+   "color": "#e6eef8",
+   "intensity": 26,
+   "position": [
+    10,
+    10.5,
+    0.3
+   ],
+   "distance": 16,
+   "decay": 1.2
+  },
+  {
+   "type": "point",
+   "color": "#ffe2b0",
+   "intensity": 3,
+   "position": [
+    -10.2,
+    1.8,
+    -2.2
+   ],
+   "distance": 3,
+   "decay": 1.6
+  },
+  {
+   "type": "point",
+   "color": "#9fcfff",
+   "intensity": 2,
+   "position": [
+    -2.3,
+    1.5,
+    0
+   ],
+   "distance": 2.5,
+   "decay": 1.6
+  },
+  {
+   "type": "point",
+   "color": "#ffffff",
+   "intensity": 3,
+   "position": [
+    0,
+    6,
+    0
+   ],
+   "distance": 30,
+   "decay": 1,
+   "editorOnly": true
+  }
+ ],
+ "set": [
+  {
+   "type": "box",
+   "size": [
+    0.3,
+    12,
+    13
+   ],
+   "position": [
+    -18.15,
+    6,
+    0.5
+   ],
+   "color": "#25282c",
+   "material": {
+    "roughness": 0.95,
+    "metalness": 0.0
+   }
+  },
+  {
+   "type": "box",
+   "size": [
+    0.3,
+    12,
+    13
+   ],
+   "position": [
+    16.15,
+    6,
+    0.5
+   ],
+   "color": "#25282c",
+   "material": {
+    "roughness": 0.95,
+    "metalness": 0.0
+   }
+  },
+  {
+   "type": "box",
+   "size": [
+    34.3,
+    12,
+    0.3
+   ],
+   "position": [
+    -1,
+    6,
+    -6.15
+   ],
+   "color": "#25282c",
+   "material": {
+    "roughness": 0.95,
+    "metalness": 0.0
+   }
+  },
+  {
+   "type": "box",
+   "size": [
+    34.3,
+    12,
+    0.3
+   ],
+   "position": [
+    -1,
+    6,
+    7.15
+   ],
+   "color": "#25282c",
+   "material": {
+    "roughness": 0.95,
+    "metalness": 0.0
+   }
+  },
+  {
+   "type": "box",
+   "size": [
+    34.6,
+    0.3,
+    13.6
+   ],
+   "position": [
+    -1,
+    12.15,
+    0.5
+   ],
+   "color": "#141619",
+   "material": {
+    "roughness": 0.95,
+    "metalness": 0.0
+   }
+  },
+  {
+   "type": "group",
+   "position": [
+    -18.0,
+    0,
+    -1.4
+   ],
+   "rig": {
+    "id": "doorL",
+    "axis": "y",
+    "mode": "rotate"
+   },
+   "children": [
+    {
+     "type": "box",
+     "size": [
+      0.08,
+      2.8,
+      1.4
+     ],
+     "position": [
+      0,
+      1.4,
+      0.7
+     ],
+     "color": "#4a5056",
+     "material": {
+      "roughness": 0.6,
+      "metalness": 0.3
+     }
+    },
+    {
+     "type": "box",
+     "size": [
+      0.04,
+      2.6,
+      0.5
+     ],
+     "position": [
+      0.05,
+      1.4,
+      0.7
+     ],
+     "color": "#bfd8e8",
+     "material": {
+      "basic": true
+     }
+    }
+   ]
+  },
+  {
+   "type": "group",
+   "position": [
+    -18.0,
+    0,
+    1.4
+   ],
+   "rig": {
+    "id": "doorR",
+    "axis": "y",
+    "mode": "rotate"
+   },
+   "children": [
+    {
+     "type": "box",
+     "size": [
+      0.08,
+      2.8,
+      1.4
+     ],
+     "position": [
+      0,
+      1.4,
+      -0.7
+     ],
+     "color": "#4a5056",
+     "material": {
+      "roughness": 0.6,
+      "metalness": 0.3
+     }
+    },
+    {
+     "type": "box",
+     "size": [
+      0.04,
+      2.6,
+      0.5
+     ],
+     "position": [
+      0.05,
+      1.4,
+      -0.7
+     ],
+     "color": "#bfd8e8",
+     "material": {
+      "basic": true
+     }
+    }
+   ]
+  },
+  {
+   "type": "box",
+   "size": [
+    1.6,
+    0.12,
+    0.5
+   ],
+   "position": [
+    -16,
+    11.4,
+    -2.0
+   ],
+   "color": "#eef5ff",
+   "material": {
+    "basic": true
+   }
+  },
+  {
+   "type": "box",
+   "size": [
+    1.6,
+    0.12,
+    0.5
+   ],
+   "position": [
+    -16,
+    11.4,
+    2.6
+   ],
+   "color": "#eef5ff",
+   "material": {
+    "basic": true
+   }
+  },
+  {
+   "type": "box",
+   "size": [
+    1.6,
+    0.12,
+    0.5
+   ],
+   "position": [
+    -12,
+    11.4,
+    -2.0
+   ],
+   "color": "#eef5ff",
+   "material": {
+    "basic": true
+   }
+  },
+  {
+   "type": "box",
+   "size": [
+    1.6,
+    0.12,
+    0.5
+   ],
+   "position": [
+    -12,
+    11.4,
+    2.6
+   ],
+   "color": "#eef5ff",
+   "material": {
+    "basic": true
+   }
+  },
+  {
+   "type": "box",
+   "size": [
+    1.6,
+    0.12,
+    0.5
+   ],
+   "position": [
+    -8,
+    11.4,
+    -2.0
+   ],
+   "color": "#eef5ff",
+   "material": {
+    "basic": true
+   }
+  },
+  {
+   "type": "box",
+   "size": [
+    1.6,
+    0.12,
+    0.5
+   ],
+   "position": [
+    -8,
+    11.4,
+    2.6
+   ],
+   "color": "#eef5ff",
+   "material": {
+    "basic": true
+   }
+  },
+  {
+   "type": "box",
+   "size": [
+    1.6,
+    0.12,
+    0.5
+   ],
+   "position": [
+    -4,
+    11.4,
+    -2.0
+   ],
+   "color": "#eef5ff",
+   "material": {
+    "basic": true
+   }
+  },
+  {
+   "type": "box",
+   "size": [
+    1.6,
+    0.12,
+    0.5
+   ],
+   "position": [
+    -4,
+    11.4,
+    2.6
+   ],
+   "color": "#eef5ff",
+   "material": {
+    "basic": true
+   }
+  },
+  {
+   "type": "box",
+   "size": [
+    1.6,
+    0.12,
+    0.5
+   ],
+   "position": [
+    0,
+    11.4,
+    -2.0
+   ],
+   "color": "#eef5ff",
+   "material": {
+    "basic": true
+   }
+  },
+  {
+   "type": "box",
+   "size": [
+    1.6,
+    0.12,
+    0.5
+   ],
+   "position": [
+    0,
+    11.4,
+    2.6
+   ],
+   "color": "#eef5ff",
+   "material": {
+    "basic": true
+   }
+  },
+  {
+   "type": "box",
+   "size": [
+    1.6,
+    0.12,
+    0.5
+   ],
+   "position": [
+    4,
+    11.4,
+    -2.0
+   ],
+   "color": "#eef5ff",
+   "material": {
+    "basic": true
+   }
+  },
+  {
+   "type": "box",
+   "size": [
+    1.6,
+    0.12,
+    0.5
+   ],
+   "position": [
+    4,
+    11.4,
+    2.6
+   ],
+   "color": "#eef5ff",
+   "material": {
+    "basic": true
+   }
+  },
+  {
+   "type": "box",
+   "size": [
+    1.6,
+    0.12,
+    0.5
+   ],
+   "position": [
+    8,
+    11.4,
+    -2.0
+   ],
+   "color": "#eef5ff",
+   "material": {
+    "basic": true
+   }
+  },
+  {
+   "type": "box",
+   "size": [
+    1.6,
+    0.12,
+    0.5
+   ],
+   "position": [
+    8,
+    11.4,
+    2.6
+   ],
+   "color": "#eef5ff",
+   "material": {
+    "basic": true
+   }
+  },
+  {
+   "type": "box",
+   "size": [
+    1.6,
+    0.12,
+    0.5
+   ],
+   "position": [
+    12,
+    11.4,
+    -2.0
+   ],
+   "color": "#eef5ff",
+   "material": {
+    "basic": true
+   }
+  },
+  {
+   "type": "box",
+   "size": [
+    1.6,
+    0.12,
+    0.5
+   ],
+   "position": [
+    12,
+    11.4,
+    2.6
+   ],
+   "color": "#eef5ff",
+   "material": {
+    "basic": true
+   }
+  },
+  {
+   "type": "cylinder",
+   "radius": 0.32,
+   "height": 0.14,
+   "position": [
+    -15.6,
+    0.07,
+    0.55
+   ],
+   "segments": 14,
+   "color": "#1c1d1f",
+   "material": {
+    "roughness": 0.7,
+    "metalness": 0.0
+   }
+  },
+  {
+   "type": "box",
+   "size": [
+    0.05,
+    0.006,
+    3.5
+   ],
+   "position": [
+    -12.0,
+    0.003,
+    0.5
+   ],
+   "color": "#e0c13a",
+   "material": {
+    "roughness": 0.6,
+    "metalness": 0.0
+   },
+   "cast": false
+  },
+  {
+   "type": "box",
+   "size": [
+    0.6,
+    0.4,
+    0.45
+   ],
+   "position": [
+    -13.5,
+    0.2,
+    -2.4
+   ],
+   "color": "#2b2e33",
+   "material": {
+    "roughness": 0.6,
+    "metalness": 0.4
+   }
+  },
+  {
+   "type": "box",
+   "size": [
+    0.6,
+    0.4,
+    0.45
+   ],
+   "position": [
+    -13.4,
+    0.6,
+    -2.4
+   ],
+   "color": "#2b2e33",
+   "material": {
+    "roughness": 0.6,
+    "metalness": 0.4
+   }
+  },
+  {
+   "type": "box",
+   "size": [
+    0.9,
+    0.5,
+    0.5
+   ],
+   "position": [
+    -4.8,
+    0.25,
+    3.6
+   ],
+   "color": "#2b2e33",
+   "material": {
+    "roughness": 0.6,
+    "metalness": 0.4
+   }
+  },
+  {
+   "type": "box",
+   "size": [
+    0.05,
+    0.006,
+    4.0
+   ],
+   "position": [
+    -6.0,
+    0.003,
+    0.0
+   ],
+   "color": "#e0c13a",
+   "material": {
+    "roughness": 0.6,
+    "metalness": 0.0
+   },
+   "cast": false,
+   "rotation": [
+    0,
+    70,
+    0
+   ]
+  },
+  {
+   "type": "group",
+   "position": [
+    -10.55,
+    0,
+    -2.6
+   ],
+   "rotation": [
+    0,
+    40,
+    0
+   ],
+   "children": [
+    {
+     "type": "box",
+     "size": [
+      1.0,
+      0.78,
+      0.45
+     ],
+     "position": [
+      0,
+      0.39,
+      0
+     ],
+     "color": "#9c7a55",
+     "material": {
+      "roughness": 0.8,
+      "metalness": 0.0
+     }
+    },
+    {
+     "type": "box",
+     "size": [
+      0.8,
+      0.9,
+      0.04
+     ],
+     "position": [
+      0,
+      1.35,
+      -0.18
+     ],
+     "color": "#c9d6de",
+     "material": {
+      "roughness": 0.1,
+      "metalness": 0.6
+     }
+    },
+    {
+     "type": "sphere",
+     "radius": 0.035,
+     "position": [
+      -0.42,
+      0.95,
+      -0.15
+     ],
+     "color": "#ffe7b8",
+     "material": {
+      "basic": true
+     },
+     "repeat": {
+      "count": 6,
+      "step": [
+       0,
+       0.16,
+       0
+      ]
+     }
+    },
+    {
+     "type": "sphere",
+     "radius": 0.035,
+     "position": [
+      0.42,
+      0.95,
+      -0.15
+     ],
+     "color": "#ffe7b8",
+     "material": {
+      "basic": true
+     },
+     "repeat": {
+      "count": 6,
+      "step": [
+       0,
+       0.16,
+       0
+      ]
+     }
+    },
+    {
+     "type": "sphere",
+     "radius": 0.035,
+     "position": [
+      -0.3,
+      1.83,
+      -0.15
+     ],
+     "color": "#ffe7b8",
+     "material": {
+      "basic": true
+     },
+     "repeat": {
+      "count": 5,
+      "step": [
+       0.15,
+       0,
+       0
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "type": "cylinder",
+   "radius": 0.2,
+   "height": 0.05,
+   "position": [
+    -9.0,
+    0.72,
+    -1.5
+   ],
+   "segments": 14,
+   "color": "#3a3c40",
+   "material": {
+    "roughness": 0.6,
+    "metalness": 0.3
+   }
+  },
+  {
+   "type": "cylinder",
+   "radius": 0.03,
+   "height": 0.72,
+   "position": [
+    -9.0,
+    0.36,
+    -1.5
+   ],
+   "segments": 14,
+   "color": "#8d959c",
+   "material": {
+    "roughness": 0.45,
+    "metalness": 0.55
+   }
+  },
+  {
+   "type": "cylinder",
+   "radius": 0.22,
+   "height": 0.03,
+   "position": [
+    -9.0,
+    0.02,
+    -1.5
+   ],
+   "segments": 14,
+   "color": "#8d959c",
+   "material": {
+    "roughness": 0.45,
+    "metalness": 0.55
+   }
+  },
+  {
+   "type": "box",
+   "size": [
+    0.5,
+    1.6,
+    0.5
+   ],
+   "position": [
+    -11.6,
+    0.8,
+    -1.2
+   ],
+   "color": "#5b4a63",
+   "material": {
+    "roughness": 0.9,
+    "metalness": 0.0
+   }
+  },
+  {
+   "type": "box",
+   "size": [
+    0.06,
+    0.4,
+    0.58
+   ],
+   "position": [
+    -2.0,
+    1.45,
+    -0.42
+   ],
+   "color": "#15171a",
+   "material": {
+    "roughness": 0.5,
+    "metalness": 0.3
+   }
+  },
+  {
+   "type": "box",
+   "size": [
+    0.012,
+    0.34,
+    0.5
+   ],
+   "position": [
+    -2.04,
+    1.45,
+    -0.42
+   ],
+   "color": "#8fc6ff",
+   "material": {
+    "basic": true
+   }
+  },
+  {
+   "type": "cylinder",
+   "radius": 0.02,
+   "height": 1.25,
+   "position": [
+    -1.98,
+    0.62,
+    -0.42
+   ],
+   "segments": 14,
+   "color": "#8d959c",
+   "material": {
+    "roughness": 0.45,
+    "metalness": 0.55
+   }
+  },
+  {
+   "type": "cylinder",
+   "radius": 0.22,
+   "height": 0.03,
+   "position": [
+    -1.98,
+    0.02,
+    -0.42
+   ],
+   "segments": 14,
+   "color": "#8d959c",
+   "material": {
+    "roughness": 0.45,
+    "metalness": 0.55
+   }
+  },
+  {
+   "type": "box",
+   "size": [
+    0.06,
+    0.4,
+    0.58
+   ],
+   "position": [
+    -2.0,
+    1.45,
+    0.42
+   ],
+   "color": "#15171a",
+   "material": {
+    "roughness": 0.5,
+    "metalness": 0.3
+   }
+  },
+  {
+   "type": "box",
+   "size": [
+    0.012,
+    0.34,
+    0.5
+   ],
+   "position": [
+    -2.04,
+    1.45,
+    0.42
+   ],
+   "color": "#8fc6ff",
+   "material": {
+    "basic": true
+   }
+  },
+  {
+   "type": "cylinder",
+   "radius": 0.02,
+   "height": 1.25,
+   "position": [
+    -1.98,
+    0.62,
+    0.42
+   ],
+   "segments": 14,
+   "color": "#8d959c",
+   "material": {
+    "roughness": 0.45,
+    "metalness": 0.55
+   }
+  },
+  {
+   "type": "cylinder",
+   "radius": 0.22,
+   "height": 0.03,
+   "position": [
+    -1.98,
+    0.02,
+    0.42
+   ],
+   "segments": 14,
+   "color": "#8d959c",
+   "material": {
+    "roughness": 0.45,
+    "metalness": 0.55
+   }
+  },
+  {
+   "type": "box",
+   "size": [
+    0.6,
+    0.9,
+    0.45
+   ],
+   "position": [
+    -1.2,
+    0.45,
+    -1.4
+   ],
+   "color": "#2b2e33",
+   "material": {
+    "roughness": 0.6,
+    "metalness": 0.4
+   }
+  },
+  {
+   "type": "box",
+   "size": [
+    0.5,
+    0.9,
+    0.5
+   ],
+   "position": [
+    -3.6,
+    0.45,
+    1.9
+   ],
+   "color": "#5a3e2a",
+   "material": {
+    "roughness": 0.8,
+    "metalness": 0.0
+   }
+  },
+  {
+   "type": "box",
+   "size": [
+    0.5,
+    0.9,
+    0.5
+   ],
+   "position": [
+    -3.6,
+    0.45,
+    -1.9
+   ],
+   "color": "#5a3e2a",
+   "material": {
+    "roughness": 0.8,
+    "metalness": 0.0
+   }
+  },
+  {
+   "type": "box",
+   "size": [
+    8.0,
+    3.2,
+    0.12
+   ],
+   "position": [
+    8.0,
+    1.6,
+    -3.5
+   ],
+   "color": "#d9c6a6",
+   "material": {
+    "roughness": 0.9,
+    "metalness": 0.0
+   }
+  },
+  {
+   "type": "box",
+   "size": [
+    8.0,
+    3.2,
+    0.12
+   ],
+   "position": [
+    8.0,
+    1.6,
+    3.5
+   ],
+   "color": "#d9c6a6",
+   "material": {
+    "roughness": 0.9,
+    "metalness": 0.0
+   }
+  },
+  {
+   "type": "box",
+   "size": [
+    0.12,
+    3.2,
+    3.0
+   ],
+   "position": [
+    12.0,
+    1.6,
+    -2.0
+   ],
+   "color": "#d9c6a6",
+   "material": {
+    "roughness": 0.9,
+    "metalness": 0.0
+   }
+  },
+  {
+   "type": "box",
+   "size": [
+    0.12,
+    3.2,
+    3.0
+   ],
+   "position": [
+    12.0,
+    1.6,
+    2.0
+   ],
+   "color": "#d9c6a6",
+   "material": {
+    "roughness": 0.9,
+    "metalness": 0.0
+   }
+  },
+  {
+   "type": "box",
+   "size": [
+    0.12,
+    0.8,
+    1.0
+   ],
+   "position": [
+    12.0,
+    2.8,
+    0
+   ],
+   "color": "#d9c6a6",
+   "material": {
+    "roughness": 0.9,
+    "metalness": 0.0
+   }
+  },
+  {
+   "type": "group",
+   "position": [
+    12.0,
+    0,
+    -0.5
+   ],
+   "rotation": [
+    0,
+    75,
+    0
+   ],
+   "children": [
+    {
+     "type": "box",
+     "size": [
+      0.05,
+      2.4,
+      1.0
+     ],
+     "position": [
+      0,
+      1.2,
+      0.5
+     ],
+     "color": "#8a6a4c",
+     "material": {
+      "roughness": 0.7,
+      "metalness": 0.0
+     }
+    }
+   ]
+  },
+  {
+   "type": "box",
+   "size": [
+    7.8,
+    0.02,
+    6.8
+   ],
+   "position": [
+    8.0,
+    0.01,
+    0
+   ],
+   "color": "#b49a7e",
+   "material": {
+    "roughness": 0.95,
+    "metalness": 0.0
+   },
+   "cast": false
+  },
+  {
+   "type": "box",
+   "size": [
+    3.2,
+    0.2,
+    2.2
+   ],
+   "position": [
+    8.6,
+    1.4,
+    -3.3
+   ],
+   "color": "#7b8a6e",
+   "material": {
+    "roughness": 0.9,
+    "metalness": 0.0
+   }
+  },
+  {
+   "type": "group",
+   "position": [
+    9.0,
+    0,
+    -2.45
+   ],
+   "rig": {
+    "id": "sofa",
+    "axis": "z",
+    "mode": "translate"
+   },
+   "children": [
+    {
+     "type": "box",
+     "size": [
+      2.2,
+      0.45,
+      0.9
+     ],
+     "position": [
+      0,
+      0.225,
+      0
+     ],
+     "color": "#8c5d4a",
+     "material": {
+      "roughness": 0.9,
+      "metalness": 0.0
+     }
+    },
+    {
+     "type": "box",
+     "size": [
+      2.2,
+      0.5,
+      0.2
+     ],
+     "position": [
+      0,
+      0.7,
+      -0.35
+     ],
+     "color": "#8c5d4a",
+     "material": {
+      "roughness": 0.9,
+      "metalness": 0.0
+     }
+    },
+    {
+     "type": "box",
+     "id": "sofaArmL",
+     "size": [
+      0.2,
+      0.6,
+      0.9
+     ],
+     "position": [
+      -1.1,
+      0.3,
+      0
+     ],
+     "color": "#7b5040",
+     "material": {
+      "roughness": 0.9,
+      "metalness": 0.0
+     }
+    },
+    {
+     "type": "box",
+     "id": "sofaGripL",
+     "size": [
+      0.04,
+      0.02,
+      0.04
+     ],
+     "position": [
+      -1.1,
+      0.62,
+      0.25
+     ],
+     "color": "#7b5040",
+     "material": {
+      "roughness": 0.9,
+      "metalness": 0.0
+     }
+    },
+    {
+     "type": "box",
+     "id": "sofaArmR",
+     "size": [
+      0.2,
+      0.6,
+      0.9
+     ],
+     "position": [
+      1.1,
+      0.3,
+      0
+     ],
+     "color": "#7b5040",
+     "material": {
+      "roughness": 0.9,
+      "metalness": 0.0
+     }
+    },
+    {
+     "type": "box",
+     "id": "sofaGripR",
+     "size": [
+      0.04,
+      0.02,
+      0.04
+     ],
+     "position": [
+      1.1,
+      0.62,
+      0.25
+     ],
+     "color": "#7b5040",
+     "material": {
+      "roughness": 0.9,
+      "metalness": 0.0
+     }
+    }
+   ]
+  },
+  {
+   "type": "box",
+   "size": [
+    1.1,
+    0.4,
+    0.6
+   ],
+   "position": [
+    9.0,
+    0.2,
+    -1.15
+   ],
+   "color": "#9c7a55",
+   "material": {
+    "roughness": 0.8,
+    "metalness": 0.0
+   }
+  },
+  {
+   "type": "cylinder",
+   "radius": 0.18,
+   "height": 1.3,
+   "position": [
+    6.0,
+    0.65,
+    -2.9
+   ],
+   "segments": 14,
+   "color": "#c9b48a",
+   "material": {
+    "roughness": 0.7,
+    "metalness": 0.0
+   }
+  },
+  {
+   "type": "sphere",
+   "radius": 0.22,
+   "position": [
+    6.0,
+    1.45,
+    -2.9
+   ],
+   "color": "#ffe7b8",
+   "material": {
+    "basic": true
+   }
+  },
+  {
+   "type": "box",
+   "size": [
+    0.5,
+    0.9,
+    0.4
+   ],
+   "position": [
+    10.8,
+    0.45,
+    2.9
+   ],
+   "color": "#9c7a55",
+   "material": {
+    "roughness": 0.8,
+    "metalness": 0.0
+   }
+  },
+  {
+   "type": "box",
+   "size": [
+    0.1,
+    0.5,
+    0.1
+   ],
+   "position": [
+    6.0,
+    3.45,
+    -3.2
+   ],
+   "color": "#8d959c",
+   "material": {
+    "roughness": 0.45,
+    "metalness": 0.55
+   }
+  },
+  {
+   "type": "box",
+   "id": "setLamp1",
+   "size": [
+    0.45,
+    0.32,
+    0.3
+   ],
+   "position": [
+    6.0,
+    3.75,
+    -3.3000000000000003
+   ],
+   "color": "#3a2a12",
+   "material": {
+    "emissive": "#ffb85c",
+    "emissiveIntensity": 0.6
+   }
+  },
+  {
+   "type": "box",
+   "size": [
+    0.1,
+    0.5,
+    0.1
+   ],
+   "position": [
+    10.0,
+    3.45,
+    -3.2
+   ],
+   "color": "#8d959c",
+   "material": {
+    "roughness": 0.45,
+    "metalness": 0.55
+   }
+  },
+  {
+   "type": "box",
+   "id": "setLamp2",
+   "size": [
+    0.45,
+    0.32,
+    0.3
+   ],
+   "position": [
+    10.0,
+    3.75,
+    -3.3000000000000003
+   ],
+   "color": "#3a2a12",
+   "material": {
+    "emissive": "#ffb85c",
+    "emissiveIntensity": 0.6
+   }
+  },
+  {
+   "type": "box",
+   "size": [
+    0.1,
+    0.5,
+    0.1
+   ],
+   "position": [
+    8.0,
+    3.45,
+    3.2
+   ],
+   "color": "#8d959c",
+   "material": {
+    "roughness": 0.45,
+    "metalness": 0.55
+   }
+  },
+  {
+   "type": "box",
+   "id": "setLamp3",
+   "size": [
+    0.45,
+    0.32,
+    0.3
+   ],
+   "position": [
+    8.0,
+    3.75,
+    3.3000000000000003
+   ],
+   "color": "#3a2a12",
+   "material": {
+    "emissive": "#ffb85c",
+    "emissiveIntensity": 0.6
+   }
+  },
+  {
+   "type": "box",
+   "size": [
+    0.08,
+    3.0,
+    0.08
+   ],
+   "position": [
+    12.25,
+    1.5,
+    -2.6
+   ],
+   "color": "#9c7a55",
+   "material": {
+    "roughness": 0.8,
+    "metalness": 0.0
+   }
+  },
+  {
+   "type": "box",
+   "size": [
+    0.08,
+    0.08,
+    1.6
+   ],
+   "position": [
+    12.7,
+    1.1,
+    -2.6
+   ],
+   "color": "#9c7a55",
+   "material": {
+    "roughness": 0.8,
+    "metalness": 0.0
+   },
+   "rotation": [
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "type": "box",
+   "size": [
+    0.35,
+    0.15,
+    0.25
+   ],
+   "position": [
+    12.5,
+    0.075,
+    -2.6
+   ],
+   "color": "#6e6450",
+   "material": {
+    "roughness": 0.95,
+    "metalness": 0.0
+   }
+  },
+  {
+   "type": "box",
+   "size": [
+    0.08,
+    3.0,
+    0.08
+   ],
+   "position": [
+    12.25,
+    1.5,
+    -1.0
+   ],
+   "color": "#9c7a55",
+   "material": {
+    "roughness": 0.8,
+    "metalness": 0.0
+   }
+  },
+  {
+   "type": "box",
+   "size": [
+    0.08,
+    0.08,
+    1.6
+   ],
+   "position": [
+    12.7,
+    1.1,
+    -1.0
+   ],
+   "color": "#9c7a55",
+   "material": {
+    "roughness": 0.8,
+    "metalness": 0.0
+   },
+   "rotation": [
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "type": "box",
+   "size": [
+    0.35,
+    0.15,
+    0.25
+   ],
+   "position": [
+    12.5,
+    0.075,
+    -1.0
+   ],
+   "color": "#6e6450",
+   "material": {
+    "roughness": 0.95,
+    "metalness": 0.0
+   }
+  },
+  {
+   "type": "box",
+   "size": [
+    0.08,
+    3.0,
+    0.08
+   ],
+   "position": [
+    12.25,
+    1.5,
+    1.0
+   ],
+   "color": "#9c7a55",
+   "material": {
+    "roughness": 0.8,
+    "metalness": 0.0
+   }
+  },
+  {
+   "type": "box",
+   "size": [
+    0.08,
+    0.08,
+    1.6
+   ],
+   "position": [
+    12.7,
+    1.1,
+    1.0
+   ],
+   "color": "#9c7a55",
+   "material": {
+    "roughness": 0.8,
+    "metalness": 0.0
+   },
+   "rotation": [
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "type": "box",
+   "size": [
+    0.35,
+    0.15,
+    0.25
+   ],
+   "position": [
+    12.5,
+    0.075,
+    1.0
+   ],
+   "color": "#6e6450",
+   "material": {
+    "roughness": 0.95,
+    "metalness": 0.0
+   }
+  },
+  {
+   "type": "box",
+   "size": [
+    0.08,
+    3.0,
+    0.08
+   ],
+   "position": [
+    12.25,
+    1.5,
+    2.6
+   ],
+   "color": "#9c7a55",
+   "material": {
+    "roughness": 0.8,
+    "metalness": 0.0
+   }
+  },
+  {
+   "type": "box",
+   "size": [
+    0.08,
+    0.08,
+    1.6
+   ],
+   "position": [
+    12.7,
+    1.1,
+    2.6
+   ],
+   "color": "#9c7a55",
+   "material": {
+    "roughness": 0.8,
+    "metalness": 0.0
+   },
+   "rotation": [
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "type": "box",
+   "size": [
+    0.35,
+    0.15,
+    0.25
+   ],
+   "position": [
+    12.5,
+    0.075,
+    2.6
+   ],
+   "color": "#6e6450",
+   "material": {
+    "roughness": 0.95,
+    "metalness": 0.0
+   }
+  },
+  {
+   "type": "stairs",
+   "position": [
+    13.4,
+    0,
+    -1.0
+   ],
+   "rotation": [
+    0,
+    -90,
+    0
+   ],
+   "steps": 20,
+   "run": 0.28,
+   "rise": 0.25,
+   "width": 1.0,
+   "color": "#6f777e",
+   "material": {
+    "roughness": 0.5,
+    "metalness": 0.5
+   },
+   "treadColor": "#8a9299",
+   "railing": {
+    "side": 1,
+    "height": 1.0,
+    "color": "#aab3ba"
+   }
+  },
+  {
+   "type": "box",
+   "size": [
+    28,
+    0.08,
+    1.0
+   ],
+   "position": [
+    0,
+    5.0,
+    -5.1
+   ],
+   "color": "#5f676e",
+   "material": {
+    "roughness": 0.5,
+    "metalness": 0.5
+   }
+  },
+  {
+   "type": "box",
+   "size": [
+    28,
+    0.05,
+    0.05
+   ],
+   "position": [
+    0,
+    6.0,
+    -4.6
+   ],
+   "color": "#8d959c",
+   "material": {
+    "roughness": 0.45,
+    "metalness": 0.55
+   }
+  },
+  {
+   "type": "box",
+   "size": [
+    0.04,
+    1.0,
+    0.04
+   ],
+   "position": [
+    -13.5,
+    5.5,
+    -4.6
+   ],
+   "color": "#8d959c",
+   "material": {
+    "roughness": 0.45,
+    "metalness": 0.55
+   },
+   "repeat": {
+    "count": 28,
+    "step": [
+     1.0,
+     0,
+     0
+    ]
+   }
+  },
+  {
+   "type": "box",
+   "size": [
+    28,
+    0.08,
+    1.0
+   ],
+   "position": [
+    0,
+    5.0,
+    5.1
+   ],
+   "color": "#5f676e",
+   "material": {
+    "roughness": 0.5,
+    "metalness": 0.5
+   }
+  },
+  {
+   "type": "box",
+   "size": [
+    28,
+    0.05,
+    0.05
+   ],
+   "position": [
+    0,
+    6.0,
+    4.6
+   ],
+   "color": "#8d959c",
+   "material": {
+    "roughness": 0.45,
+    "metalness": 0.55
+   }
+  },
+  {
+   "type": "box",
+   "size": [
+    0.04,
+    1.0,
+    0.04
+   ],
+   "position": [
+    -13.5,
+    5.5,
+    4.6
+   ],
+   "color": "#8d959c",
+   "material": {
+    "roughness": 0.45,
+    "metalness": 0.55
+   },
+   "repeat": {
+    "count": 28,
+    "step": [
+     1.0,
+     0,
+     0
+    ]
+   }
+  },
+  {
+   "type": "box",
+   "size": [
+    1.0,
+    0.08,
+    11.2
+   ],
+   "position": [
+    14.4,
+    5.0,
+    0
+   ],
+   "color": "#5f676e",
+   "material": {
+    "roughness": 0.5,
+    "metalness": 0.5
+   }
+  },
+  {
+   "type": "box",
+   "size": [
+    2.2,
+    0.08,
+    1.0
+   ],
+   "position": [
+    13.4,
+    5.0,
+    5.1
+   ],
+   "color": "#5f676e",
+   "material": {
+    "roughness": 0.5,
+    "metalness": 0.5
+   }
+  }
+ ],
+ "kinds": {
+  "zhou": {
+   "scale": 0.92,
+   "build": "female",
+   "body": "#f39a2c",
+   "accent": "#fff1d6",
+   "ponytail": true,
+   "life": 1.2
+  },
+  "zheng": {
+   "scale": 1.02,
+   "build": "male",
+   "body": "#2f7fd6",
+   "accent": "#e6f0ff",
+   "life": 0.9
+  },
+  "laz": {
+   "scale": 0.98,
+   "build": "male",
+   "body": "#58c4cf",
+   "accent": "#e6fbff",
+   "life": 0.9
+  },
+  "mua": {
+   "scale": 0.95,
+   "build": "female",
+   "body": "#e46aa3",
+   "accent": "#fff0f6",
+   "life": 1
+  },
+  "act": {
+   "scale": 0.96,
+   "build": "female",
+   "body": "#d8473b",
+   "accent": "#fff2ee",
+   "ponytail": true,
+   "life": 0.7
+  },
+  "cos": {
+   "scale": 0.94,
+   "build": "female",
+   "body": "#b98bd9",
+   "accent": "#f8f0ff",
+   "life": 1
+  },
+  "dir": {
+   "scale": 1.0,
+   "build": "male",
+   "body": "#8a2f2a",
+   "accent": "#f2e2c4",
+   "life": 1
+  },
+  "dp": {
+   "scale": 0.97,
+   "build": "female",
+   "body": "#7a4fd0",
+   "accent": "#efe6ff",
+   "life": 1
+  },
+  "snd": {
+   "scale": 1.0,
+   "build": "male",
+   "body": "#7f9a3c",
+   "accent": "#f2f8e0",
+   "life": 0.9
+  },
+  "grip": {
+   "scale": 1.02,
+   "build": "male",
+   "body": "#9a9fa4",
+   "accent": "#f0f2f4",
+   "life": 1
+  },
+  "grip2": {
+   "scale": 1.0,
+   "build": "male",
+   "body": "#b9874f",
+   "accent": "#fbf0e0",
+   "life": 1
+  },
+  "ad": {
+   "scale": 0.98,
+   "build": "male",
+   "body": "#e3c02e",
+   "accent": "#fffbe0",
+   "life": 1
+  },
+  "crew": {
+   "scale": 1.0,
+   "build": "male",
+   "body": "#3f4a52",
+   "accent": "#dfe6ea",
+   "life": 0.9
+  }
+ },
+ "poses": {
+  "tray": {
+   "base": "stand",
+   "spine": 0.05,
+   "shR": [
+    0.75,
+    0.15
+   ],
+   "elR": 1.35,
+   "shL": [
+    0.75,
+    0.15
+   ],
+   "elL": 1.35
+  },
+  "door": {
+   "base": "tray",
+   "spine": 0.15,
+   "neckYaw": 0.2
+  },
+  "nod": {
+   "base": "tray",
+   "neck": 0.3,
+   "neckYaw": -0.6
+  },
+  "push": {
+   "base": "stand",
+   "spine": 0.32,
+   "shR": [
+    1.1,
+    0.1
+   ],
+   "elR": 0.5,
+   "shL": [
+    1.1,
+    0.1
+   ],
+   "elL": 0.5,
+   "hipL": 0.35,
+   "kneeL": -0.4,
+   "hipR": -0.15,
+   "kneeR": -0.25
+  },
+  "take": {
+   "base": "stand",
+   "spine": 0.1,
+   "shR": [
+    1.2,
+    0.05
+   ],
+   "elR": 0.5,
+   "shL": [
+    1.0,
+    0.1
+   ],
+   "elL": 0.5
+  },
+  "sip": {
+   "base": "stand",
+   "spine": -0.05,
+   "neck": -0.15,
+   "shR": [
+    1.3,
+    -0.25
+   ],
+   "elR": 2.3,
+   "shL": [
+    1.0,
+    0.1
+   ],
+   "elL": 0.5
+  },
+  "crank": {
+   "base": "stand",
+   "spine": 0.15,
+   "neck": -0.25,
+   "shR": [
+    1.2,
+    0.1
+   ],
+   "elR": 1.0,
+   "shL": [
+    1.1,
+    0.1
+   ],
+   "elL": 0.7
+  },
+  "lookup": {
+   "base": "stand",
+   "neck": -0.55,
+   "shR": [
+    0.8,
+    0.1
+   ],
+   "elR": 1.2,
+   "shL": [
+    0.3,
+    0.1
+   ],
+   "elL": 0.4
+  },
+  "stool": {
+   "base": "stand",
+   "spine": 0.05,
+   "neck": 0.05,
+   "shL": [
+    0.4,
+    0.1
+   ],
+   "elL": 1.2,
+   "shR": [
+    0.4,
+    0.1
+   ],
+   "elR": 1.2,
+   "hipL": 1.35,
+   "kneeL": -1.45,
+   "hipR": 1.4,
+   "kneeR": -1.25,
+   "drop": 0.2
+  },
+  "stoolUp": {
+   "base": "stool",
+   "neck": -0.15
+  },
+  "apply": {
+   "base": "stand",
+   "spine": 0.2,
+   "neck": 0.25,
+   "shR": [
+    1.45,
+    0.05
+   ],
+   "elR": 1.1,
+   "shL": [
+    0.9,
+    0.1
+   ],
+   "elL": 1.6
+  },
+  "holdJ": {
+   "base": "stand",
+   "shR": [
+    0.6,
+    0.1
+   ],
+   "elR": 1.4,
+   "shL": [
+    0.3,
+    0.1
+   ],
+   "elL": 0.4
+  },
+  "fix": {
+   "base": "stand",
+   "spine": 0.2,
+   "neck": 0.2,
+   "shR": [
+    1.3,
+    0.05
+   ],
+   "elR": 0.9,
+   "shL": [
+    1.3,
+    0.05
+   ],
+   "elL": 0.9
+  },
+  "walk": {
+   "base": "stand",
+   "spine": 0.08
+  },
+  "frame": {
+   "base": "stand",
+   "spine": 0.05,
+   "neck": -0.1,
+   "shL": [
+    1.55,
+    -0.35
+   ],
+   "elL": 1.5,
+   "shR": [
+    1.55,
+    -0.35
+   ],
+   "elR": 1.5
+  },
+  "point": {
+   "base": "stand",
+   "shR": [
+    1.4,
+    0.25
+   ],
+   "elR": 0.2
+  },
+  "listen": {
+   "base": "stand",
+   "neck": 0.35,
+   "neckYaw": 0.3,
+   "shL": [
+    0.5,
+    0.1
+   ],
+   "elL": 1.6,
+   "shR": [
+    0.3,
+    0.1
+   ],
+   "elR": 0.5
+  },
+  "cup": {
+   "base": "stand",
+   "shR": [
+    0.6,
+    0.1
+   ],
+   "elR": 1.6
+  },
+  "cupL": {
+   "base": "stand",
+   "shL": [
+    0.6,
+    0.1
+   ],
+   "elL": 1.6
+  },
+  "peer": {
+   "base": "stand",
+   "spine": 0.55,
+   "neck": -0.35,
+   "shL": [
+    0.4,
+    0.2
+   ],
+   "elL": 1.0,
+   "shR": [
+    0.6,
+    0.1
+   ],
+   "elR": 1.6,
+   "hipL": 0.2,
+   "kneeL": -0.2
+  },
+  "peerL": {
+   "base": "peer",
+   "shL": [
+    0.6,
+    0.1
+   ],
+   "elL": 1.6,
+   "shR": [
+    0.4,
+    0.2
+   ],
+   "elR": 1.0
+  },
+  "boom": {
+   "base": "stand",
+   "spine": -0.1,
+   "neck": -0.3,
+   "shR": [
+    2.3,
+    0.15
+   ],
+   "elR": 0.5,
+   "shL": [
+    2.0,
+    0.1
+   ],
+   "elL": 0.7
+  },
+  "grab": {
+   "base": "stand",
+   "spine": 0.6,
+   "shR": [
+    1.0,
+    0.15
+   ],
+   "elR": 0.3,
+   "shL": [
+    1.0,
+    0.15
+   ],
+   "elL": 0.3,
+   "hipL": 0.5,
+   "kneeL": -0.6,
+   "hipR": 0.2,
+   "kneeR": -0.4,
+   "drop": 0.05
+  },
+  "squat": {
+   "base": "stand",
+   "spine": 0.5,
+   "neck": 0.3,
+   "shR": [
+    1.2,
+    0.1
+   ],
+   "elR": 0.4,
+   "shL": [
+    1.1,
+    0.15
+   ],
+   "elL": 0.5,
+   "hipL": 1.6,
+   "kneeL": -2.2,
+   "hipR": 1.4,
+   "kneeR": -2.3,
+   "drop": 0.42
+  },
+  "okay": {
+   "base": "stand",
+   "spine": 0.1,
+   "shR": [
+    1.3,
+    0.35
+   ],
+   "elR": 1.7
+  },
+  "stoop": {
+   "base": "stand",
+   "spine": 0.55,
+   "neck": -0.3,
+   "hipL": 0.3,
+   "kneeL": -0.4,
+   "drop": 0.04
+  },
+  "radio": {
+   "base": "stand",
+   "spine": 0.15,
+   "neck": -0.2,
+   "shR": [
+    1.55,
+    -0.35
+   ],
+   "elR": 2.15,
+   "shL": [
+    0.4,
+    0.3
+   ],
+   "elL": 0.5
+  },
+  "raise": {
+   "base": "radio",
+   "shL": [
+    3.05,
+    0.1
+   ],
+   "elL": 0.05
+  },
+  "carryS": {
+   "base": "stand",
+   "spine": 0.1,
+   "shR": [
+    2.6,
+    0.45
+   ],
+   "elR": 2.3
+  },
+  "breathe": {
+   "base": "stand",
+   "spine": -0.03,
+   "neck": -0.05
+  }
+ },
+ "actors": [
+  {
+   "id": "XZ",
+   "label": "场务小周 · 咖啡托盘",
+   "kind": "zhou",
+   "color": "#ffb24d",
+   "keyframes": [
+    {
+     "time": 0,
+     "position": [
+      -18.35,
+      0,
+      0.1
+     ],
+     "yaw": -1.5708,
+     "pose": "door",
+     "gait": 0.4,
+     "reachR": {
+      "target": "TRAY.center",
+      "w": 1
+     },
+     "reachL": {
+      "target": "TRAY.center",
+      "w": 1
+     }
+    },
+    {
+     "time": 0.7,
+     "position": [
+      -17.6,
+      0,
+      0.1
+     ],
+     "yaw": -1.5708,
+     "pose": "tray",
+     "gait": 1,
+     "reachR": {
+      "target": "TRAY.center",
+      "w": 1
+     },
+     "reachL": {
+      "target": "TRAY.center",
+      "w": 1
+     }
+    },
+    {
+     "time": 1.6,
+     "position": [
+      -16.1,
+      0,
+      0.05
+     ],
+     "yaw": -1.2208,
+     "pose": "tray",
+     "gait": 1,
+     "reachR": {
+      "target": "TRAY.center",
+      "w": 1
+     },
+     "reachL": {
+      "target": "TRAY.center",
+      "w": 1
+     }
+    },
+    {
+     "time": 2.1,
+     "position": [
+      -15.3,
+      0,
+      -0.05
+     ],
+     "yaw": -1.4708,
+     "pose": "nod",
+     "gait": 1,
+     "reachR": {
+      "target": "TRAY.center",
+      "w": 1
+     },
+     "reachL": {
+      "target": "TRAY.center",
+      "w": 1
+     }
+    },
+    {
+     "time": 4.6,
+     "position": [
+      -10.6,
+      0,
+      0.25
+     ],
+     "yaw": -1.4208,
+     "pose": "tray",
+     "gait": 1,
+     "reachR": {
+      "target": "TRAY.center",
+      "w": 1
+     },
+     "reachL": {
+      "target": "TRAY.center",
+      "w": 1
+     }
+    },
+    {
+     "time": 5.15,
+     "position": [
+      -9.08,
+      0,
+      0.8
+     ],
+     "yaw": -0.8708,
+     "pose": "tray",
+     "gait": 0.3,
+     "reachR": {
+      "target": "TRAY.center",
+      "w": 1
+     },
+     "reachL": {
+      "target": "TRAY.center",
+      "w": 1
+     }
+    },
+    {
+     "time": 5.85,
+     "position": [
+      -9.04,
+      0,
+      0.82
+     ],
+     "yaw": -0.8708,
+     "pose": "tray",
+     "reachR": {
+      "target": "TRAY.center",
+      "w": 1
+     },
+     "reachL": {
+      "target": "TRAY.center",
+      "w": 1
+     }
+    },
+    {
+     "time": 6.75,
+     "position": [
+      -7.5,
+      0,
+      0.6
+     ],
+     "yaw": -1.5708,
+     "pose": "tray",
+     "gait": 1,
+     "reachR": {
+      "target": "TRAY.center",
+      "w": 1
+     },
+     "reachL": {
+      "target": "TRAY.center",
+      "w": 1
+     }
+    },
+    {
+     "time": 9.0,
+     "position": [
+      -4.2,
+      0,
+      2.2
+     ],
+     "yaw": -1.0708,
+     "pose": "tray",
+     "gait": 1,
+     "reachR": {
+      "target": "TRAY.center",
+      "w": 1
+     },
+     "reachL": {
+      "target": "TRAY.center",
+      "w": 1
+     }
+    },
+    {
+     "time": 9.6,
+     "position": [
+      -3.6,
+      0,
+      2.3
+     ],
+     "yaw": 1.5708,
+     "pose": "tray",
+     "reachR": {
+      "target": "TRAY.center",
+      "w": 1
+     },
+     "reachL": {
+      "target": "TRAY.center",
+      "w": 1
+     }
+    },
+    {
+     "time": 16.2,
+     "position": [
+      -4.0,
+      0,
+      0.9
+     ],
+     "yaw": 1.2708,
+     "pose": "tray",
+     "reachR": {
+      "target": "TRAY.center",
+      "w": 1
+     },
+     "reachL": {
+      "target": "TRAY.center",
+      "w": 1
+     }
+    },
+    {
+     "time": 17.35,
+     "position": [
+      -5.75,
+      0,
+      0.38
+     ],
+     "yaw": 1.5708,
+     "pose": "tray",
+     "gait": 1,
+     "reachR": {
+      "target": "TRAY.center",
+      "w": 1
+     },
+     "reachL": {
+      "target": "TRAY.center",
+      "w": 1
+     }
+    },
+    {
+     "time": 17.75,
+     "position": [
+      -6.3,
+      0,
+      0.38
+     ],
+     "yaw": 1.5708,
+     "pose": "tray",
+     "gait": 0.6,
+     "reachR": {
+      "target": "TRAY.center",
+      "w": 1
+     },
+     "reachL": {
+      "target": "TRAY.center",
+      "w": 1
+     }
+    },
+    {
+     "time": 18.6,
+     "position": [
+      -7.6,
+      0,
+      0.5
+     ],
+     "yaw": 2.0708,
+     "pose": "tray",
+     "gait": 1,
+     "reachR": {
+      "target": "TRAY.center",
+      "w": 1
+     },
+     "reachL": {
+      "target": "TRAY.center",
+      "w": 1
+     }
+    },
+    {
+     "time": 19.3,
+     "position": [
+      -7.9,
+      0,
+      1.2
+     ],
+     "yaw": 3.1416,
+     "pose": "tray",
+     "gait": 1,
+     "reachR": {
+      "target": "TRAY.center",
+      "w": 1
+     },
+     "reachL": {
+      "target": "TRAY.center",
+      "w": 1
+     }
+    },
+    {
+     "time": 20.2,
+     "position": [
+      -7.5,
+      0,
+      3.1
+     ],
+     "yaw": -1.2708,
+     "pose": "tray",
+     "gait": 1,
+     "reachR": {
+      "target": "TRAY.center",
+      "w": 1
+     },
+     "reachL": {
+      "target": "TRAY.center",
+      "w": 1
+     }
+    },
+    {
+     "time": 26.4,
+     "position": [
+      2.4,
+      0,
+      4.25
+     ],
+     "yaw": -1.5708,
+     "pose": "tray",
+     "gait": 1,
+     "reachR": {
+      "target": "TRAY.center",
+      "w": 1
+     },
+     "reachL": {
+      "target": "TRAY.center",
+      "w": 1
+     }
+    },
+    {
+     "time": 26.9,
+     "position": [
+      2.6,
+      0,
+      4.3
+     ],
+     "yaw": 0.3,
+     "pose": "breathe",
+     "reachR": {
+      "target": "TRAY.center",
+      "w": 1
+     },
+     "reachL": {
+      "target": "TRAY.center",
+      "w": 1
+     }
+    },
+    {
+     "time": 30,
+     "position": [
+      2.6,
+      0,
+      4.3
+     ],
+     "yaw": 0.3,
+     "pose": "breathe",
+     "life": 0.4,
+     "reachR": {
+      "target": "TRAY.center",
+      "w": 1
+     },
+     "reachL": {
+      "target": "TRAY.center",
+      "w": 1
+     }
+    }
+   ]
+  },
+  {
+   "id": "LZ",
+   "label": "灯光师老郑",
+   "kind": "zheng",
+   "color": "#4b9aef",
+   "keyframes": [
+    {
+     "time": 0,
+     "position": [
+      -7.18,
+      0,
+      2.194
+     ],
+     "yaw": 1.5708,
+     "pose": "push",
+     "reachR": {
+      "target": "LEDPOLE.center",
+      "w": 1
+     },
+     "reachL": {
+      "target": "LEDPOLE.center",
+      "w": 1
+     }
+    },
+    {
+     "time": 2.0,
+     "position": [
+      -7.18,
+      0,
+      2.194
+     ],
+     "yaw": 1.5708,
+     "pose": "push",
+     "reachR": {
+      "target": "LEDPOLE.center",
+      "w": 1
+     },
+     "reachL": {
+      "target": "LEDPOLE.center",
+      "w": 1
+     }
+    },
+    {
+     "time": 5.2,
+     "position": [
+      -8.683,
+      0,
+      1.148
+     ],
+     "yaw": 1.5708,
+     "pose": "push",
+     "gait": 1,
+     "reachR": {
+      "target": "LEDPOLE.center",
+      "w": 1
+     },
+     "reachL": {
+      "target": "LEDPOLE.center",
+      "w": 1
+     }
+    },
+    {
+     "time": 5.45,
+     "position": [
+      -8.683,
+      0,
+      1.148
+     ],
+     "yaw": 0.854,
+     "pose": "take",
+     "reachR": {
+      "target": "CUP1T.tip",
+      "w": 1
+     },
+     "reachL": {
+      "target": "LEDPOLE.center",
+      "w": 1
+     }
+    },
+    {
+     "time": 5.65,
+     "position": [
+      -8.683,
+      0,
+      1.148
+     ],
+     "yaw": 0.854,
+     "pose": "take",
+     "reachR": {
+      "target": "CUP1T.tip",
+      "w": 1
+     },
+     "reachL": {
+      "target": "LEDPOLE.center",
+      "w": 1
+     }
+    },
+    {
+     "time": 5.8,
+     "position": [
+      -8.683,
+      0,
+      1.148
+     ],
+     "yaw": 0.854,
+     "pose": "take",
+     "reachR": {
+      "target": "CUP1T.tip",
+      "w": 0
+     },
+     "reachL": {
+      "target": "LEDPOLE.center",
+      "w": 1
+     }
+    },
+    {
+     "time": 6.15,
+     "position": [
+      -8.683,
+      0,
+      1.148
+     ],
+     "yaw": 1.8708,
+     "pose": "sip",
+     "reachL": {
+      "target": "LEDPOLE.center",
+      "w": 1
+     }
+    },
+    {
+     "time": 6.6,
+     "position": [
+      -8.6,
+      0,
+      1.22
+     ],
+     "yaw": 1.5708,
+     "pose": "push",
+     "reachL": {
+      "target": "LEDPOLE.center",
+      "w": 1
+     }
+    },
+    {
+     "time": 8.8,
+     "position": [
+      -6.4,
+      0,
+      1.22
+     ],
+     "yaw": 1.5708,
+     "pose": "push",
+     "gait": 1,
+     "reachL": {
+      "target": "LEDPOLE.center",
+      "w": 1
+     }
+    },
+    {
+     "time": 9.1,
+     "position": [
+      -6.4,
+      0,
+      1.22
+     ],
+     "yaw": 1.5708,
+     "pose": "crank",
+     "reachL": {
+      "target": "LEDPOLE.center",
+      "w": 1
+     }
+    },
+    {
+     "time": 10.8,
+     "position": [
+      -6.4,
+      0,
+      1.22
+     ],
+     "yaw": 1.5708,
+     "pose": "crank",
+     "reachL": {
+      "target": "LEDPOLE.center",
+      "w": 1
+     }
+    },
+    {
+     "time": 11.4,
+     "position": [
+      -6.4,
+      0,
+      1.22
+     ],
+     "yaw": 1.9708,
+     "pose": "lookup",
+     "reachL": {
+      "target": "LEDPOLE.center",
+      "w": 0
+     }
+    },
+    {
+     "time": 30,
+     "position": [
+      -6.4,
+      0,
+      1.22
+     ],
+     "yaw": 1.9708,
+     "pose": "lookup"
+    }
+   ]
+  },
+  {
+   "id": "LA",
+   "label": "灯光助理",
+   "kind": "laz",
+   "color": "#6fd7e0",
+   "keyframes": [
+    {
+     "time": 0,
+     "position": [
+      -6.923,
+      0,
+      2.802
+     ],
+     "yaw": 1.5708,
+     "pose": "push",
+     "gait": 0,
+     "reachL": {
+      "target": "LEDPOLE.center",
+      "w": 1
+     }
+    },
+    {
+     "time": 2.0,
+     "position": [
+      -6.923,
+      0,
+      2.802
+     ],
+     "yaw": 1.5708,
+     "pose": "push",
+     "gait": 0,
+     "reachL": {
+      "target": "LEDPOLE.center",
+      "w": 1
+     }
+    },
+    {
+     "time": 5.2,
+     "position": [
+      -8.552,
+      0,
+      1.795
+     ],
+     "yaw": 1.5708,
+     "pose": "push",
+     "gait": 1,
+     "reachL": {
+      "target": "LEDPOLE.center",
+      "w": 1
+     }
+    },
+    {
+     "time": 6.6,
+     "position": [
+      -8.6,
+      0,
+      1.88
+     ],
+     "yaw": 1.5708,
+     "pose": "push",
+     "gait": 0,
+     "reachL": {
+      "target": "LEDPOLE.center",
+      "w": 1
+     }
+    },
+    {
+     "time": 8.8,
+     "position": [
+      -6.4,
+      0,
+      1.88
+     ],
+     "yaw": 1.5708,
+     "pose": "push",
+     "gait": 1,
+     "reachL": {
+      "target": "LEDPOLE.center",
+      "w": 1
+     }
+    },
+    {
+     "time": 9.4,
+     "position": [
+      -6.4,
+      0,
+      1.88
+     ],
+     "yaw": 2.0708,
+     "pose": "lookup",
+     "reachR": {
+      "target": "LEDPOLE.center",
+      "w": 0
+     },
+     "reachL": {
+      "target": "LEDPOLE.center",
+      "w": 0
+     }
+    },
+    {
+     "time": 30,
+     "position": [
+      -6.4,
+      0,
+      1.88
+     ],
+     "yaw": 1.8708,
+     "pose": "lookup"
+    }
+   ]
+  },
+  {
+   "id": "HZ",
+   "label": "化妆师",
+   "kind": "mua",
+   "color": "#f27fb6",
+   "keyframes": [
+    {
+     "time": 0,
+     "position": [
+      -9.5,
+      0,
+      -1.95
+     ],
+     "yaw": -2.3036,
+     "pose": "apply",
+     "reachR": {
+      "target": "NY.head",
+      "w": 0.8
+     }
+    },
+    {
+     "time": 15.2,
+     "position": [
+      -9.5,
+      0,
+      -1.95
+     ],
+     "yaw": -2.3036,
+     "pose": "apply",
+     "reachR": {
+      "target": "NY.head",
+      "w": 0.8
+     }
+    },
+    {
+     "time": 15.7,
+     "position": [
+      -9.75,
+      0,
+      -2.1
+     ],
+     "yaw": -1.249,
+     "pose": "holdJ",
+     "reachR": {
+      "target": "NY.head",
+      "w": 0
+     }
+    },
+    {
+     "time": 17.0,
+     "position": [
+      -9.3,
+      0,
+      -2.3
+     ],
+     "yaw": -1.5708,
+     "pose": "walk",
+     "gait": 0.6
+    },
+    {
+     "time": 20.0,
+     "position": [
+      -4.8,
+      0,
+      -2.3
+     ],
+     "yaw": -1.5708,
+     "pose": "walk",
+     "gait": 1
+    },
+    {
+     "time": 25.6,
+     "position": [
+      3.0,
+      0,
+      -1.95
+     ],
+     "yaw": -1.5708,
+     "pose": "walk",
+     "gait": 1
+    },
+    {
+     "time": 26.4,
+     "position": [
+      3.05,
+      0,
+      -1.95
+     ],
+     "yaw": -1.8708,
+     "pose": "breathe"
+    },
+    {
+     "time": 30,
+     "position": [
+      3.05,
+      0,
+      -1.95
+     ],
+     "yaw": -1.8708,
+     "pose": "breathe",
+     "life": 0.5
+    }
+   ]
+  },
+  {
+   "id": "NY",
+   "label": "女演员",
+   "kind": "act",
+   "color": "#f05a4c",
+   "keyframes": [
+    {
+     "time": 0,
+     "position": [
+      -9.0,
+      0.05,
+      -1.5
+     ],
+     "yaw": 0.2,
+     "pose": "stool",
+     "life": 0.5
+    },
+    {
+     "time": 15.6,
+     "position": [
+      -9.0,
+      0.05,
+      -1.5
+     ],
+     "yaw": 0.2,
+     "pose": "stoolUp",
+     "life": 0.5
+    },
+    {
+     "time": 16.4,
+     "position": [
+      -8.6,
+      0,
+      -1.9
+     ],
+     "yaw": -1.1708,
+     "pose": "walk",
+     "gait": 0.6
+    },
+    {
+     "time": 19.0,
+     "position": [
+      -4.6,
+      0,
+      -1.9
+     ],
+     "yaw": -1.5708,
+     "pose": "walk",
+     "gait": 1
+    },
+    {
+     "time": 22.0,
+     "position": [
+      0.4,
+      0,
+      -1.6
+     ],
+     "yaw": -1.5708,
+     "pose": "walk",
+     "gait": 1
+    },
+    {
+     "time": 24.6,
+     "position": [
+      4.6,
+      0,
+      -1.4
+     ],
+     "yaw": -1.5708,
+     "pose": "walk",
+     "gait": 1
+    },
+    {
+     "time": 26.6,
+     "position": [
+      7.9,
+      0,
+      -0.95
+     ],
+     "yaw": -1.1708,
+     "pose": "walk",
+     "gait": 0.8
+    },
+    {
+     "time": 27.2,
+     "position": [
+      8.0,
+      0,
+      -0.9
+     ],
+     "yaw": 2.5416,
+     "pose": "breathe"
+    },
+    {
+     "time": 28.6,
+     "position": [
+      8.0,
+      0,
+      -0.9
+     ],
+     "yaw": 2.5416,
+     "pose": "breathe",
+     "life": 1.6
+    },
+    {
+     "time": 30,
+     "position": [
+      8.0,
+      0,
+      -0.9
+     ],
+     "yaw": 2.5416,
+     "pose": "breathe",
+     "life": 0.6
+    }
+   ]
+  },
+  {
+   "id": "FZ",
+   "label": "服装助理 · 外套",
+   "kind": "cos",
+   "color": "#c9a2ea",
+   "keyframes": [
+    {
+     "time": 0,
+     "position": [
+      -8.25,
+      0,
+      -1.0
+     ],
+     "yaw": 0.9828,
+     "pose": "holdJ"
+    },
+    {
+     "time": 13.4,
+     "position": [
+      -8.3,
+      0,
+      -1.05
+     ],
+     "yaw": 0.9828,
+     "pose": "holdJ"
+    },
+    {
+     "time": 13.9,
+     "position": [
+      -8.6,
+      0,
+      -1.25
+     ],
+     "yaw": 1.0122,
+     "pose": "fix",
+     "reachL": {
+      "target": "NY.shoulderInner_R",
+      "w": 1
+     },
+     "reachR": {
+      "target": "NY.shoulderInner_L",
+      "w": 0.3
+     }
+    },
+    {
+     "time": 14.5,
+     "position": [
+      -8.6,
+      0,
+      -1.25
+     ],
+     "yaw": 1.0122,
+     "pose": "fix",
+     "reachL": {
+      "target": "NY.shoulderInner_R",
+      "w": 0.4
+     },
+     "reachR": {
+      "target": "NY.shoulderInner_L",
+      "w": 1
+     }
+    },
+    {
+     "time": 15.0,
+     "position": [
+      -8.4,
+      0,
+      -1.6
+     ],
+     "yaw": 1.0122,
+     "pose": "holdJ",
+     "reachL": {
+      "target": "NY.shoulderInner_R",
+      "w": 0
+     },
+     "reachR": {
+      "target": "NY.shoulderInner_L",
+      "w": 0
+     }
+    },
+    {
+     "time": 15.6,
+     "position": [
+      -8.3,
+      0,
+      -0.75
+     ],
+     "yaw": -1.5708,
+     "pose": "holdJ"
+    },
+    {
+     "time": 17.4,
+     "position": [
+      -8.2,
+      0,
+      -0.95
+     ],
+     "yaw": -1.5708,
+     "pose": "holdJ",
+     "gait": 0.5
+    },
+    {
+     "time": 20.6,
+     "position": [
+      -3.8,
+      0,
+      -1.0
+     ],
+     "yaw": -1.5708,
+     "pose": "holdJ",
+     "gait": 1
+    },
+    {
+     "time": 25.8,
+     "position": [
+      2.9,
+      0,
+      -3.2
+     ],
+     "yaw": -1.5708,
+     "pose": "holdJ",
+     "gait": 1
+    },
+    {
+     "time": 26.6,
+     "position": [
+      3.0,
+      0,
+      -3.2
+     ],
+     "yaw": -1.9708,
+     "pose": "holdJ"
+    },
+    {
+     "time": 30,
+     "position": [
+      3.0,
+      0,
+      -3.2
+     ],
+     "yaw": -1.9708,
+     "pose": "holdJ",
+     "life": 0.5
+    }
+   ]
+  },
+  {
+   "id": "DY",
+   "label": "导演",
+   "kind": "dir",
+   "color": "#c2453c",
+   "keyframes": [
+    {
+     "time": 0,
+     "position": [
+      -11.0,
+      0,
+      2.7
+     ],
+     "yaw": 2.5416,
+     "pose": "walk"
+    },
+    {
+     "time": 14.4,
+     "position": [
+      -11.0,
+      0,
+      2.7
+     ],
+     "yaw": -1.1708,
+     "pose": "walk"
+    },
+    {
+     "time": 15.0,
+     "position": [
+      -10.5,
+      0,
+      1.6
+     ],
+     "yaw": -1.0708,
+     "pose": "walk",
+     "gait": 1
+    },
+    {
+     "time": 16.0,
+     "position": [
+      -9.2,
+      0,
+      0.3
+     ],
+     "yaw": -1.5708,
+     "pose": "frame",
+     "gait": 1
+    },
+    {
+     "time": 16.9,
+     "position": [
+      -7.7,
+      0,
+      0.1
+     ],
+     "yaw": -1.5708,
+     "pose": "point",
+     "gait": 1
+    },
+    {
+     "time": 17.45,
+     "position": [
+      -6.85,
+      0,
+      0.1
+     ],
+     "yaw": -1.5708,
+     "pose": "cup",
+     "gait": 1,
+     "reachR": {
+      "target": "CUP2T.tip",
+      "w": 1
+     }
+    },
+    {
+     "time": 17.62,
+     "position": [
+      -6.6,
+      0,
+      0.08
+     ],
+     "yaw": -1.5708,
+     "pose": "cup",
+     "gait": 1,
+     "reachR": {
+      "target": "CUP2T.tip",
+      "w": 1
+     }
+    },
+    {
+     "time": 17.8,
+     "position": [
+      -6.3,
+      0,
+      0.05
+     ],
+     "yaw": -1.5708,
+     "pose": "cup",
+     "gait": 1,
+     "reachR": {
+      "target": "CUP2T.tip",
+      "w": 0
+     }
+    },
+    {
+     "time": 18.6,
+     "position": [
+      -4.6,
+      0,
+      -0.2
+     ],
+     "yaw": -1.5708,
+     "pose": "cup",
+     "gait": 1
+    },
+    {
+     "time": 19.2,
+     "position": [
+      -3.35,
+      0,
+      -0.4
+     ],
+     "yaw": -1.5708,
+     "pose": "cup",
+     "gait": 1
+    },
+    {
+     "time": 19.7,
+     "position": [
+      -2.7,
+      0,
+      -0.34
+     ],
+     "yaw": -1.5708,
+     "pose": "peer"
+    },
+    {
+     "time": 30,
+     "position": [
+      -2.7,
+      0,
+      -0.34
+     ],
+     "yaw": -1.5708,
+     "pose": "peer",
+     "life": 0.6
+    }
+   ]
+  },
+  {
+   "id": "SY",
+   "label": "摄影指导 · 取景器",
+   "kind": "dp",
+   "color": "#9a73ea",
+   "keyframes": [
+    {
+     "time": 0,
+     "position": [
+      -11.6,
+      0,
+      3.1
+     ],
+     "yaw": 0.6,
+     "pose": "listen"
+    },
+    {
+     "time": 14.4,
+     "position": [
+      -11.6,
+      0,
+      3.0
+     ],
+     "yaw": -1.1708,
+     "pose": "listen"
+    },
+    {
+     "time": 15.0,
+     "position": [
+      -11.1,
+      0,
+      2.2
+     ],
+     "yaw": -1.0708,
+     "pose": "listen",
+     "gait": 1
+    },
+    {
+     "time": 16.3,
+     "position": [
+      -9.0,
+      0,
+      0.8
+     ],
+     "yaw": -1.2708,
+     "pose": "listen",
+     "gait": 1
+    },
+    {
+     "time": 17.2,
+     "position": [
+      -7.5,
+      0,
+      0.66
+     ],
+     "yaw": -1.2708,
+     "pose": "listen",
+     "gait": 1
+    },
+    {
+     "time": 17.6,
+     "position": [
+      -6.85,
+      0,
+      0.66
+     ],
+     "yaw": -1.5708,
+     "pose": "cupL",
+     "gait": 1,
+     "reachL": {
+      "target": "CUP3T.tip",
+      "w": 1
+     }
+    },
+    {
+     "time": 17.77,
+     "position": [
+      -6.6,
+      0,
+      0.66
+     ],
+     "yaw": -1.5708,
+     "pose": "cupL",
+     "gait": 1,
+     "reachL": {
+      "target": "CUP3T.tip",
+      "w": 1
+     }
+    },
+    {
+     "time": 17.95,
+     "position": [
+      -6.3,
+      0,
+      0.66
+     ],
+     "yaw": -1.5708,
+     "pose": "cupL",
+     "gait": 1,
+     "reachL": {
+      "target": "CUP3T.tip",
+      "w": 0
+     }
+    },
+    {
+     "time": 18.6,
+     "position": [
+      -4.6,
+      0,
+      0.62
+     ],
+     "yaw": -1.5708,
+     "pose": "cupL",
+     "gait": 1
+    },
+    {
+     "time": 19.2,
+     "position": [
+      -3.35,
+      0,
+      0.4
+     ],
+     "yaw": -1.5708,
+     "pose": "cupL",
+     "gait": 1
+    },
+    {
+     "time": 19.7,
+     "position": [
+      -2.7,
+      0,
+      0.34
+     ],
+     "yaw": -1.5708,
+     "pose": "peerL"
+    },
+    {
+     "time": 30,
+     "position": [
+      -2.7,
+      0,
+      0.34
+     ],
+     "yaw": -1.5708,
+     "pose": "peerL",
+     "life": 0.6
+    }
+   ]
+  },
+  {
+   "id": "LY",
+   "label": "录音师 · 挑杆话筒",
+   "kind": "snd",
+   "color": "#9ab84f",
+   "keyframes": [
+    {
+     "time": 0,
+     "position": [
+      3.75,
+      0,
+      2.0
+     ],
+     "yaw": -0.0,
+     "pose": "boom",
+     "reachR": {
+      "target": "world",
+      "pos": [
+       3.75,
+       1.85,
+       1.75
+      ],
+      "w": 1
+     },
+     "reachL": {
+      "target": "world",
+      "pos": [
+       3.75,
+       1.89,
+       1.595
+      ],
+      "w": 1
+     }
+    },
+    {
+     "time": 24.6,
+     "position": [
+      3.75,
+      0,
+      2.0
+     ],
+     "yaw": -0.0,
+     "pose": "boom",
+     "reachR": {
+      "target": "world",
+      "pos": [
+       3.75,
+       1.85,
+       1.75
+      ],
+      "w": 1
+     },
+     "reachL": {
+      "target": "world",
+      "pos": [
+       3.75,
+       1.89,
+       1.595
+      ],
+      "w": 1
+     }
+    },
+    {
+     "time": 27.0,
+     "position": [
+      6.7,
+      0,
+      1.15
+     ],
+     "yaw": -0.5651,
+     "pose": "boom",
+     "gait": 1,
+     "reachR": {
+      "target": "world",
+      "pos": [
+       6.75,
+       1.85,
+       0.8
+      ],
+      "w": 1
+     },
+     "reachL": {
+      "target": "world",
+      "pos": [
+       6.847,
+       1.893,
+       0.68
+      ],
+      "w": 1
+     }
+    },
+    {
+     "time": 30,
+     "position": [
+      6.7,
+      0,
+      1.15
+     ],
+     "yaw": -0.5651,
+     "pose": "boom",
+     "life": 0.4,
+     "reachR": {
+      "target": "world",
+      "pos": [
+       6.75,
+       1.85,
+       0.8
+      ],
+      "w": 1
+     },
+     "reachL": {
+      "target": "world",
+      "pos": [
+       6.847,
+       1.893,
+       0.68
+      ],
+      "w": 1
+     }
+    }
+   ]
+  },
+  {
+   "id": "ZJ1",
+   "label": "置景工人 1",
+   "kind": "grip",
+   "color": "#b3b8bd",
+   "keyframes": [
+    {
+     "time": 0,
+     "position": [
+      7.8,
+      0,
+      -2.0
+     ],
+     "yaw": -0.2187,
+     "pose": "grab",
+     "reachR": {
+      "target": "set.sofaGripL",
+      "w": 1
+     },
+     "reachL": {
+      "target": "set.sofaGripL",
+      "w": 1
+     }
+    },
+    {
+     "time": 21.6,
+     "position": [
+      7.8,
+      0,
+      -2.0
+     ],
+     "yaw": -0.2187,
+     "pose": "grab",
+     "reachR": {
+      "target": "set.sofaGripL",
+      "w": 1
+     },
+     "reachL": {
+      "target": "set.sofaGripL",
+      "w": 1
+     }
+    },
+    {
+     "time": 22.4,
+     "position": [
+      7.8,
+      0,
+      -2.25
+     ],
+     "yaw": -0.2187,
+     "pose": "grab",
+     "reachR": {
+      "target": "set.sofaGripL",
+      "w": 1
+     },
+     "reachL": {
+      "target": "set.sofaGripL",
+      "w": 1
+     }
+    },
+    {
+     "time": 22.7,
+     "position": [
+      8.3,
+      0,
+      -1.75
+     ],
+     "yaw": 0.3,
+     "pose": "squat",
+     "reachR": {
+      "target": "set.sofaGripL",
+      "w": 0
+     },
+     "reachL": {
+      "target": "set.sofaGripL",
+      "w": 0
+     }
+    },
+    {
+     "time": 23.4,
+     "position": [
+      8.3,
+      0,
+      -1.75
+     ],
+     "yaw": 0.3,
+     "pose": "squat"
+    },
+    {
+     "time": 23.8,
+     "position": [
+      7.6,
+      0,
+      -0.8
+     ],
+     "yaw": 2.1708,
+     "pose": "stoop",
+     "gait": 1
+    },
+    {
+     "time": 25.0,
+     "position": [
+      3.4,
+      0,
+      2.6
+     ],
+     "yaw": 2.1708,
+     "pose": "stoop",
+     "gait": 1
+    },
+    {
+     "time": 26.0,
+     "position": [
+      1.4,
+      0,
+      3.4
+     ],
+     "yaw": 1.8708,
+     "pose": "walk",
+     "gait": 1
+    },
+    {
+     "time": 30,
+     "position": [
+      1.0,
+      0,
+      3.6
+     ],
+     "yaw": 3.1416,
+     "pose": "breathe"
+    }
+   ]
+  },
+  {
+   "id": "ZJ2",
+   "label": "置景工人 2",
+   "kind": "grip2",
+   "color": "#d2a26a",
+   "keyframes": [
+    {
+     "time": 0,
+     "position": [
+      10.2,
+      0,
+      -2.0
+     ],
+     "yaw": 0.2187,
+     "pose": "grab",
+     "reachR": {
+      "target": "set.sofaGripR",
+      "w": 1
+     },
+     "reachL": {
+      "target": "set.sofaGripR",
+      "w": 1
+     }
+    },
+    {
+     "time": 21.6,
+     "position": [
+      10.2,
+      0,
+      -2.0
+     ],
+     "yaw": 0.2187,
+     "pose": "grab",
+     "reachR": {
+      "target": "set.sofaGripR",
+      "w": 1
+     },
+     "reachL": {
+      "target": "set.sofaGripR",
+      "w": 1
+     }
+    },
+    {
+     "time": 22.4,
+     "position": [
+      10.2,
+      0,
+      -2.25
+     ],
+     "yaw": 0.2187,
+     "pose": "grab",
+     "reachR": {
+      "target": "set.sofaGripR",
+      "w": 1
+     },
+     "reachL": {
+      "target": "set.sofaGripR",
+      "w": 1
+     }
+    },
+    {
+     "time": 22.8,
+     "position": [
+      10.2,
+      0,
+      -1.4
+     ],
+     "yaw": 1.2708,
+     "pose": "stand",
+     "reachR": {
+      "target": "set.sofaGripR",
+      "w": 0
+     },
+     "reachL": {
+      "target": "set.sofaGripR",
+      "w": 0
+     }
+    },
+    {
+     "time": 23.2,
+     "position": [
+      10.2,
+      0,
+      -1.4
+     ],
+     "yaw": 1.2708,
+     "pose": "okay"
+    },
+    {
+     "time": 23.7,
+     "position": [
+      9.6,
+      0,
+      -0.6
+     ],
+     "yaw": 2.0708,
+     "pose": "stoop",
+     "gait": 1
+    },
+    {
+     "time": 25.2,
+     "position": [
+      4.2,
+      0,
+      2.9
+     ],
+     "yaw": 2.0708,
+     "pose": "stoop",
+     "gait": 1
+    },
+    {
+     "time": 26.2,
+     "position": [
+      2.0,
+      0,
+      3.0
+     ],
+     "yaw": 1.5708,
+     "pose": "walk",
+     "gait": 1
+    },
+    {
+     "time": 30,
+     "position": [
+      1.8,
+      0,
+      2.9
+     ],
+     "yaw": 2.8416,
+     "pose": "breathe"
+    }
+   ]
+  },
+  {
+   "id": "FD",
+   "label": "副导演 · 对讲机",
+   "kind": "ad",
+   "color": "#f2d34a",
+   "keyframes": [
+    {
+     "time": 0,
+     "position": [
+      -1.0,
+      0,
+      -2.0
+     ],
+     "yaw": 1.9708,
+     "pose": "radio"
+    },
+    {
+     "time": 18.9,
+     "position": [
+      -1.0,
+      0,
+      -2.0
+     ],
+     "yaw": -1.5708,
+     "pose": "radio"
+    },
+    {
+     "time": 20.3,
+     "position": [
+      3.4,
+      0,
+      -2.75
+     ],
+     "yaw": -1.0708,
+     "pose": "walk",
+     "gait": 1
+    },
+    {
+     "time": 20.6,
+     "position": [
+      3.45,
+      0,
+      -2.75
+     ],
+     "yaw": 2.3381,
+     "pose": "radio",
+     "reachR": {
+      "target": "FD.head",
+      "w": 0
+     }
+    },
+    {
+     "time": 21.6,
+     "position": [
+      3.45,
+      0,
+      -2.75
+     ],
+     "yaw": -0.6708,
+     "pose": "radio"
+    },
+    {
+     "time": 27.8,
+     "position": [
+      3.45,
+      0,
+      -2.75
+     ],
+     "yaw": -0.9708,
+     "pose": "radio"
+    },
+    {
+     "time": 28.2,
+     "position": [
+      3.45,
+      0,
+      -2.75
+     ],
+     "yaw": -0.9708,
+     "pose": "raise"
+    },
+    {
+     "time": 30,
+     "position": [
+      3.45,
+      0,
+      -2.75
+     ],
+     "yaw": -0.9708,
+     "pose": "raise",
+     "life": 0.4
+    }
+   ]
+  },
+  {
+   "id": "QC",
+   "label": "扛器材箱的人",
+   "kind": "crew",
+   "color": "#76838c",
+   "keyframes": [
+    {
+     "time": 0,
+     "position": [
+      -13.6,
+      0,
+      1.3
+     ],
+     "yaw": 1.6708,
+     "pose": "carryS",
+     "gait": 1
+    },
+    {
+     "time": 3.4,
+     "position": [
+      -17.6,
+      0,
+      1.0
+     ],
+     "yaw": 1.5708,
+     "pose": "carryS",
+     "gait": 1
+    },
+    {
+     "time": 4.2,
+     "position": [
+      -19.4,
+      0,
+      1.0
+     ],
+     "yaw": 1.5708,
+     "pose": "carryS",
+     "gait": 1
+    },
+    {
+     "time": 30,
+     "position": [
+      -19.4,
+      0,
+      1.0
+     ],
+     "yaw": 1.5708,
+     "pose": "carryS"
+    }
+   ]
+  },
+  {
+   "id": "JZ",
+   "label": "摄影机组",
+   "kind": "crew",
+   "color": "#5c6a73",
+   "keyframes": [
+    {
+     "time": 0,
+     "position": [
+      -0.3,
+      0,
+      3.25
+     ],
+     "yaw": -1.5708,
+     "pose": "push",
+     "reachR": {
+      "target": "CAMHEAD.center",
+      "w": 1
+     },
+     "reachL": {
+      "target": "CAMHEAD.center",
+      "w": 1
+     }
+    },
+    {
+     "time": 24.4,
+     "position": [
+      -0.3,
+      0,
+      3.25
+     ],
+     "yaw": -1.5708,
+     "pose": "push",
+     "reachR": {
+      "target": "CAMHEAD.center",
+      "w": 1
+     },
+     "reachL": {
+      "target": "CAMHEAD.center",
+      "w": 1
+     }
+    },
+    {
+     "time": 28.2,
+     "position": [
+      5.6,
+      0,
+      0.75
+     ],
+     "yaw": -0.8646,
+     "pose": "push",
+     "gait": 1,
+     "reachR": {
+      "target": "CAMHEAD.center",
+      "w": 1
+     },
+     "reachL": {
+      "target": "CAMHEAD.center",
+      "w": 1
+     }
+    },
+    {
+     "time": 30,
+     "position": [
+      5.6,
+      0,
+      0.75
+     ],
+     "yaw": -0.8646,
+     "pose": "push",
+     "life": 0.4,
+     "reachR": {
+      "target": "CAMHEAD.center",
+      "w": 1
+     },
+     "reachL": {
+      "target": "CAMHEAD.center",
+      "w": 1
+     }
+    }
+   ]
+  }
+ ],
+ "props": [
+  {
+   "id": "TRAY",
+   "label": "小周的咖啡托盘",
+   "kind": "box",
+   "owner": "XZ",
+   "options": {
+    "size": [
+     0.42,
+     0.03,
+     0.3
+    ],
+    "color": "#3b3f44",
+    "grip": {
+     "p": [
+      0,
+      -0.24,
+      -0.2
+     ],
+     "r": [
+      0,
+      0,
+      0
+     ]
+    }
+   },
+   "keyframes": [
+    {
+     "time": 0,
+     "holder": "XZ.chest_front"
+    }
+   ]
+  },
+  {
+   "id": "CUP1T",
+   "label": "托盘上的纸杯咖啡 1",
+   "kind": "rod",
+   "owner": "XZ",
+   "options": {
+    "length": 0.12,
+    "radius": 0.038,
+    "color": "#f1ece2",
+    "tip": "#6b4a2e",
+    "grip": {
+     "p": [
+      -0.12,
+      0.01,
+      0.06
+     ],
+     "r": [
+      0,
+      0,
+      0
+     ]
+    }
+   },
+   "keyframes": [
+    {
+     "time": 0,
+     "holder": "TRAY.center"
+    },
+    {
+     "time": 5.6,
+     "holder": "hidden"
+    }
+   ]
+  },
+  {
+   "id": "CUP1",
+   "label": "纸杯咖啡 1（接过去之后）",
+   "kind": "rod",
+   "owner": "LZ",
+   "options": {
+    "length": 0.12,
+    "radius": 0.038,
+    "color": "#f1ece2",
+    "tip": "#6b4a2e"
+   },
+   "keyframes": [
+    {
+     "time": 0,
+     "holder": "hidden"
+    },
+    {
+     "time": 5.6,
+     "holder": "LZ.hand_R"
+    }
+   ]
+  },
+  {
+   "id": "CUP2T",
+   "label": "托盘上的纸杯咖啡 2",
+   "kind": "rod",
+   "owner": "XZ",
+   "options": {
+    "length": 0.12,
+    "radius": 0.038,
+    "color": "#f1ece2",
+    "tip": "#6b4a2e",
+    "grip": {
+     "p": [
+      0.0,
+      0.01,
+      -0.06
+     ],
+     "r": [
+      0,
+      0,
+      0
+     ]
+    }
+   },
+   "keyframes": [
+    {
+     "time": 0,
+     "holder": "TRAY.center"
+    },
+    {
+     "time": 17.6,
+     "holder": "hidden"
+    }
+   ]
+  },
+  {
+   "id": "CUP2",
+   "label": "纸杯咖啡 2（接过去之后）",
+   "kind": "rod",
+   "owner": "DY",
+   "options": {
+    "length": 0.12,
+    "radius": 0.038,
+    "color": "#f1ece2",
+    "tip": "#6b4a2e"
+   },
+   "keyframes": [
+    {
+     "time": 0,
+     "holder": "hidden"
+    },
+    {
+     "time": 17.6,
+     "holder": "DY.hand_R"
+    }
+   ]
+  },
+  {
+   "id": "CUP3T",
+   "label": "托盘上的纸杯咖啡 3",
+   "kind": "rod",
+   "owner": "XZ",
+   "options": {
+    "length": 0.12,
+    "radius": 0.038,
+    "color": "#f1ece2",
+    "tip": "#6b4a2e",
+    "grip": {
+     "p": [
+      0.12,
+      0.01,
+      0.06
+     ],
+     "r": [
+      0,
+      0,
+      0
+     ]
+    }
+   },
+   "keyframes": [
+    {
+     "time": 0,
+     "holder": "TRAY.center"
+    },
+    {
+     "time": 17.75,
+     "holder": "hidden"
+    }
+   ]
+  },
+  {
+   "id": "CUP3",
+   "label": "纸杯咖啡 3（接过去之后）",
+   "kind": "rod",
+   "owner": "SY",
+   "options": {
+    "length": 0.12,
+    "radius": 0.038,
+    "color": "#f1ece2",
+    "tip": "#6b4a2e"
+   },
+   "keyframes": [
+    {
+     "time": 0,
+     "holder": "hidden"
+    },
+    {
+     "time": 17.75,
+     "holder": "SY.hand_L"
+    }
+   ]
+  },
+  {
+   "id": "JACKET",
+   "label": "服装助理拿着的外套",
+   "kind": "box",
+   "owner": "FZ",
+   "options": {
+    "size": [
+     0.36,
+     0.55,
+     0.06
+    ],
+    "color": "#2c3a52"
+   },
+   "keyframes": [
+    {
+     "time": 0,
+     "holder": "FZ.hand_R"
+    }
+   ]
+  },
+  {
+   "id": "SHAWL",
+   "label": "女演员肩上的披肩",
+   "kind": "box",
+   "owner": "NY",
+   "options": {
+    "size": [
+     0.46,
+     0.03,
+     0.26
+    ],
+    "color": "#c9b9a0",
+    "grip": {
+     "p": [
+      0,
+      0.2,
+      0.02
+     ],
+     "r": [
+      0,
+      0,
+      0
+     ]
+    }
+   },
+   "keyframes": [
+    {
+     "time": 0,
+     "holder": "NY.chest_back"
+    },
+    {
+     "time": 14.05,
+     "holder": "FZ.hand_L"
+    }
+   ]
+  },
+  {
+   "id": "VF",
+   "label": "摄影指导胸前的取景器",
+   "kind": "box",
+   "owner": "SY",
+   "options": {
+    "size": [
+     0.05,
+     0.12,
+     0.05
+    ],
+    "color": "#1b1d20"
+   },
+   "keyframes": [
+    {
+     "time": 0,
+     "holder": "SY.chest_front"
+    }
+   ]
+  },
+  {
+   "id": "WT",
+   "label": "副导演的对讲机",
+   "kind": "phone",
+   "owner": "FD",
+   "options": {
+    "color": "#1b1d20"
+   },
+   "keyframes": [
+    {
+     "time": 0,
+     "holder": "FD.hand_R"
+    }
+   ]
+  },
+  {
+   "id": "CASEQ",
+   "label": "器材箱",
+   "kind": "box",
+   "owner": "QC",
+   "options": {
+    "size": [
+     0.6,
+     0.28,
+     0.34
+    ],
+    "color": "#2a2d31",
+    "grip": {
+     "p": [
+      0,
+      0.1,
+      0.05
+     ],
+     "r": [
+      0,
+      0,
+      0
+     ]
+    }
+   },
+   "keyframes": [
+    {
+     "time": 0,
+     "holder": "QC.hand_R"
+    }
+   ]
+  },
+  {
+   "id": "BOOM",
+   "label": "录音师的挑杆话筒",
+   "kind": "box",
+   "owner": "LY",
+   "options": {
+    "size": [
+     0.03,
+     3.2,
+     0.03
+    ],
+    "color": "#3a3d41"
+   },
+   "keyframes": [
+    {
+     "time": 0,
+     "holder": "world",
+     "position": [
+      3.75,
+      1.85,
+      1.75
+     ],
+     "rotation": [
+      104.57,
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "time": 24.6,
+     "holder": "world",
+     "position": [
+      3.75,
+      1.85,
+      1.75
+     ],
+     "rotation": [
+      104.57,
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "time": 27.0,
+     "holder": "world",
+     "position": [
+      6.75,
+      1.85,
+      0.8
+     ],
+     "rotation": [
+      102.13,
+      9.62,
+      37.86
+     ]
+    },
+    {
+     "time": 30,
+     "holder": "world",
+     "position": [
+      6.75,
+      1.85,
+      0.8
+     ],
+     "rotation": [
+      102.13,
+      9.62,
+      37.86
+     ]
+    }
+   ]
+  },
+  {
+   "id": "LEDBASE",
+   "label": "灯架滚轮底座",
+   "kind": "box",
+   "owner": "LZ",
+   "options": {
+    "size": [
+     0.75,
+     0.1,
+     0.75
+    ],
+    "color": "#2f3337"
+   },
+   "keyframes": [
+    {
+     "time": 0,
+     "holder": "world",
+     "position": [
+      -7.4,
+      0.13,
+      2.7
+     ],
+     "rotation": [
+      0,
+      112.918,
+      0
+     ]
+    },
+    {
+     "time": 2.0,
+     "holder": "world",
+     "position": [
+      -7.4,
+      0.13,
+      2.7
+     ],
+     "rotation": [
+      0,
+      112.918,
+      0
+     ]
+    },
+    {
+     "time": 2.4,
+     "holder": "world",
+     "position": [
+      -7.469,
+      0.13,
+      2.653
+     ],
+     "rotation": [
+      0,
+      112.426,
+      0
+     ]
+    },
+    {
+     "time": 2.8,
+     "holder": "world",
+     "position": [
+      -7.65,
+      0.13,
+      2.528
+     ],
+     "rotation": [
+      0,
+      111.128,
+      0
+     ]
+    },
+    {
+     "time": 3.2,
+     "holder": "world",
+     "position": [
+      -7.906,
+      0.13,
+      2.352
+     ],
+     "rotation": [
+      0,
+      109.293,
+      0
+     ]
+    },
+    {
+     "time": 3.6,
+     "holder": "world",
+     "position": [
+      -8.2,
+      0.13,
+      2.15
+     ],
+     "rotation": [
+      0,
+      107.189,
+      0
+     ]
+    },
+    {
+     "time": 4.0,
+     "holder": "world",
+     "position": [
+      -8.494,
+      0.13,
+      1.948
+     ],
+     "rotation": [
+      0,
+      105.085,
+      0
+     ]
+    },
+    {
+     "time": 4.4,
+     "holder": "world",
+     "position": [
+      -8.75,
+      0.13,
+      1.772
+     ],
+     "rotation": [
+      0,
+      103.25,
+      0
+     ]
+    },
+    {
+     "time": 4.8,
+     "holder": "world",
+     "position": [
+      -8.931,
+      0.13,
+      1.647
+     ],
+     "rotation": [
+      0,
+      101.952,
+      0
+     ]
+    },
+    {
+     "time": 5.2,
+     "holder": "world",
+     "position": [
+      -9.0,
+      0.13,
+      1.6
+     ],
+     "rotation": [
+      0,
+      101.459,
+      0
+     ]
+    },
+    {
+     "time": 5.6,
+     "holder": "world",
+     "position": [
+      -9.0,
+      0.13,
+      1.6
+     ],
+     "rotation": [
+      0,
+      99.187,
+      0
+     ]
+    },
+    {
+     "time": 6.0,
+     "holder": "world",
+     "position": [
+      -9.0,
+      0.13,
+      1.6
+     ],
+     "rotation": [
+      0,
+      94.51,
+      0
+     ]
+    },
+    {
+     "time": 6.4,
+     "holder": "world",
+     "position": [
+      -9.0,
+      0.13,
+      1.6
+     ],
+     "rotation": [
+      0,
+      90.635,
+      0
+     ]
+    },
+    {
+     "time": 6.6,
+     "holder": "world",
+     "position": [
+      -9.0,
+      0.13,
+      1.6
+     ],
+     "rotation": [
+      0,
+      90.0,
+      0
+     ]
+    },
+    {
+     "time": 6.8,
+     "holder": "world",
+     "position": [
+      -8.949,
+      0.13,
+      1.6
+     ],
+     "rotation": [
+      0,
+      90.0,
+      0
+     ]
+    },
+    {
+     "time": 7.2,
+     "holder": "world",
+     "position": [
+      -8.598,
+      0.13,
+      1.6
+     ],
+     "rotation": [
+      0,
+      90.0,
+      0
+     ]
+    },
+    {
+     "time": 7.6,
+     "holder": "world",
+     "position": [
+      -8.05,
+      0.13,
+      1.6
+     ],
+     "rotation": [
+      0,
+      90.0,
+      0
+     ]
+    },
+    {
+     "time": 8.0,
+     "holder": "world",
+     "position": [
+      -7.461,
+      0.13,
+      1.6
+     ],
+     "rotation": [
+      0,
+      90.0,
+      0
+     ]
+    },
+    {
+     "time": 8.4,
+     "holder": "world",
+     "position": [
+      -6.992,
+      0.13,
+      1.6
+     ],
+     "rotation": [
+      0,
+      90.0,
+      0
+     ]
+    },
+    {
+     "time": 8.8,
+     "holder": "world",
+     "position": [
+      -6.8,
+      0.13,
+      1.6
+     ],
+     "rotation": [
+      0,
+      90.0,
+      0
+     ]
+    },
+    {
+     "time": 9.1,
+     "holder": "world",
+     "position": [
+      -6.8,
+      0.13,
+      1.6
+     ],
+     "rotation": [
+      0,
+      90.0,
+      0
+     ]
+    },
+    {
+     "time": 10.8,
+     "holder": "world",
+     "position": [
+      -6.8,
+      0.13,
+      1.6
+     ],
+     "rotation": [
+      0,
+      90.0,
+      0
+     ]
+    },
+    {
+     "time": 30,
+     "holder": "world",
+     "position": [
+      -6.8,
+      0.13,
+      1.6
+     ],
+     "rotation": [
+      0,
+      90.0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "LEDPOLE",
+   "label": "灯架下杆",
+   "kind": "box",
+   "owner": "LZ",
+   "options": {
+    "size": [
+     0.06,
+     1.8,
+     0.06
+    ],
+    "color": "#9aa2a8"
+   },
+   "keyframes": [
+    {
+     "time": 0,
+     "holder": "world",
+     "position": [
+      -7.4,
+      1.9,
+      2.7
+     ],
+     "rotation": [
+      0,
+      112.918,
+      0
+     ]
+    },
+    {
+     "time": 2.0,
+     "holder": "world",
+     "position": [
+      -7.4,
+      1.9,
+      2.7
+     ],
+     "rotation": [
+      0,
+      112.918,
+      0
+     ]
+    },
+    {
+     "time": 2.4,
+     "holder": "world",
+     "position": [
+      -7.469,
+      1.9,
+      2.653
+     ],
+     "rotation": [
+      0,
+      112.426,
+      0
+     ]
+    },
+    {
+     "time": 2.8,
+     "holder": "world",
+     "position": [
+      -7.65,
+      1.9,
+      2.528
+     ],
+     "rotation": [
+      0,
+      111.128,
+      0
+     ]
+    },
+    {
+     "time": 3.2,
+     "holder": "world",
+     "position": [
+      -7.906,
+      1.9,
+      2.352
+     ],
+     "rotation": [
+      0,
+      109.293,
+      0
+     ]
+    },
+    {
+     "time": 3.6,
+     "holder": "world",
+     "position": [
+      -8.2,
+      1.9,
+      2.15
+     ],
+     "rotation": [
+      0,
+      107.189,
+      0
+     ]
+    },
+    {
+     "time": 4.0,
+     "holder": "world",
+     "position": [
+      -8.494,
+      1.9,
+      1.948
+     ],
+     "rotation": [
+      0,
+      105.085,
+      0
+     ]
+    },
+    {
+     "time": 4.4,
+     "holder": "world",
+     "position": [
+      -8.75,
+      1.9,
+      1.772
+     ],
+     "rotation": [
+      0,
+      103.25,
+      0
+     ]
+    },
+    {
+     "time": 4.8,
+     "holder": "world",
+     "position": [
+      -8.931,
+      1.9,
+      1.647
+     ],
+     "rotation": [
+      0,
+      101.952,
+      0
+     ]
+    },
+    {
+     "time": 5.2,
+     "holder": "world",
+     "position": [
+      -9.0,
+      1.9,
+      1.6
+     ],
+     "rotation": [
+      0,
+      101.459,
+      0
+     ]
+    },
+    {
+     "time": 5.6,
+     "holder": "world",
+     "position": [
+      -9.0,
+      1.9,
+      1.6
+     ],
+     "rotation": [
+      0,
+      99.187,
+      0
+     ]
+    },
+    {
+     "time": 6.0,
+     "holder": "world",
+     "position": [
+      -9.0,
+      1.9,
+      1.6
+     ],
+     "rotation": [
+      0,
+      94.51,
+      0
+     ]
+    },
+    {
+     "time": 6.4,
+     "holder": "world",
+     "position": [
+      -9.0,
+      1.9,
+      1.6
+     ],
+     "rotation": [
+      0,
+      90.635,
+      0
+     ]
+    },
+    {
+     "time": 6.6,
+     "holder": "world",
+     "position": [
+      -9.0,
+      1.9,
+      1.6
+     ],
+     "rotation": [
+      0,
+      90.0,
+      0
+     ]
+    },
+    {
+     "time": 6.8,
+     "holder": "world",
+     "position": [
+      -8.949,
+      1.9,
+      1.6
+     ],
+     "rotation": [
+      0,
+      90.0,
+      0
+     ]
+    },
+    {
+     "time": 7.2,
+     "holder": "world",
+     "position": [
+      -8.598,
+      1.9,
+      1.6
+     ],
+     "rotation": [
+      0,
+      90.0,
+      0
+     ]
+    },
+    {
+     "time": 7.6,
+     "holder": "world",
+     "position": [
+      -8.05,
+      1.9,
+      1.6
+     ],
+     "rotation": [
+      0,
+      90.0,
+      0
+     ]
+    },
+    {
+     "time": 8.0,
+     "holder": "world",
+     "position": [
+      -7.461,
+      1.9,
+      1.6
+     ],
+     "rotation": [
+      0,
+      90.0,
+      0
+     ]
+    },
+    {
+     "time": 8.4,
+     "holder": "world",
+     "position": [
+      -6.992,
+      1.9,
+      1.6
+     ],
+     "rotation": [
+      0,
+      90.0,
+      0
+     ]
+    },
+    {
+     "time": 8.8,
+     "holder": "world",
+     "position": [
+      -6.8,
+      1.9,
+      1.6
+     ],
+     "rotation": [
+      0,
+      90.0,
+      0
+     ]
+    },
+    {
+     "time": 9.1,
+     "holder": "world",
+     "position": [
+      -6.8,
+      1.9,
+      1.6
+     ],
+     "rotation": [
+      0,
+      90.0,
+      0
+     ]
+    },
+    {
+     "time": 10.8,
+     "holder": "world",
+     "position": [
+      -6.8,
+      1.9,
+      1.6
+     ],
+     "rotation": [
+      0,
+      90.0,
+      0
+     ]
+    },
+    {
+     "time": 30,
+     "holder": "world",
+     "position": [
+      -6.8,
+      1.9,
+      1.6
+     ],
+     "rotation": [
+      0,
+      90.0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "LEDPOLE2",
+   "label": "灯架上杆（升降）",
+   "kind": "box",
+   "owner": "LZ",
+   "options": {
+    "size": [
+     0.045,
+     1.2,
+     0.045
+    ],
+    "color": "#c2c9ce"
+   },
+   "keyframes": [
+    {
+     "time": 0,
+     "holder": "world",
+     "position": [
+      -7.4,
+      1.95,
+      2.7
+     ],
+     "rotation": [
+      0,
+      112.918,
+      0
+     ]
+    },
+    {
+     "time": 2.0,
+     "holder": "world",
+     "position": [
+      -7.4,
+      1.95,
+      2.7
+     ],
+     "rotation": [
+      0,
+      112.918,
+      0
+     ]
+    },
+    {
+     "time": 2.4,
+     "holder": "world",
+     "position": [
+      -7.469,
+      1.95,
+      2.653
+     ],
+     "rotation": [
+      0,
+      112.426,
+      0
+     ]
+    },
+    {
+     "time": 2.8,
+     "holder": "world",
+     "position": [
+      -7.65,
+      1.95,
+      2.528
+     ],
+     "rotation": [
+      0,
+      111.128,
+      0
+     ]
+    },
+    {
+     "time": 3.2,
+     "holder": "world",
+     "position": [
+      -7.906,
+      1.95,
+      2.352
+     ],
+     "rotation": [
+      0,
+      109.293,
+      0
+     ]
+    },
+    {
+     "time": 3.6,
+     "holder": "world",
+     "position": [
+      -8.2,
+      1.95,
+      2.15
+     ],
+     "rotation": [
+      0,
+      107.189,
+      0
+     ]
+    },
+    {
+     "time": 4.0,
+     "holder": "world",
+     "position": [
+      -8.494,
+      1.95,
+      1.948
+     ],
+     "rotation": [
+      0,
+      105.085,
+      0
+     ]
+    },
+    {
+     "time": 4.4,
+     "holder": "world",
+     "position": [
+      -8.75,
+      1.95,
+      1.772
+     ],
+     "rotation": [
+      0,
+      103.25,
+      0
+     ]
+    },
+    {
+     "time": 4.8,
+     "holder": "world",
+     "position": [
+      -8.931,
+      1.95,
+      1.647
+     ],
+     "rotation": [
+      0,
+      101.952,
+      0
+     ]
+    },
+    {
+     "time": 5.2,
+     "holder": "world",
+     "position": [
+      -9.0,
+      1.95,
+      1.6
+     ],
+     "rotation": [
+      0,
+      101.459,
+      0
+     ]
+    },
+    {
+     "time": 5.6,
+     "holder": "world",
+     "position": [
+      -9.0,
+      1.95,
+      1.6
+     ],
+     "rotation": [
+      0,
+      99.187,
+      0
+     ]
+    },
+    {
+     "time": 6.0,
+     "holder": "world",
+     "position": [
+      -9.0,
+      1.95,
+      1.6
+     ],
+     "rotation": [
+      0,
+      94.51,
+      0
+     ]
+    },
+    {
+     "time": 6.4,
+     "holder": "world",
+     "position": [
+      -9.0,
+      1.95,
+      1.6
+     ],
+     "rotation": [
+      0,
+      90.635,
+      0
+     ]
+    },
+    {
+     "time": 6.6,
+     "holder": "world",
+     "position": [
+      -9.0,
+      1.95,
+      1.6
+     ],
+     "rotation": [
+      0,
+      90.0,
+      0
+     ]
+    },
+    {
+     "time": 6.8,
+     "holder": "world",
+     "position": [
+      -8.949,
+      1.95,
+      1.6
+     ],
+     "rotation": [
+      0,
+      90.0,
+      0
+     ]
+    },
+    {
+     "time": 7.2,
+     "holder": "world",
+     "position": [
+      -8.598,
+      1.95,
+      1.6
+     ],
+     "rotation": [
+      0,
+      90.0,
+      0
+     ]
+    },
+    {
+     "time": 7.6,
+     "holder": "world",
+     "position": [
+      -8.05,
+      1.95,
+      1.6
+     ],
+     "rotation": [
+      0,
+      90.0,
+      0
+     ]
+    },
+    {
+     "time": 8.0,
+     "holder": "world",
+     "position": [
+      -7.461,
+      1.95,
+      1.6
+     ],
+     "rotation": [
+      0,
+      90.0,
+      0
+     ]
+    },
+    {
+     "time": 8.4,
+     "holder": "world",
+     "position": [
+      -6.992,
+      1.95,
+      1.6
+     ],
+     "rotation": [
+      0,
+      90.0,
+      0
+     ]
+    },
+    {
+     "time": 8.8,
+     "holder": "world",
+     "position": [
+      -6.8,
+      1.95,
+      1.6
+     ],
+     "rotation": [
+      0,
+      90.0,
+      0
+     ]
+    },
+    {
+     "time": 9.1,
+     "holder": "world",
+     "position": [
+      -6.8,
+      1.95,
+      1.6
+     ],
+     "rotation": [
+      0,
+      90.0,
+      0
+     ]
+    },
+    {
+     "time": 10.8,
+     "holder": "world",
+     "position": [
+      -6.8,
+      3.05,
+      1.6
+     ],
+     "rotation": [
+      0,
+      90.0,
+      0
+     ]
+    },
+    {
+     "time": 30,
+     "holder": "world",
+     "position": [
+      -6.8,
+      3.05,
+      1.6
+     ],
+     "rotation": [
+      0,
+      90.0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "LEDPANEL",
+   "label": "大型 LED 柔光灯面板",
+   "kind": "box",
+   "owner": "LZ",
+   "options": {
+    "size": [
+     1.1,
+     0.75,
+     0.1
+    ],
+    "color": "#20242a",
+    "accent": "#f4f8ff"
+   },
+   "keyframes": [
+    {
+     "time": 0,
+     "holder": "world",
+     "position": [
+      -7.4,
+      2.35,
+      2.7
+     ],
+     "rotation": [
+      0,
+      112.918,
+      0
+     ]
+    },
+    {
+     "time": 2.0,
+     "holder": "world",
+     "position": [
+      -7.4,
+      2.35,
+      2.7
+     ],
+     "rotation": [
+      0,
+      112.918,
+      0
+     ]
+    },
+    {
+     "time": 2.4,
+     "holder": "world",
+     "position": [
+      -7.469,
+      2.35,
+      2.653
+     ],
+     "rotation": [
+      0,
+      112.426,
+      0
+     ]
+    },
+    {
+     "time": 2.8,
+     "holder": "world",
+     "position": [
+      -7.65,
+      2.35,
+      2.528
+     ],
+     "rotation": [
+      0,
+      111.128,
+      0
+     ]
+    },
+    {
+     "time": 3.2,
+     "holder": "world",
+     "position": [
+      -7.906,
+      2.35,
+      2.352
+     ],
+     "rotation": [
+      0,
+      109.293,
+      0
+     ]
+    },
+    {
+     "time": 3.6,
+     "holder": "world",
+     "position": [
+      -8.2,
+      2.35,
+      2.15
+     ],
+     "rotation": [
+      0,
+      107.189,
+      0
+     ]
+    },
+    {
+     "time": 4.0,
+     "holder": "world",
+     "position": [
+      -8.494,
+      2.35,
+      1.948
+     ],
+     "rotation": [
+      0,
+      105.085,
+      0
+     ]
+    },
+    {
+     "time": 4.4,
+     "holder": "world",
+     "position": [
+      -8.75,
+      2.35,
+      1.772
+     ],
+     "rotation": [
+      0,
+      103.25,
+      0
+     ]
+    },
+    {
+     "time": 4.8,
+     "holder": "world",
+     "position": [
+      -8.931,
+      2.35,
+      1.647
+     ],
+     "rotation": [
+      0,
+      101.952,
+      0
+     ]
+    },
+    {
+     "time": 5.2,
+     "holder": "world",
+     "position": [
+      -9.0,
+      2.35,
+      1.6
+     ],
+     "rotation": [
+      0,
+      101.459,
+      0
+     ]
+    },
+    {
+     "time": 5.6,
+     "holder": "world",
+     "position": [
+      -9.0,
+      2.35,
+      1.6
+     ],
+     "rotation": [
+      0,
+      99.187,
+      0
+     ]
+    },
+    {
+     "time": 6.0,
+     "holder": "world",
+     "position": [
+      -9.0,
+      2.35,
+      1.6
+     ],
+     "rotation": [
+      0,
+      94.51,
+      0
+     ]
+    },
+    {
+     "time": 6.4,
+     "holder": "world",
+     "position": [
+      -9.0,
+      2.35,
+      1.6
+     ],
+     "rotation": [
+      0,
+      90.635,
+      0
+     ]
+    },
+    {
+     "time": 6.6,
+     "holder": "world",
+     "position": [
+      -9.0,
+      2.35,
+      1.6
+     ],
+     "rotation": [
+      0,
+      90.0,
+      0
+     ]
+    },
+    {
+     "time": 6.8,
+     "holder": "world",
+     "position": [
+      -8.949,
+      2.35,
+      1.6
+     ],
+     "rotation": [
+      0,
+      90.0,
+      0
+     ]
+    },
+    {
+     "time": 7.2,
+     "holder": "world",
+     "position": [
+      -8.598,
+      2.35,
+      1.6
+     ],
+     "rotation": [
+      0,
+      90.0,
+      0
+     ]
+    },
+    {
+     "time": 7.6,
+     "holder": "world",
+     "position": [
+      -8.05,
+      2.35,
+      1.6
+     ],
+     "rotation": [
+      0,
+      90.0,
+      0
+     ]
+    },
+    {
+     "time": 8.0,
+     "holder": "world",
+     "position": [
+      -7.461,
+      2.35,
+      1.6
+     ],
+     "rotation": [
+      0,
+      90.0,
+      0
+     ]
+    },
+    {
+     "time": 8.4,
+     "holder": "world",
+     "position": [
+      -6.992,
+      2.35,
+      1.6
+     ],
+     "rotation": [
+      0,
+      90.0,
+      0
+     ]
+    },
+    {
+     "time": 8.8,
+     "holder": "world",
+     "position": [
+      -6.8,
+      2.35,
+      1.6
+     ],
+     "rotation": [
+      0,
+      90.0,
+      0
+     ]
+    },
+    {
+     "time": 9.1,
+     "holder": "world",
+     "position": [
+      -6.8,
+      2.35,
+      1.6
+     ],
+     "rotation": [
+      0,
+      90.0,
+      0
+     ]
+    },
+    {
+     "time": 10.8,
+     "holder": "world",
+     "position": [
+      -6.8,
+      3.45,
+      1.6
+     ],
+     "rotation": [
+      0,
+      90.0,
+      0
+     ]
+    },
+    {
+     "time": 30,
+     "holder": "world",
+     "position": [
+      -6.8,
+      3.45,
+      1.6
+     ],
+     "rotation": [
+      0,
+      90.0,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "CAMHEAD",
+   "label": "摄影机（摄影机组推着就位）",
+   "kind": "box",
+   "owner": "JZ",
+   "options": {
+    "size": [
+     0.5,
+     0.32,
+     0.28
+    ],
+    "color": "#1d2024",
+    "accent": "#d8483b"
+   },
+   "keyframes": [
+    {
+     "time": 0,
+     "holder": "world",
+     "position": [
+      0.4,
+      1.55,
+      3.05
+     ],
+     "rotation": [
+      0,
+      -90,
+      0
+     ]
+    },
+    {
+     "time": 24.4,
+     "holder": "world",
+     "position": [
+      0.4,
+      1.55,
+      3.05
+     ],
+     "rotation": [
+      0,
+      -90,
+      0
+     ]
+    },
+    {
+     "time": 28.2,
+     "holder": "world",
+     "position": [
+      6.3,
+      1.55,
+      0.55
+     ],
+     "rotation": [
+      0,
+      40.462,
+      0
+     ]
+    },
+    {
+     "time": 30,
+     "holder": "world",
+     "position": [
+      6.3,
+      1.55,
+      0.55
+     ],
+     "rotation": [
+      0,
+      40.462,
+      0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "CAMSTAND",
+   "label": "摄影机脚架",
+   "kind": "box",
+   "owner": "JZ",
+   "options": {
+    "size": [
+     0.45,
+     1.25,
+     0.45
+    ],
+    "color": "#3a3f44"
+   },
+   "keyframes": [
+    {
+     "time": 0,
+     "holder": "world",
+     "position": [
+      0.4,
+      1.25,
+      3.05
+     ],
+     "rotation": [
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "time": 24.4,
+     "holder": "world",
+     "position": [
+      0.4,
+      1.25,
+      3.05
+     ],
+     "rotation": [
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "time": 28.2,
+     "holder": "world",
+     "position": [
+      6.3,
+      1.25,
+      0.55
+     ],
+     "rotation": [
+      0,
+      0,
+      0
+     ]
+    },
+    {
+     "time": 30,
+     "holder": "world",
+     "position": [
+      6.3,
+      1.25,
+      0.55
+     ],
+     "rotation": [
+      0,
+      0,
+      0
+     ]
+    }
+   ]
+  }
+ ],
+ "rigs": [
+  {
+   "id": "doorL",
+   "label": "入口左扇门开角",
+   "keyframes": [
+    {
+     "time": 0,
+     "value": 8
+    },
+    {
+     "time": 0.7,
+     "value": 75
+    },
+    {
+     "time": 2.4,
+     "value": 60
+    },
+    {
+     "time": 30,
+     "value": 60
+    }
+   ]
+  },
+  {
+   "id": "doorR",
+   "label": "入口右扇门开角",
+   "keyframes": [
+    {
+     "time": 0,
+     "value": -8
+    },
+    {
+     "time": 0.7,
+     "value": -70
+    },
+    {
+     "time": 2.4,
+     "value": -55
+    },
+    {
+     "time": 30,
+     "value": -55
+    }
+   ]
+  },
+  {
+   "id": "sofa",
+   "label": "沙发往画左挪（米）",
+   "keyframes": [
+    {
+     "time": 0,
+     "value": 0
+    },
+    {
+     "time": 21.6,
+     "value": 0
+    },
+    {
+     "time": 22.4,
+     "value": -0.25
+    },
+    {
+     "time": 30,
+     "value": -0.25
+    }
+   ]
+  }
+ ],
+ "fx": [
+  {
+   "type": "glow",
+   "target": "set.setLamp1",
+   "windows": [
+    [
+     28.3,
+     30
+    ]
+   ],
+   "intensity": 3,
+   "offIntensity": 0.6,
+   "color": "#ffb85c",
+   "lightIntensity": 30,
+   "offLightIntensity": 6,
+   "lightDistance": 10,
+   "lightDecay": 1.3
+  },
+  {
+   "type": "glow",
+   "target": "set.setLamp2",
+   "windows": [
+    [
+     28.3,
+     30
+    ]
+   ],
+   "intensity": 3,
+   "offIntensity": 0.6,
+   "color": "#ffb85c",
+   "lightIntensity": 30,
+   "offLightIntensity": 6,
+   "lightDistance": 10,
+   "lightDecay": 1.3
+  },
+  {
+   "type": "glow",
+   "target": "set.setLamp3",
+   "windows": [
+    [
+     28.3,
+     30
+    ]
+   ],
+   "intensity": 3,
+   "offIntensity": 0.6,
+   "color": "#ffb85c",
+   "lightIntensity": 30,
+   "offLightIntensity": 6,
+   "lightDistance": 10,
+   "lightDecay": 1.3
+  },
+  {
+   "type": "glow",
+   "target": "LEDPANEL.center",
+   "windows": [
+    [
+     10.6,
+     30
+    ]
+   ],
+   "intensity": 2.5,
+   "offIntensity": 0.4,
+   "color": "#f4f8ff",
+   "radius": 0.05
+  },
+  {
+   "type": "dust",
+   "min": [
+    -17,
+    0.5,
+    -5
+   ],
+   "max": [
+    15,
+    10,
+    6
+   ],
+   "count": 360,
+   "color": "#e8eef4",
+   "size": 0.014,
+   "opacity": 0.35,
+   "seed": 3
+  },
+  {
+   "type": "dust",
+   "min": [
+    4.2,
+    0.2,
+    -3.3
+   ],
+   "max": [
+    11.8,
+    3.0,
+    3.3
+   ],
+   "count": 160,
+   "color": "#fff1dc",
+   "size": 0.06,
+   "opacity": 0.12,
+   "seed": 8
+  }
+ ],
+ "cues": [
+  {
+   "time": 0.1,
+   "label": "声：棚内人声、对讲机电流声（全程，无配乐）"
+  },
+  {
+   "time": 0.6,
+   "label": "声：肩膀顶开大门"
+  },
+  {
+   "time": 2.1,
+   "label": "小周冲扛箱的人点头"
+  },
+  {
+   "time": 5.6,
+   "label": "小周递咖啡给老郑"
+  },
+  {
+   "time": 6.4,
+   "label": "声：滚轮压过胶带"
+  },
+  {
+   "time": 9.1,
+   "label": "声：灯架摇柄"
+  },
+  {
+   "time": 14.0,
+   "label": "服装助理取下披肩、理衣领"
+  },
+  {
+   "time": 16.0,
+   "label": "导演：这场光再暖一点。"
+  },
+  {
+   "time": 17.0,
+   "label": "摄影指导：好，我让老郑调。"
+  },
+  {
+   "time": 17.6,
+   "label": "小周塞咖啡"
+  },
+  {
+   "time": 20.6,
+   "label": "副导演（对讲机）：各部门准备！"
+  },
+  {
+   "time": 22.0,
+   "label": "置景工人挪沙发"
+  },
+  {
+   "time": 25.3,
+   "label": "声：金属楼梯脚步"
+  },
+  {
+   "time": 28.2,
+   "label": "副导演举手"
+  },
+  {
+   "time": 28.3,
+   "label": "布景戏用灯全亮，全场安静"
+  }
+ ],
+ "shots": [
+  {
+   "id": "s01",
+   "label": "01 · 斯坦尼康一镜到底 28mm 特写→中景→中近景→全景→大全景俯拍",
+   "start": 0,
+   "end": 30,
+   "action": "小周端咖啡推门进棚递给老郑；镜头交给推灯的老郑，随灯面升起上摇；半环绕补妆的女演员；在导演和摄影指导身前后退引导，从两人和两台监视器之间穿过；从挑杆下面钻进客厅布景，穿过布景门、走上金属楼梯，在灯光走道上俯拍——副导演举手，布景灯全亮。",
+   "camera": {
+    "fov": 46,
+    "handheld": 0.18,
+    "keyframes": [
+     {
+      "time": 0.0,
+      "position": [
+       -17.2,
+       1.0,
+       0.15
+      ],
+      "target": [
+       -18.0,
+       1.0,
+       0.1
+      ]
+     },
+     {
+      "time": 1.2,
+      "position": [
+       -15.0,
+       1.3,
+       0.25
+      ],
+      "target": [
+       -16.6,
+       1.15,
+       0.1
+      ]
+     },
+     {
+      "time": 2.6,
+      "position": [
+       -12.9,
+       1.45,
+       0.35
+      ],
+      "target": [
+       -14.6,
+       1.3,
+       0.0
+      ]
+     },
+     {
+      "time": 4.0,
+      "position": [
+       -10.0,
+       1.5,
+       0.5
+      ],
+      "target": [
+       -11.8,
+       1.3,
+       0.2
+      ]
+     },
+     {
+      "time": 4.9,
+      "position": [
+       -8.9,
+       1.5,
+       -0.55
+      ],
+      "target": [
+       -9.1,
+       1.2,
+       1.0
+      ]
+     },
+     {
+      "time": 6.3,
+      "position": [
+       -9.4,
+       1.2,
+       -0.35
+      ],
+      "target": [
+       -8.6,
+       0.6,
+       1.6
+      ]
+     },
+     {
+      "time": 7.6,
+      "position": [
+       -7.9,
+       1.1,
+       -0.4
+      ],
+      "target": [
+       -7.6,
+       0.45,
+       1.6
+      ]
+     },
+     {
+      "time": 8.8,
+      "position": [
+       -6.9,
+       1.15,
+       -0.3
+      ],
+      "target": [
+       -6.8,
+       0.7,
+       1.6
+      ]
+     },
+     {
+      "time": 9.4,
+      "position": [
+       -6.9,
+       1.2,
+       -0.2
+      ],
+      "target": [
+       -6.8,
+       2.6,
+       1.7
+      ]
+     },
+     {
+      "time": 10.3,
+      "position": [
+       -7.1,
+       1.3,
+       0.3
+      ],
+      "target": [
+       -6.6,
+       5.3,
+       5.0
+      ]
+     },
+     {
+      "time": 11.1,
+      "position": [
+       -8.6,
+       1.4,
+       0.05
+      ],
+      "target": [
+       -9.0,
+       1.3,
+       -1.5
+      ]
+     },
+     {
+      "time": 11.6,
+      "position": [
+       -10.4,
+       1.45,
+       -0.25
+      ],
+      "target": [
+       -9.0,
+       1.2,
+       -1.5
+      ]
+     },
+     {
+      "time": 12.6,
+      "position": [
+       -10.6,
+       1.4,
+       -1.5
+      ],
+      "target": [
+       -9.0,
+       1.15,
+       -1.5
+      ]
+     },
+     {
+      "time": 13.8,
+      "position": [
+       -9.45,
+       1.4,
+       -3.0
+      ],
+      "target": [
+       -9.0,
+       1.15,
+       -1.5
+      ]
+     },
+     {
+      "time": 15.0,
+      "position": [
+       -8.75,
+       1.35,
+       -2.95
+      ],
+      "target": [
+       -9.0,
+       1.2,
+       -1.5
+      ]
+     },
+     {
+      "time": 15.7,
+      "position": [
+       -7.7,
+       1.45,
+       -2.1
+      ],
+      "target": [
+       -10.0,
+       1.4,
+       1.2
+      ]
+     },
+     {
+      "time": 16.6,
+      "position": [
+       -5.7,
+       1.55,
+       -0.55
+      ],
+      "target": [
+       -8.6,
+       1.5,
+       0.35
+      ]
+     },
+     {
+      "time": 17.6,
+      "position": [
+       -4.5,
+       1.55,
+       0.25
+      ],
+      "target": [
+       -6.6,
+       1.5,
+       0.35
+      ]
+     },
+     {
+      "time": 18.6,
+      "position": [
+       -4.0,
+       1.55,
+       0.25
+      ],
+      "target": [
+       -6.0,
+       1.5,
+       0.25
+      ]
+     },
+     {
+      "time": 19.3,
+      "position": [
+       -3.9,
+       1.5,
+       0.1
+      ],
+      "target": [
+       -1.0,
+       1.4,
+       0.0
+      ]
+     },
+     {
+      "time": 19.9,
+      "position": [
+       -2.85,
+       1.45,
+       0.0
+      ],
+      "target": [
+       2.0,
+       1.35,
+       0.0
+      ]
+     },
+     {
+      "time": 20.3,
+      "position": [
+       -1.95,
+       1.45,
+       0.0
+      ],
+      "target": [
+       3.0,
+       1.3,
+       0.0
+      ]
+     },
+     {
+      "time": 21.0,
+      "position": [
+       0.6,
+       1.4,
+       0.1
+      ],
+      "target": [
+       5.0,
+       1.3,
+       0.0
+      ]
+     },
+     {
+      "time": 21.9,
+      "position": [
+       3.7,
+       1.2,
+       0.15
+      ],
+      "target": [
+       8.0,
+       1.0,
+       -0.9
+      ]
+     },
+     {
+      "time": 22.7,
+      "position": [
+       5.6,
+       1.35,
+       0.4
+      ],
+      "target": [
+       8.9,
+       0.8,
+       -1.8
+      ]
+     },
+     {
+      "time": 23.6,
+      "position": [
+       8.3,
+       1.45,
+       0.55
+      ],
+      "target": [
+       11.8,
+       1.3,
+       0.0
+      ]
+     },
+     {
+      "time": 24.3,
+      "position": [
+       11.3,
+       1.5,
+       0.05
+      ],
+      "target": [
+       13.0,
+       1.45,
+       0.0
+      ]
+     },
+     {
+      "time": 24.8,
+      "position": [
+       12.45,
+       1.55,
+       -0.1
+      ],
+      "target": [
+       13.6,
+       1.8,
+       1.2
+      ]
+     },
+     {
+      "time": 25.3,
+      "position": [
+       13.4,
+       1.75,
+       -0.75
+      ],
+      "target": [
+       13.4,
+       3.4,
+       2.8
+      ]
+     },
+     {
+      "time": 26.1,
+      "position": [
+       13.4,
+       4.15,
+       1.95
+      ],
+      "target": [
+       13.3,
+       5.6,
+       4.6
+      ]
+     },
+     {
+      "time": 26.9,
+      "position": [
+       13.35,
+       6.5,
+       4.75
+      ],
+      "target": [
+       11.0,
+       4.2,
+       3.0
+      ]
+     },
+     {
+      "time": 27.6,
+      "position": [
+       12.6,
+       6.8,
+       4.8
+      ],
+      "target": [
+       6.8,
+       0.4,
+       -0.6
+      ]
+     },
+     {
+      "time": 30.0,
+      "position": [
+       11.2,
+       6.8,
+       4.8
+      ],
+      "target": [
+       5.8,
+       0.5,
+       -0.5
+      ]
+     }
+    ]
+   }
+  }
+ ]
+}

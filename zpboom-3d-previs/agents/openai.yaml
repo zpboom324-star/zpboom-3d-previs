@@ -1,0 +1,4 @@
+interface:
+  display_name: "ZPboom.AI · 3D预演导演"
+  short_description: "从分镜生成可编辑的3D网页预演，先调镜头与走位，再整理视频生成参考"
+  default_prompt: "使用 $zpboom-3d-previs，根据我的分镜和人物场景参考制作可编辑的3D网页预演，先检查机位、走位与衔接，再整理生成参考包。"
